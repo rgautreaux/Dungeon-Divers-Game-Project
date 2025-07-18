@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
 
@@ -10,12 +13,10 @@ using UnityEngine.SceneManagement;
 // Credit goes to the creator of the EasyStart Third Person Controller on Unity.
 
 
-public enum PlayerState { ATTACK, DEFEND, JUMPING, SPRINTING, RUNNING, DEAD, WEAK, READY, DEFAULT };
 public class ProtagMovement : MonoBehaviour
 {
-    protected PlayerState state = PlayerState.DEFAULT;
+    //Player Health
     public float health = 100.0f;
-
 
     //Character Movement Speed
     public float velocity = 5f;
@@ -53,9 +54,9 @@ public class ProtagMovement : MonoBehaviour
     bool inputSprint;
 
     // Get control of the character's animations
-    Animator animator;
+    public Animator animator;
     // Gets the character's collision and movement controller component
-    CharacterController cc;
+    public CharacterController cc;
 
     // Variable controlling the time the player spent in the air. Explained further below.
     float jumpElapsedTime = 0;
@@ -77,235 +78,129 @@ public class ProtagMovement : MonoBehaviour
     // Update is only being used here to identify keys and trigger animations
     void Update()
     {
-        switch (state)
+        monster = GameObject.FindWithTag("Monster");
+
+        // Check which input is being pressed
+        // Read the end of this script for a detailed explanation.
+
+        inputHorizontal = Input.GetAxis("Horizontal");
+        inputVertical = Input.GetAxis("Vertical");
+        inputJump = Input.GetAxis("Jump") == 1f;
+        inputSprint = Input.GetAxis("Fire3") == 1f;
+        // Unfortunately GetAxis does not work with GetKeyDown, so inputs must be taken individually
+        inputCrouch = Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton1);
+
+
+        // isGrounded is a Character Controller property that informs whether the player is touching the ground. It's very easy to use!
+        if (cc.isGrounded)
         {
-            case PlayerState.DEFAULT:
-                // isGrounded is a Character Controller property that informs whether the player is touching the ground. It's very easy to use!
-                if (cc.isGrounded)
-                {
-                    animator.SetBool("isIdle", true);
-                    animator.SetBool("isRunning", false);
+            // Check the player's speed and whether it is high enough to trigger the running animation
+            float minimumSpeed = 0.9f;
+            if (cc.velocity.magnitude > minimumSpeed)
+            {
+                Debug.Log("Player is running!");
 
-                    Debug.Log("Player is Standing Idle");
-
-
-                    if (Vector3.Distance(transform.position, monster.transform.position) < monsterDistance)
-                    {
-                        state = PlayerState.READY;
-                    }
-                    else if (health < 50)
-                    {
-                        state = PlayerState.WEAK;
-                    }
-                    else
-                    {
-                        state = PlayerState.RUNNING;
-                        Debug.Log("Player is on the move!");
-                    }
-                }
-                break;
-
-            case PlayerState.READY:
-                // isGrounded is a Character Controller property that informs whether the player is touching the ground. It's very easy to use!
-                if (cc.isGrounded)
-                {
-                    if (Vector3.Distance(transform.position, monster.transform.position) < monsterDistance)
-                    {
-                        animator.SetBool("isIdle", false);
-                        animator.SetBool("isReady", true);
-                        Debug.Log("Player is ready for a fight!");
-
-                    }
-                    else
-                    {
-                        state = PlayerState.DEFAULT;
-                        Debug.Log("No enemies nearby.");
-                    }
-                }
-                break;
-
-            case PlayerState.WEAK:
-                // isGrounded is a Character Controller property that informs whether the player is touching the ground. It's very easy to use!
-                if (cc.isGrounded)
-                {
-                    if (health <= 50)
-                    {
-                        animator.SetBool("isIdle", false);
-                        animator.SetBool("isWeak", true);
-                        Debug.Log("Player needs healing");
-                    }
-                    else if (health > 50)
-                    {
-                        state = PlayerState.DEFAULT;
-                        Debug.Log("Player is feeling better");
-                    }
-                    else
-                    {
-                        state = PlayerState.RUNNING;
-                        Debug.Log("Player is on the move!");
-                    }
-                }
-                break;
-
-            case PlayerState.RUNNING:
-                // isGrounded is a Character Controller property that informs whether the player is touching the ground. It's very easy to use!
-                if (cc.isGrounded)
-                {
-
-                    Debug.Log("Player is on the move!");
-
-                    // Check which input is being pressed
-                    inputHorizontal = Input.GetAxis("Horizontal");
-                    inputVertical = Input.GetAxis("Vertical");
-                    inputJump = Input.GetAxis("Jump") == 1f;
-                    inputSprint = Input.GetAxis("Fire3") == 1f;
-
-
-                    // Check the player's speed and whether it is high enough to trigger the running animation
-                    float minimumSpeed = 0.9f; // You can test with other values
-                    if (cc.velocity.magnitude > minimumSpeed)
-                    {
-                        Debug.Log("Player is running!");
-
-                        animator.SetBool("isRunning", true);
-                        animator.SetBool("isIdle", false);
-
-                    }
-                    else
-                    {
-                        animator.SetBool("isRunning", false);
-                        animator.SetBool("isIdle", true);
-                        state = PlayerState.DEFAULT;
-                        Debug.Log("Player stopped running");
-
-
-                    }
-                }
-                break;
-
-            case PlayerState.SPRINTING:
-                // isGrounded is a Character Controller property that informs whether the player is touching the ground. It's very easy to use!
-                if (cc.isGrounded)
-                {
-                    // Check which input is being pressed
-                    inputHorizontal = Input.GetAxis("Horizontal");
-                    inputVertical = Input.GetAxis("Vertical");
-                    inputJump = Input.GetAxis("Jump") == 1f;
-                    inputSprint = Input.GetAxis("Fire3") == 1f;
-
-                    // Same logic as the run, but adding the sprint input condition
-                    if (cc.velocity.magnitude > 0.9f && inputSprint)
-                    {
-                        Debug.Log("Player is sprinting");
-                        isSprinting = true;
-                        isRunning = false;
-
-                        animator.SetBool("isSprinting", isSprinting);
-                        animator.SetBool("isRunning", isRunning);
-
-                        state = PlayerState.SPRINTING;
-
-                    }
-                    else
-                    {
-                        Debug.Log("Player stopped sprinting");
-                        isSprinting = false;
-                        isRunning = true;
-
-                        animator.SetBool("isSprinting", isSprinting);
-                        animator.SetBool("isRunning", isRunning);
-
-                        state = PlayerState.RUNNING;
-                    }
-
-                }
-                break;
-
-            case PlayerState.JUMPING:
-                // Check which input is being pressed
-                inputHorizontal = Input.GetAxis("Horizontal");
-                inputVertical = Input.GetAxis("Vertical");
-                inputJump = Input.GetAxis("Jump") == 1f;
-                inputSprint = Input.GetAxis("Fire3") == 1f;
-
-                // Air/jumping animation if is or not in the ground
-                if (cc.isGrounded == true)
-                {
-                    animator.SetBool("isJumping", false);
-                    animator.SetBool("isRunning", true);
-                    state = PlayerState.RUNNING;
-
-                }
-                else
-                {
-                    animator.SetBool("isJumping", true);
-                    animator.SetBool("isRunning", false);
-                    state = PlayerState.JUMPING;
-
-                }
-
-                // Check if input jump is pressed and if player is in the ground
-                if (inputJump && cc.isGrounded)
-                {
-                    isJumping = true;
-                    state = PlayerState.JUMPING;
-                }
-
-                // It's at the end of the code. Leave it for later.
-                HeadHittingDetect();
-
-                break;
-
-            case PlayerState.ATTACK:
-                if (Input.GetMouseButtonDown(0))
-                {
-                    animator.SetBool("isAttacking", true);
-                    animator.SetBool("isRunning", false);
-                    state = PlayerState.ATTACK;
-                }
-                else
-                {
-                    animator.SetBool("isAttacking", false);
-                    animator.SetBool("isRunning", true);
-                    state = PlayerState.READY;
-                }
-                break;
-
-            case PlayerState.DEFEND:
-                if (Input.GetMouseButtonDown(1))
-                {
-                    animator.SetBool("isDefending", true);
-                    animator.SetBool("isRunning", false);
-                    state = PlayerState.DEFEND;
-                }
-                else
-                {
-                    animator.SetBool("isDefending", false);
-                    animator.SetBool("isRunning", true);
-                    state = PlayerState.READY;
-                }
-                break;
-
-            case PlayerState.DEAD:
+                animator.SetBool("isRunning", true);
                 animator.SetBool("isIdle", false);
                 animator.SetBool("isReady", false);
                 animator.SetBool("isWeak", false);
+
+
+            }
+            else
+            {
                 animator.SetBool("isRunning", false);
-                animator.SetBool("isSprinting", false);
-                animator.SetBool("isAttacking", false);
-                animator.SetBool("isDefending", false);
+                animator.SetBool("isIdle", true);
+                Debug.Log("Player stopped running");
 
-                animator.SetBool("isDead", true);
-                break;
-
-            default:
-                break;
+            }
         }
 
-    }
+        // Same logic as the run, but adding the sprint input condition
+        if (cc.velocity.magnitude > 0.9f && inputSprint)
+        {
+            Debug.Log("Player is sprinting");
+            isSprinting = true;
+            isRunning = false;
+        }
+        else
+        {
+            Debug.Log("Player stopped sprinting");
+            isSprinting = false;
+            isRunning = true;
+
+        }
+
+        // After going through the above condition, we already have the answer to whether it is running or not within the variable
+        animator.SetBool("isRunning", isRunning);
+        animator.SetBool("sprint", isSprinting);
+
+        // Air/jumping animation if is or not in the ground
+        if (cc.isGrounded == true)
+        {
+            animator.SetBool("isJumping", false);
+            animator.SetBool("isRunning", true);
+
+        }
+        else
+        {
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isJumping", true);
+        }
+
+        // Check if input jump is pressed and if player is in the ground
+        if (inputJump && cc.isGrounded)
+        {
+            isJumping = true;
+            // Disable crounching when jumping? You decide, just uncomment:
+            // isCrouching = false;
+        }
+
+        // It's at the end of the code. Leave it for later.
+        HeadHittingDetect();
 
 
+        if (!isRunning && !isJumping && !isSprinting && !isDefending && !isAttacking && !isDead)
+        {
+            if (Vector3.Distance(transform.position, monster.transform.position) < monsterDistance)
+            {
+                Debug.Log("Player is ready for a fight!");
+                animator.SetBool("isReady", true);
+            }
+            else if (health <= 50)
+            {
+                Debug.Log("Player needs healing");
+                animator.SetBool("isWeak", true);
+            }
+            else
+            {
+                animator.SetBool("isIdle", true);
+                Debug.Log("Player is standing Idle!");
 
+            }
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            animator.SetBool("isAttacking", true);
+            animator.SetBool("isRunning", false);
+        }
+        else
+        {
+            animator.SetBool("isAttacking", false);
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            animator.SetBool("isDefending", true);
+            animator.SetBool("isRunning", false);
+        }
+        else
+        {
+            animator.SetBool("isDefending", false);
+        }
+    }          
+                  
     // With the inputs and animations defined, FixedUpdate is responsible for applying movements and actions to the player
     private void FixedUpdate()
     {
@@ -419,7 +314,15 @@ public class ProtagMovement : MonoBehaviour
 
         if (health <= 0)
         {
-            state = PlayerState.DEAD;
+            animator.SetBool("isIdle", false);
+            animator.SetBool("isReady", false);
+            animator.SetBool("isWeak", false);
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isSprinting", false);
+            animator.SetBool("isAttacking", false);
+            animator.SetBool("isDefending", false);
+
+            animator.SetBool("isDead", true);
         }
     }
 }
