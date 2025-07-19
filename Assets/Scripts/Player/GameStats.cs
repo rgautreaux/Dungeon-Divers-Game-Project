@@ -13,7 +13,7 @@ public class GameStats : MonoBehaviour
     public new Camera camera;
     public float maxDistance = 3f;
 
-
+    public static int level = 1;
     public static int bossesFinished = 0;
     public static int monstersKilled = 0;
     public static int shopTrips = 0;
@@ -21,6 +21,7 @@ public class GameStats : MonoBehaviour
     public static int goldCoins = 0;
     public static int gameScore = 0;
 
+    public TextMeshProUGUI levelText;
     public TextMeshProUGUI bossCount;
     public TextMeshProUGUI monsterCount;
     public TextMeshProUGUI purchaseCount;
@@ -31,13 +32,13 @@ public class GameStats : MonoBehaviour
     public bool SecBoss = false;
     public bool ThirdBoss = false;
     public bool FourthBoss = false;
-    public bool FinalBoss = false;
+    public bool Final = false;
 
     // Start is called before the first frame update
     void Start()
     {
 
-        bossCount.text = bossesFinished.ToString() + "/8 Dragons Defeated";
+        bossCount.text = bossesFinished.ToString() + "/5 Boss Fights Defeated";
         monsterCount.text = monstersKilled.ToString() + " Total Monsters Slain";
         goldCount.text = "You have earned" + goldCoins.ToString() + "gold";
         purchaseCount.text = "You visited [shop name] " + shopTrips.ToString() + " times and spent " + moneySpent.ToString() + "gold";
@@ -47,68 +48,59 @@ public class GameStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        /*
         // Create raycast from camera to check for interactables
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out RaycastHit hit, maxDistance))
         {
-            if (hit.collider.CompareTag("SteerShip"))
+            if (hit.collider.gameObject.name  == "Boss1")
             {
-                NavTask = true;
-                tasksCompleted += 1;
+                FirstBoss = true;
+                bossesFinished += 1;
                 gameScore += 20;
             }
-            else if (hit.collider.CompareTag("Asteroids"))
+            else if (hit.collider.gameObject.name == "Boss2")
             {
-                AstTask = true;
-                tasksCompleted += 1;
-                gameScore += 20;
+                SecBoss = true;
+                bossesFinished += 1;
+                gameScore += 30;
             }
-            else if (hit.collider.CompareTag("Diagnostics"))
+            else if (hit.collider.gameObject.name == "Boss3")
             {
-                DiagTask = true;
-                tasksCompleted += 1;
-                gameScore += 20;
+                ThirdBoss = true;
+                bossesFinished += 1;
+                gameScore += 40;
             }
-            else if (hit.collider.CompareTag("FixOxygen"))
+            else if (hit.collider.gameObject.name == "Boss4")
             {
-                OxyTask = true;
-                tasksCompleted += 1;
-                gameScore += 20;
+                FourthBoss = true;
+                bossesFinished += 1;
+                gameScore += 50;
             }
-            else if (hit.collider.CompareTag("FixEngine"))
+            else if (hit.collider.gameObject.name == "Final")
             {
-                EngTask = true;
-                tasksCompleted += 1;
-                gameScore += 20;
-            }
-            else if (hit.collider.CompareTag("RestorePower"))
-            {
-                PowTask = true;
-                tasksCompleted += 1;
-                gameScore += 20;
+                Final = true;
+                bossesFinished += 1;
+                gameScore += 100;
             }
         }
         else if (Input.GetKeyDown(KeyCode.Q))
         {
             Debug.Log("Instant Win Cheat");
-            tasksCompleted = 6;
+            bossesFinished = 5;
             gameScore += 60;
         }
-        */
 
     }
 
     private void OnGUI()
     {
-        bossCount.text = bossesFinished.ToString() + "/8 Dragons Defeated";
+        bossCount.text = bossesFinished.ToString() + "/5 Boss Fights Defeated";
         monsterCount.text = monstersKilled.ToString() + " Total Monsters Slain";
         goldCount.text = "You have earned" + goldCoins.ToString() + "gold";
         purchaseCount.text = "You visited [shop name] " + shopTrips.ToString() + " times and spent " + moneySpent.ToString() + "gold";
         gameScoreText.text = "Game Score = " + gameScore.ToString();
     
 
-        if (bossesFinished >= 8)
+        if (bossesFinished >= 5)
         {
             EndGame();
         }
