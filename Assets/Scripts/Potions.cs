@@ -1,30 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 public class Potions : MonoBehaviour
 {
     AudioSource drink;
-    bool potionEffect = false;
+    public bool potionEffect = false;
 
-    private Player player;
+    private ProtagMovement player;
     private CharacterController characterControls;
 
     public GameObject potion;
     public TextMeshProUGUI potionName;
 
+    //Detecting monsters
+    GameObject monster;
+
     // Start is called before the first frame update
     void Start()
     {
         drink = GetComponent<AudioSource>();
-        player = FindObjectOfType<Player>();
-        characterControls = player.GetComponent<CharacterController>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<ProtagMovement>();
+        characterControls = player.GetComponent<ProtagMovement>().cc;
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.Rotate(0, 0, 5);
+        monster = GameObject.FindWithTag("Monster");
+
     }
 
     void OnTriggerEnter(Collider collider)
@@ -84,29 +90,40 @@ public class Potions : MonoBehaviour
     void HealthPotion()
     {
         potionName.text = "Health Potion!";
-        player.GetComponent<Player>().health += 5;
-        characterControls.StartCoroutine(HealthEnd());
+        player.GetComponent<ProtagMovement>().health += 5;
+        player.StartCoroutine(HealthEnd());
     }
     private IEnumerator HealthEnd()
     {
         yield return new WaitForSeconds(15);
         potionName.text = "   ";
-        player.GetComponent<Player>().health += 0;
+        player.GetComponent<ProtagMovement>().health += 0;
         potionEffect = false;
     }
 
     //prevent all damage to player
     void StrengthPotion()
     {
+        //float damage = monster.GetComponent<>().damage;
+        float damage = 0.5f;
+
+
+
+
         potionName.text = "Strength Potion!";
-        player.SetInvincible(true);
+        player.takeDamage(damage, true);
         player.StartCoroutine(StrengthOver());
     }
     private IEnumerator StrengthOver()
     {
-        yield return new WaitForSeconds(5);
+        //float damage = monster.GetComponent<>().damage;
+        float damage = 0.5f; 
+
+
+
+        yield return new WaitForSeconds(10);
         potionName.text = "   ";
-        player.SetInvincible(false);
+        player.takeDamage(damage, false);
         potionEffect = false;
     }
 
@@ -114,14 +131,14 @@ public class Potions : MonoBehaviour
     void SpeedPotion()
     {
         potionName.text = "Speed Potion!";
-        player.UpdateSpeed(5.0f);
+        player.UpdateSpeed(10f);
         player.StartCoroutine(SpeedOver());
     }
     private IEnumerator SpeedOver()
     {
         yield return new WaitForSeconds(5);
         potionName.text = "   ";
-        player.UpdateSpeed(2.0f);
+        player.UpdateSpeed(5f);
         potionEffect = false;
     }
 }

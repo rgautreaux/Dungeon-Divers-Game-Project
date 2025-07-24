@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
@@ -308,9 +309,21 @@ public class ProtagMovement : MonoBehaviour
         }
     }
 
-    public void takeDamage(float damage)
+    public void takeDamage(float damage, bool strengthPotion)
     {
+        //Base Damage
         health -= damage;
+        strengthPotion = GetComponent<Potions>().potionEffect;
+
+        //Strength Potion Effect
+        if (strengthPotion)
+        {
+
+            health -= damage / 2;
+        }
+
+
+
         Debug.Log("Monster dealth " + damage + "damage, " + health + "HP remain.");
 
         if (health <= 0)
@@ -325,5 +338,11 @@ public class ProtagMovement : MonoBehaviour
 
             animator.SetBool("isDead", true);
         }
+    }
+
+    public void UpdateSpeed(float speedPotion)
+    {
+        //Increase Base Character Movement Speed
+        velocity = speedPotion;
     }
 }
