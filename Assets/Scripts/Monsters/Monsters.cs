@@ -33,19 +33,63 @@ public class Monsters : MonoBehaviour
         animator = GetComponent<Animator>();
         myaudio = GetComponent<AudioSource>();
 
-        if (self.gameObject.name == "Bunny")
+
+        //assign unique damage level
+        if (self.gameObject.name == "Bunny 0")
         { damage = 1f; }
-        else if (self.gameObject.name == "Slime")
+        else if (self.gameObject.name == "Bunny 1")
+        { damage = 1f; }
+        else if (self.gameObject.name == "Bunny 2")
+        { damage = 1f; }
+        else if (self.gameObject.name == "Bunny 3")
+        { damage = 1f; }
+        else if (self.gameObject.name == "Slime 0")
         { damage = 1.5f; }
-        else if (self.gameObject.name == "LilGhost")
+        else if (self.gameObject.name == "Slime 1")
+        { damage = 1.5f; }
+        else if (self.gameObject.name == "Slime 2")
+        { damage = 1.5f; }
+        else if (self.gameObject.name == "Slime 3")
+        { damage = 1.5f; }
+        else if (self.gameObject.name == "LilGhost 0")
         { damage = 2f; }
-        else if (self.gameObject.name == "Batty")
+        else if (self.gameObject.name == "LilGhost 1")
+        { damage = 2f; }
+        else if (self.gameObject.name == "LilGhost 2")
+        { damage = 2f; }
+        else if (self.gameObject.name == "LilGhost 3")
+        { damage = 2f; }
+        else if (self.gameObject.name == "Batty 0")
+        { damage = 2.5f; }
+        else if (self.gameObject.name == "Batty 1")
+        { damage = 2.5f; }
+        else if (self.gameObject.name == "Batty 2")
+        { damage = 2.5f; }
+        else if (self.gameObject.name == "Batty 3")
         { damage = 2.5f; }
         else if (self.gameObject.name == "Mushy")
         { damage = 3f; }
-        else if (self.gameObject.name == "BigGhost")
+        else if (self.gameObject.name == "BigGhost 0")
         { damage = 3.5f; }
-        else if (self.gameObject.name == "Watcher")
+        else if (self.gameObject.name == "BigGhost 1")
+        { damage = 3.5f; }
+        else if (self.gameObject.name == "BigGhost 2")
+        { damage = 3.5f; }
+        else if (self.gameObject.name == "BigGhost 3")
+        { damage = 3.5f; }
+        else if (self.gameObject.name == "BigGhost 4")
+        { damage = 3.5f; }
+        else if (self.gameObject.name == "BigGhost 5")
+        { damage = 3.5f; }
+        else if (self.gameObject.name == "BigGhost 6")
+        { damage = 3.5f; }
+        else if (self.gameObject.name == "BigGhost 7")
+        { damage = 3.5f; }
+        else if (self.gameObject.name == "BigGhost 8")
+        { damage = 3.5f; }
+        else if (self.gameObject.name == "Watcher 0")
+        { damage = 5f; }
+        else if (self.gameObject.name == "Watcher 1")
         { damage = 5f; }
     }
 
@@ -60,7 +104,7 @@ public class Monsters : MonoBehaviour
         switch (state)
         {
             case MonsterState.DEFAULT:
-                animator.SetBool("isWalking", false);
+                animator.SetBool("isMoving", false);
                 animator.SetBool("isRunning", false);
                 animator.SetBool("isAttacking", false);
                 if (Vector3.Distance(transform.position, player.transform.position) < chaseDistance)
@@ -75,7 +119,7 @@ public class Monsters : MonoBehaviour
                 }
                 break;
             case MonsterState.MOVING:
-                animator.SetBool("isWalking", true);
+                animator.SetBool("isMoving", true);
                 //Debug.Log("Dest = " + destination + "Distance = " + Vector3.Distance(transform.position, destination));
                 if (Vector3.Distance(transform.position, destination) < 2.0f)
                 {
@@ -93,7 +137,7 @@ public class Monsters : MonoBehaviour
                     state = MonsterState.DEFAULT;
                 }
                 agent.SetDestination(player.transform.position);
-                animator.SetBool("isWalking", false);
+                animator.SetBool("isMoving", false);
                 animator.SetBool("isRunning", true);
                 if (Vector3.Distance(transform.position, player.transform.position) <= agent.stoppingDistance)
                 {
@@ -102,7 +146,7 @@ public class Monsters : MonoBehaviour
                 break;
             case MonsterState.ATTACK:
                 animator.SetBool("isAttacking", true);
-                animator.SetBool("isWalking", false);
+                animator.SetBool("isMoving", false);
                 animator.SetBool("isRunning", false);
                 if (Vector3.Distance(transform.position, player.transform.position) > agent.stoppingDistance + 1)
                 {

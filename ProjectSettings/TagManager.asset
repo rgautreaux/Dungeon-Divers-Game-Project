@@ -8,6 +8,7 @@ TagManager:
   - Section 3
   - Section 4
   - Weapon
+  - Monster
   layers:
   - Default
   - TransparentFX

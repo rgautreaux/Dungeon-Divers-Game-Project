@@ -12,7 +12,7 @@ using UnityEngine.SceneManagement;
 // THIS SCRIPT DRAWS FROM CODE FROM MY PAST SCHOOL ASSIGNMENTS AND THE EASYSTART THIRD PERSON CONTROLLER SCRIPT IN ORDER TO FIT THE PLAYER MODELS I CHOSE FOR THIS PROJECT
 // I do not claim to have created the base structure, and instead am using it as a template/starting-point to work from to create a script that suits my models.
 // Credit goes to the creator of the EasyStart Third Person Controller on Unity.
-
+public enum HeroState { ATTACK, SPRINT, RUN, JUMP, DEFEND, WEAK, READY, DEAD, DEFAULT };
 
 public class ProtagMovement : MonoBehaviour
 {
