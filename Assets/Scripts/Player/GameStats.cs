@@ -156,12 +156,14 @@ public class GameStats : MonoBehaviour
     public static void UpdateMonstersKilled()
     {
         monstersKilled += 1;
+        goldCoins += 10;
         gameScore += 15;
     }
 
     public static void UpdateDragonsKilled()
     {
         bossesFinished += 1;
+        goldCoins += 50;
         gameScore += 15;
     }
 

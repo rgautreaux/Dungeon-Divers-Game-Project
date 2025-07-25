@@ -78,6 +78,7 @@ public class Potions : MonoBehaviour
 
             else
             {
+                potionEffect = false;
                 Debug.Log("No Potion has been drank.");
             }
         }

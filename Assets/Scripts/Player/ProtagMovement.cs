@@ -201,8 +201,9 @@ public class ProtagMovement : MonoBehaviour
         {
             animator.SetBool("isDefending", false);
         }
-    }          
-                  
+    }
+
+
     // With the inputs and animations defined, FixedUpdate is responsible for applying movements and actions to the player
     private void FixedUpdate()
     {
@@ -242,7 +243,7 @@ public class ProtagMovement : MonoBehaviour
 
         // After calculating the movement and jump, it's time to apply gravity
         // It needs to be negative so that the game always throws the player down
-        directionY = directionY - gravity * Time.deltaTime;
+        directionY -= gravity * Time.deltaTime;
 
         // Apply rotation to player faces in direction of the pressed input
 
@@ -306,23 +307,23 @@ public class ProtagMovement : MonoBehaviour
             jumpElapsedTime = 0;
             isJumping = false;
         }
+
     }
 
     public void takeDamage(float damage, bool strengthPotion)
-    {
+    { 
         //Base Damage
-        health -= damage;
-        strengthPotion = GetComponent<Potions>().potionEffect;
+
+]        health -= damage;
 
         //Strength Potion Effect
+        strengthPotion = GetComponent<Potions>().potionEffect;
         if (strengthPotion)
         {
             health -= damage / 2;
         }
 
-
-
-        Debug.Log("Monster dealth " + damage + "damage, " + health + "HP remain.");
+        Debug.Log("Monster dealt " + damage + "damage, " + health + "HP remain.");
 
         if (health <= 0)
         {
@@ -337,6 +338,9 @@ public class ProtagMovement : MonoBehaviour
             animator.SetBool("isDead", true);
         }
     }
+
+
+
 
     public void UpdateSpeed(float speedPotion)
     {

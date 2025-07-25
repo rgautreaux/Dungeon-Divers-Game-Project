@@ -10,9 +10,11 @@ public enum MonsterState { ATTACK, CHASE, MOVING, DEAD, DEFAULT };
 public class Monsters : MonoBehaviour
 {
     GameObject player;
+    ProtagMovement playerControls;
     NavMeshAgent agent;
     public float chaseDistance = 10.0f;
     public float damage = 0f;
+    public GameObject self;
 
     protected MonsterState state = MonsterState.DEFAULT;
     protected Vector3 destination = new Vector3(0, 0, 0);
@@ -25,9 +27,26 @@ public class Monsters : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player");
+        self = this.gameObject;
+
         agent = this.GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         myaudio = GetComponent<AudioSource>();
+
+        if (self.gameObject.name == "Bunny")
+        { damage = 1f; }
+        else if (self.gameObject.name == "Slime")
+        { damage = 1.5f; }
+        else if (self.gameObject.name == "LilGhost")
+        { damage = 2f; }
+        else if (self.gameObject.name == "Batty")
+        { damage = 2.5f; }
+        else if (self.gameObject.name == "Mushy")
+        { damage = 3f; }
+        else if (self.gameObject.name == "BigGhost")
+        { damage = 3.5f; }
+        else if (self.gameObject.name == "Watcher")
+        { damage = 5f; }
     }
 
     private Vector3 RandomPosition()
@@ -100,9 +119,18 @@ public class Monsters : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider col)
+    public void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.CompareTag("Weapon"))
+
+        if (col.gameObject.CompareTag("Player"))
+        {
+            bool potion = player.GetComponent<Potions>().potionEffect;
+            float damageDealt = self.GetComponent<Monsters>().damage;
+
+
+            playerControls.takeDamage(damageDealt, potion);
+        }
+        else if (col.gameObject.CompareTag("Weapon"))
         {
             // Disable all Renderers and Colliders
             //Renderer[] allRenderers = gameObject.GetComponentsInChildren<Renderer>();
