@@ -56,30 +56,77 @@ public class GameStats : MonoBehaviour
                 FirstBoss = true;
                 bossesFinished += 1;
                 gameScore += 20;
+
+                if (gameScore % 15 == 0)
+                {
+                    level += 1;
+                    player.GetComponent<ProtagMovement>().health += 50;
+
+                }
+
             }
             else if (hit.collider.gameObject.name == "Boss2")
             {
                 SecBoss = true;
                 bossesFinished += 1;
                 gameScore += 30;
+
+                if (gameScore % 20 == 0)
+                {
+                    level += 1;
+                    player.GetComponent<ProtagMovement>().health += 50;
+
+                }
+
             }
             else if (hit.collider.gameObject.name == "Boss3")
             {
                 ThirdBoss = true;
                 bossesFinished += 1;
                 gameScore += 40;
+
+                if (gameScore % 25 == 0)
+                {
+                    level += 1;
+                    player.GetComponent<ProtagMovement>().health += 50;
+
+                }
+
             }
             else if (hit.collider.gameObject.name == "Boss4")
             {
                 FourthBoss = true;
                 bossesFinished += 1;
                 gameScore += 50;
+
+                if (gameScore % 30 == 0)
+                {
+                    level += 1;
+                    player.GetComponent<ProtagMovement>().health += 50;
+
+                }
             }
             else if (hit.collider.gameObject.name == "Final")
             {
                 Final = true;
                 bossesFinished += 1;
                 gameScore += 100;
+
+                if (gameScore % 35 == 0)
+                {
+                    level += 1;
+                    player.GetComponent<ProtagMovement>().health += 50;
+
+                }
+            }
+            else
+            {
+                if (gameScore % 10 == 0)
+                {
+                    level += 1;
+                    player.GetComponent<ProtagMovement>().health += 50;
+
+                }
             }
         }
         else if (Input.GetKeyDown(KeyCode.Q))

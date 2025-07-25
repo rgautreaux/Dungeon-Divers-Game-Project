@@ -226,7 +226,6 @@ public class ProtagMovement : MonoBehaviour
         if (isJumping)
         {
             // We are using a Unity function to make the jump more "subtle" and apply the natural feeling of inertia of the movement
-            //  https://docs.unity3d.com/ScriptReference/Mathf.SmoothStep.html
 
             directionY = Mathf.SmoothStep(jumpHeight, jumpHeight * 0.30f, jumpElapsedTime / jumpTime) * Time.deltaTime;
 
@@ -261,8 +260,8 @@ public class ProtagMovement : MonoBehaviour
         right.Normalize();
 
         // Let's relate the front with the Z direction (3d depth) and right with X (lateral movement)
-        forward = forward * directionZ;
-        right = right * directionX;
+        forward *= directionZ;
+        right *= directionX;
 
         // This condition is used to check whether the player is moving.
         // If you don't add it, the player will always look at the origin of the world after releasing a key. It's even funny, try it.
@@ -318,7 +317,6 @@ public class ProtagMovement : MonoBehaviour
         //Strength Potion Effect
         if (strengthPotion)
         {
-
             health -= damage / 2;
         }
 
