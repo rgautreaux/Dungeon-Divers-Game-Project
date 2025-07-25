@@ -314,7 +314,7 @@ public class ProtagMovement : MonoBehaviour
     { 
         //Base Damage
 
-]        health -= damage;
+        health -= damage;
 
         //Strength Potion Effect
         strengthPotion = GetComponent<Potions>().potionEffect;
