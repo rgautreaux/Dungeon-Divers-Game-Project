@@ -16,7 +16,7 @@ public class MagicAttack : MonoBehaviour
 
     AudioSource myaudio;
 
-    private ParticleSystem magicPower;
+    public ParticleSystem magicPower;
 
     // Start is called before the first frame update
     void Start()

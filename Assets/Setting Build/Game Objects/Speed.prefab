@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 8473999005977398405}
   - component: {fileID: 8839464255445161833}
   - component: {fileID: 2178161844062632462}
+  - component: {fileID: 9155078628455877717}
   m_Layer: 0
   m_Name: Speed
-  m_TagString: Untagged
+  m_TagString: Potion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4734675534531044914}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.9998742, z: -0, w: 0.01586354}
+  m_LocalRotation: {x: 0, y: -0.9998742, z: 0, w: 0.01586448}
   m_LocalPosition: {x: 4.1531157, y: 1.4516102, z: -1.139}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -110,6 +111,21 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: e873cbc7c65c12b409ffa8b357ef3039, type: 3}
+--- !u!114 &9155078628455877717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4734675534531044914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42aadb3b688b4a64a82c381864d5922d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  potionEffect: 0
+  potion: {fileID: 4734675534531044914}
+  potionName: {fileID: 0}
 --- !u!1001 &3939435765182424899
 PrefabInstance:
   m_ObjectHideFlags: 0

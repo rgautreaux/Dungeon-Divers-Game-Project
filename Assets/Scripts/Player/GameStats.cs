@@ -48,8 +48,8 @@ public class GameStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Create raycast from camera to check for interactables
-        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out RaycastHit hit, maxDistance))
+
+        if (Physics.Raycast(player.transform.position, player.transform.forward, out RaycastHit hit, maxDistance))
         {
             if (hit.collider.gameObject.name  == "Boss1")
             {
@@ -170,6 +170,12 @@ public class GameStats : MonoBehaviour
     public static void UpdateHealth()
     {
         monstersKilled += 1;
+        gameScore += 10;
+    }
+
+    public static void UpdateCurrency(float money)
+    {
+        goldCoins += 1;
         gameScore += 10;
     }
 

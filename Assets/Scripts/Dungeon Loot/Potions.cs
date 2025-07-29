@@ -13,7 +13,7 @@ public class Potions : MonoBehaviour
 
     public GameObject potion;
     public TextMeshProUGUI potionName;
-    public ParticleSystem effect;
+    private ParticleSystem effect;
 
     //Detecting monsters
     GameObject monster;
@@ -48,11 +48,11 @@ public class Potions : MonoBehaviour
 
     private IEnumerator PlayAndDestroy(float waitTime)
     {
-        //play fruit audio
+        //play potion audio
         drink.Play();
         yield return new WaitForSeconds(waitTime);
 
-        //select random power up
+        //select power up
         if (!potionEffect)
         {
             if (potion.gameObject.name == "Health")
@@ -84,11 +84,11 @@ public class Potions : MonoBehaviour
             }
         }
 
-        //destroy fruit
+        //destroy potion
         Destroy(gameObject);
     }
 
-    //double player's jump height
+    //increase health
     void HealthPotion()
     {
         potionName.text = "Health Potion!";
@@ -106,15 +106,10 @@ public class Potions : MonoBehaviour
         potionEffect = false;
     }
 
-    //prevent all damage to player
+    //reduce damage to player
     void StrengthPotion()
     {
-        //float damage = monster.GetComponent<>().damage;
-        float damage = 0.5f;
-
-
-
-
+        float damage = monster.GetComponent<Monsters>().damage;
         potionName.text = "Strength Potion!";
         effect = player.GetComponent<ProtagMovement>().strengthMagic;
         effect.Play();
@@ -123,11 +118,7 @@ public class Potions : MonoBehaviour
     }
     private IEnumerator StrengthOver()
     {
-        //float damage = monster.GetComponent<>().damage;
-        float damage = 0.5f; 
-
-
-
+        float damage = monster.GetComponent<Monsters>().damage;
         yield return new WaitForSeconds(10);
         potionName.text = "   ";
         effect = player.GetComponent<ProtagMovement>().strengthMagic;

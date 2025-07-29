@@ -8,7 +8,6 @@ using UnityEngine.AI;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
-
 // THIS SCRIPT DRAWS FROM CODE FROM MY PAST SCHOOL ASSIGNMENTS AND THE EASYSTART THIRD PERSON CONTROLLER SCRIPT IN ORDER TO FIT THE PLAYER MODELS I CHOSE FOR THIS PROJECT
 // I do not claim to have created the base structure, and instead am using it as a template/starting-point to work from to create a script that suits my models.
 // Credit goes to the creator of the EasyStart Third Person Controller on Unity.
@@ -47,6 +46,8 @@ public class ProtagMovement : MonoBehaviour
     public ParticleSystem healthMagic;
     public ParticleSystem strengthMagic;
     public ParticleSystem speedMagic;
+    public ParticleSystem shieldMagic;
+
 
     // Checks the character's current state
     bool isRunning = false;
@@ -81,9 +82,12 @@ public class ProtagMovement : MonoBehaviour
         // Starts any of the above variables when starting the game
         cc = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+
         healthMagic = gameObject.GetComponent<ParticleSystem>();
         strengthMagic = gameObject.GetComponent<ParticleSystem>();
         speedMagic = gameObject.GetComponent<ParticleSystem>();
+        shieldMagic = gameObject.GetComponent<ParticleSystem>();
+
         monster = GameObject.FindWithTag("Monster");
     }
 
@@ -322,6 +326,17 @@ public class ProtagMovement : MonoBehaviour
 
     }
 
+    public IEnumerable MagicShield(float damage)
+    {
+        shieldMagic.Play();
+        health -= damage / 5;
+        yield return new WaitForSeconds(10);
+        shieldMagic.Stop();
+        health -= damage;
+
+
+    }
+
     public void takeDamage(float damage, bool strengthPotion)
     { 
         //Base Damage
@@ -337,6 +352,11 @@ public class ProtagMovement : MonoBehaviour
             health -= damage / 2;
             if (health < 0) health = 0;
 
+            if (Input.GetKeyDown(KeyCode.E) && Input.GetKeyDown(KeyCode.R)) 
+            {
+                MagicShield(damage);
+            }
+            else { shieldMagic.Stop(); }
         }
 
         Debug.Log("Monster dealt " + damage + "damage, " + health + "HP remain.");

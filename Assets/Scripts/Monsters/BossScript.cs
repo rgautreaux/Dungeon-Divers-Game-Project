@@ -20,6 +20,9 @@ public class BossScript : MonoBehaviour
     NavMeshAgent agent;
     public float chaseDistance = 10.0f;
     public float damage = 0f;
+
+    public float breathWeapon = 0f;
+
     public float health = 0f;
     public GameObject self;
 
@@ -50,21 +53,28 @@ public class BossScript : MonoBehaviour
         {
             health = 200f;
             damage = 10f;
+            breathWeapon = 20f;
         }
         else if (self.gameObject.name == "Usurper")
         {
             health = 300f;
             damage = 20f;
+            breathWeapon = 30f;
+
         }
         else if (self.gameObject.name == "Nightmare")
         {
             health = 400f;
             damage = 30f;
+            breathWeapon = 40f;
+
         }
         else if (self.gameObject.name == "TerrorBringer")
         {
             health = 500f;
             damage = 40f;
+            breathWeapon = 50f;
+
         }
 
         if (healthMeter != null)
@@ -114,6 +124,9 @@ public class BossScript : MonoBehaviour
                 animator.SetBool("isMoving", false);
                 animator.SetBool("isRunning", false);
                 animator.SetBool("isAttacking", false);
+
+                GetComponent<BossBreath>().attacking = false;
+
                 if (Vector3.Distance(transform.position, player.transform.position) < chaseDistance)
                 {
                     state = BossState.CHASE;
@@ -128,6 +141,9 @@ public class BossScript : MonoBehaviour
             case BossState.MOVING:
                 animator.SetBool("isMoving", true);
                 //Debug.Log("Dest = " + destination + "Distance = " + Vector3.Distance(transform.position, destination));
+
+                GetComponent<BossBreath>().attacking = false;
+
                 if (Vector3.Distance(transform.position, destination) < 2.0f)
                 {
                     state = BossState.DEFAULT;
@@ -139,6 +155,8 @@ public class BossScript : MonoBehaviour
                 }
                 break;
             case BossState.CHASE:
+
+                GetComponent<BossBreath>().attacking = false;
                 if (Vector3.Distance(transform.position, player.transform.position) > chaseDistance)
                 {
                     state = BossState.DEFAULT;
@@ -153,15 +171,28 @@ public class BossScript : MonoBehaviour
                 break;
             case BossState.ATTACK:
                 animator.SetBool("isAttacking", true);
+
+                while (state == BossState.ATTACK) {
+
+                    GetComponent<BossBreath>().attacking = true;
+                    GameObject breath = gameObject.GetComponent<BossBreath>().magic;
+                    new WaitForSeconds(15);
+                    BreathAttack(breath, player);
+                }
+
                 animator.SetBool("isMoving", false);
                 animator.SetBool("isRunning", false);
                 if (Vector3.Distance(transform.position, player.transform.position) > agent.stoppingDistance + 1)
                 {
                     state = BossState.MOVING;
                     animator.SetBool("isAttacking", false);
+                    GetComponent<BossBreath>().attacking = false;
+
                 }
                 break;
             case    BossState.DEAD:
+
+                GetComponent<BossBreath>().attacking = false;
                 animator.SetBool("isDead", true);
                 gameObject.GetComponent<NavMeshAgent>().enabled = false;
                 break;
@@ -170,13 +201,26 @@ public class BossScript : MonoBehaviour
         }
     }
 
+    public void BreathAttack(GameObject breath, GameObject player) 
+    {
+        Collider attack = breath.GetComponent<Collider>();
+        Collider target = player.GetComponent<Collider>();
+        //Debug.Log("Collision with " + other.gameObject.name);
+        if (attack == target)
+        {
+            Debug.Log("Breath Weapon Hit");
+            bool potion = player.GetComponent<Potions>().potionEffect;
+            float damageDealt = self.GetComponent<BossScript>().breathWeapon;
+
+            playerControls.takeDamage(damageDealt, potion);
+        }
+    }
+
     void OnTriggerEnter(Collider other)
     {
         //Debug.Log("Collision with " + other.gameObject.name);
         if (other.gameObject == player)
         {
-            float damageRecieved = other.gameObject.GetComponent<Monsters>().damage;
-
             Debug.Log("Collision with Player");
             bool potion = player.GetComponent<Potions>().potionEffect;
             float damageDealt = self.GetComponent<BossScript>().damage;
@@ -194,8 +238,6 @@ public class BossScript : MonoBehaviour
     {
         if (other.gameObject == player)
         {
-            float damageRecieved = other.gameObject.GetComponent<Monsters>().damage;
-
             Debug.Log("Collision with Player");
             bool potion = player.GetComponent<Potions>().potionEffect;
             float damageDealt = self.GetComponent<BossScript>().damage;
