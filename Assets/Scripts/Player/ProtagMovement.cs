@@ -37,6 +37,9 @@ public class ProtagMovement : MonoBehaviour
     //Enemy Alertness
     public float monsterDistance = 20.0f;
 
+    //Attack Power
+    public float attackPower = 5f;
+
 
     // Checks the character's current state
     bool isRunning = false;
@@ -315,12 +318,16 @@ public class ProtagMovement : MonoBehaviour
         //Base Damage
 
         health -= damage;
+        if (health < 0) health = 0;
+
 
         //Strength Potion Effect
         strengthPotion = GetComponent<Potions>().potionEffect;
-        if (strengthPotion)
+        if (strengthPotion || Input.GetKeyDown(KeyCode.E))
         {
             health -= damage / 2;
+            if (health < 0) health = 0;
+
         }
 
         Debug.Log("Monster dealt " + damage + "damage, " + health + "HP remain.");

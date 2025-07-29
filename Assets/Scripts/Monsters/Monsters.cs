@@ -183,7 +183,6 @@ public class Monsters : MonoBehaviour
             foreach (Collider c in allColliders) c.enabled = false;
 
             state = MonsterState.DEAD;
-            gameObject.GetComponent<ParticleSystemRenderer>().enabled = true;
 
             StartCoroutine(PlayAndDestroy(3.0f));
             GameStats.UpdateMonstersKilled();

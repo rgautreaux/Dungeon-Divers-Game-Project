@@ -106,7 +106,7 @@ public class GameStats : MonoBehaviour
 
                 }
             }
-            else if (hit.collider.gameObject.name == "Final")
+            else if (hit.collider.gameObject.name == "FinalBoss")
             {
                 Final = true;
                 bossesFinished += 1;
@@ -115,7 +115,7 @@ public class GameStats : MonoBehaviour
                 if (gameScore % 35 == 0)
                 {
                     level += 1;
-                    player.GetComponent<ProtagMovement>().health += 50;
+                    player.GetComponent<ProtagMovement>().health += 100;
 
                 }
             }
@@ -140,14 +140,14 @@ public class GameStats : MonoBehaviour
 
     private void OnGUI()
     {
-        bossCount.text = bossesFinished.ToString() + "/5 Boss Fights Defeated";
+        bossCount.text = bossesFinished.ToString() + "/8 Dragons Defeated";
         monsterCount.text = monstersKilled.ToString() + " Total Monsters Slain";
         goldCount.text = "You have earned" + goldCoins.ToString() + "gold";
         purchaseCount.text = "You visited [shop name] " + shopTrips.ToString() + " times and spent " + moneySpent.ToString() + "gold";
         gameScoreText.text = "Game Score = " + gameScore.ToString();
     
 
-        if (bossesFinished >= 5)
+        if (bossesFinished >= 8)
         {
             EndGame();
         }
@@ -164,13 +164,13 @@ public class GameStats : MonoBehaviour
     {
         bossesFinished += 1;
         goldCoins += 50;
-        gameScore += 15;
+        gameScore += 30;
     }
 
     public static void UpdateHealth()
     {
         monstersKilled += 1;
-        gameScore += 15;
+        gameScore += 10;
     }
 
     void EndGame()
