@@ -13,6 +13,7 @@ public class Potions : MonoBehaviour
 
     public GameObject potion;
     public TextMeshProUGUI potionName;
+    public ParticleSystem effect;
 
     //Detecting monsters
     GameObject monster;
@@ -91,6 +92,8 @@ public class Potions : MonoBehaviour
     void HealthPotion()
     {
         potionName.text = "Health Potion!";
+        effect = player.GetComponent<ProtagMovement>().healthMagic;
+        effect.Play();
         player.GetComponent<ProtagMovement>().health += 5;
         player.StartCoroutine(HealthEnd());
     }
@@ -98,6 +101,7 @@ public class Potions : MonoBehaviour
     {
         yield return new WaitForSeconds(15);
         potionName.text = "   ";
+        effect.Stop();
         player.GetComponent<ProtagMovement>().health += 0;
         potionEffect = false;
     }
@@ -112,6 +116,8 @@ public class Potions : MonoBehaviour
 
 
         potionName.text = "Strength Potion!";
+        effect = player.GetComponent<ProtagMovement>().strengthMagic;
+        effect.Play();
         player.takeDamage(damage, true);
         player.StartCoroutine(StrengthOver());
     }
@@ -124,6 +130,8 @@ public class Potions : MonoBehaviour
 
         yield return new WaitForSeconds(10);
         potionName.text = "   ";
+        effect = player.GetComponent<ProtagMovement>().strengthMagic;
+        effect.Stop();
         player.takeDamage(damage, false);
         potionEffect = false;
     }
@@ -132,6 +140,8 @@ public class Potions : MonoBehaviour
     void SpeedPotion()
     {
         potionName.text = "Speed Potion!";
+        effect = player.GetComponent<ProtagMovement>().speedMagic;
+        effect.Play();
         player.UpdateSpeed(10f);
         player.StartCoroutine(SpeedOver());
     }
@@ -139,6 +149,8 @@ public class Potions : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         potionName.text = "   ";
+        effect = player.GetComponent<ProtagMovement>().speedMagic;
+        effect.Stop();
         player.UpdateSpeed(5f);
         potionEffect = false;
     }

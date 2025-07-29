@@ -9,6 +9,7 @@ TagManager:
   - Section 4
   - Weapon
   - Monster
+  - FlameAttack
   layers:
   - Default
   - TransparentFX

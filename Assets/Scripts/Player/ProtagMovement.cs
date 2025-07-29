@@ -43,6 +43,10 @@ public class ProtagMovement : MonoBehaviour
     //Magic Power
     public float magicPower = 10f;
 
+    //Potion Effects
+    public ParticleSystem healthMagic;
+    public ParticleSystem strengthMagic;
+    public ParticleSystem speedMagic;
 
     // Checks the character's current state
     bool isRunning = false;
@@ -77,7 +81,9 @@ public class ProtagMovement : MonoBehaviour
         // Starts any of the above variables when starting the game
         cc = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-
+        healthMagic = gameObject.GetComponent<ParticleSystem>();
+        strengthMagic = gameObject.GetComponent<ParticleSystem>();
+        speedMagic = gameObject.GetComponent<ParticleSystem>();
         monster = GameObject.FindWithTag("Monster");
     }
 
