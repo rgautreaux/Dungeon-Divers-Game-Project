@@ -187,7 +187,7 @@ public class ProtagMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.R))
         {
             animator.SetBool("isAttacking", true);
             animator.SetBool("isRunning", false);
