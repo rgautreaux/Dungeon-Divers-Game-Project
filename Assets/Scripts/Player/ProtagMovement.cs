@@ -40,6 +40,9 @@ public class ProtagMovement : MonoBehaviour
     //Attack Power
     public float attackPower = 5f;
 
+    //Magic Power
+    public float magicPower = 10f;
+
 
     // Checks the character's current state
     bool isRunning = false;
@@ -345,9 +348,6 @@ public class ProtagMovement : MonoBehaviour
             animator.SetBool("isDead", true);
         }
     }
-
-
-
 
     public void UpdateSpeed(float speedPotion)
     {
