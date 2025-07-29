@@ -110,6 +110,7 @@ public class BossScript : MonoBehaviour
         switch (state)
         {
             case BossState.DEFAULT:
+                animator.SetBool("isIdle", true);
                 animator.SetBool("isMoving", false);
                 animator.SetBool("isRunning", false);
                 animator.SetBool("isAttacking", false);

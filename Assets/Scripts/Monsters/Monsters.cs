@@ -104,6 +104,7 @@ public class Monsters : MonoBehaviour
         switch (state)
         {
             case MonsterState.DEFAULT:
+                animator.SetBool("isIdle", true);
                 animator.SetBool("isMoving", false);
                 animator.SetBool("isRunning", false);
                 animator.SetBool("isAttacking", false);
