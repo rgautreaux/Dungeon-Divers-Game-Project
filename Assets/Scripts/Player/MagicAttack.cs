@@ -8,6 +8,9 @@ public class MagicAttack : MonoBehaviour
     //Magic Prefab
     public GameObject magic;
 
+    int magicTypes = 0;
+
+
     //Speed of Magic
     public float magicForce = 500.0f;
 
@@ -16,13 +19,15 @@ public class MagicAttack : MonoBehaviour
 
     AudioSource myaudio;
 
-    public ParticleSystem magicPower;
+    public ParticleSystem[] magicPowers;
 
     // Start is called before the first frame update
     void Start()
     {
         myaudio = GetComponent<AudioSource>();
-        magicPower = gameObject.GetComponent<ParticleSystem>();
+
+        magicTypes = magicPowers.Length;
+        magicPowers = gameObject.GetComponent<ParticleSystem[]>();
     }
 
     // Update is called once per frame
@@ -30,6 +35,8 @@ public class MagicAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
+            int randomIndex = Random.Range(0, magicTypes);
+
             //create a magic instance
             GameObject castMagic = Instantiate(magic, this.transform.position, this.transform.rotation) as GameObject;
 
@@ -38,12 +45,19 @@ public class MagicAttack : MonoBehaviour
 
             //add force to shoot
             castMagic.GetComponent<Rigidbody>().AddForce(transform.forward * magicForce);
-            magicPower.Play();
+            magicPowers[randomIndex].Play();
             myaudio.Play();
 
             //Destroy it after a certain time
             Destroy(castMagic, destroyTime);
         }
-
+        else
+        {
+            //Destroy it after a certain time
+            Destroy(magic);
+            for (int i = 0; i < magicPowers.Length; i++) {
+                magicPowers[i].Stop();
+            }
+        }
     }
 }

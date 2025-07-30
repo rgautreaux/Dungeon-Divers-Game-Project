@@ -243,6 +243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaseDistance: 10
   damage: 0
+  self: {fileID: 3670065126298658227}
 --- !u!95 &1045032050370570901
 Animator:
   serializedVersion: 7

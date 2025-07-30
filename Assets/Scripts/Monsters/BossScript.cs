@@ -233,6 +233,12 @@ public class BossScript : MonoBehaviour
             takeDamage(playerAttack);
             if (health < 0) health = 0;
         }
+        else if (other.gameObject.CompareTag("Magic"))
+        {
+            float playerAttack = player.GetComponent<ProtagMovement>().magicPower;
+            takeDamage(playerAttack);
+            if (health < 0) health = 0;
+        }
     }
     void OnTriggerStay(Collider other)
     {
@@ -247,6 +253,14 @@ public class BossScript : MonoBehaviour
         else if (other.gameObject == gameObject.CompareTag("Weapon"))
         {
             float damageRecieved = player.gameObject.GetComponent<ProtagMovement>().attackPower;
+
+            Debug.Log("Collision (Stay) with Enemy");
+            takeDamage(damageRecieved / 5);
+            if (health < 0) health = 0;
+        }
+        else if (other.gameObject == gameObject.CompareTag("Magic"))
+        {
+            float damageRecieved = player.gameObject.GetComponent<ProtagMovement>().magicPower;
 
             Debug.Log("Collision (Stay) with Enemy");
             takeDamage(damageRecieved / 5);

@@ -491,7 +491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaseDistance: 10
   damage: 0
-  self: {fileID: 0}
+  self: {fileID: 1763812089678939004}
 --- !u!65 &2249599539490054838
 BoxCollider:
   m_ObjectHideFlags: 0

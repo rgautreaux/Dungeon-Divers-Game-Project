@@ -13,6 +13,7 @@ TagManager:
   - Chest
   - Coin
   - Potion
+  - Magic
   layers:
   - Default
   - TransparentFX

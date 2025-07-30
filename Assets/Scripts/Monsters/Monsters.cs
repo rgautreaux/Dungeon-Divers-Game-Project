@@ -175,7 +175,7 @@ public class Monsters : MonoBehaviour
 
             playerControls.takeDamage(damageDealt, potion);
         }
-        else if (col.gameObject.CompareTag("Weapon"))
+        else if (col.gameObject.CompareTag("Weapon") || col.gameObject.CompareTag("Magic"))
         {
             // Disable all Renderers and Colliders
             //Renderer[] allRenderers = gameObject.GetComponentsInChildren<Renderer>();
