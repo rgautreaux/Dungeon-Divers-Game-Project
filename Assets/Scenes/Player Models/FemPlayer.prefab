@@ -204,6 +204,12 @@ MonoBehaviour:
   purchaseCount: {fileID: 0}
   goldCount: {fileID: 0}
   gameScoreText: {fileID: 0}
+  lastLevel: {fileID: 0}
+  lastBossCount: {fileID: 0}
+  lastMonsterCount: {fileID: 0}
+  lastPurchaseCount: {fileID: 0}
+  lastGoldCount: {fileID: 0}
+  highScoreText: {fileID: 0}
   FirstBoss: 0
   SecBoss: 0
   ThirdBoss: 0
@@ -221,6 +227,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e63ca3fea4f60741a8baa8e35e64f0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerChara: {fileID: 9094277931467091126}
+  maxHealth: 100
   health: 100
   velocity: 5
   sprintAdittion: 3.5
@@ -228,12 +236,13 @@ MonoBehaviour:
   jumpTime: 0.85
   gravity: 9.8
   monsterDistance: 20
+  bossDistance: 40
   attackPower: 5
   magicPower: 10
   healthMagic: {fileID: 6581376573533126176}
   strengthMagic: {fileID: 4036884015922149823}
   speedMagic: {fileID: 7454401764839318874}
-  shieldMagic: {fileID: 0}
+  shieldMagic: {fileID: 8831507038617327698}
   animator: {fileID: 7286092320260406368}
   cc: {fileID: 1786745996481131319}
 --- !u!95 &7286092320260406368
@@ -270,6 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a978a2f575b68494b8e83e83e5c524fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 3968886138356383116}
   healthMeter: {fileID: 0}
 --- !u!195 &7413037270651230816
 NavMeshAgent:
@@ -353,6 +363,11 @@ PrefabInstance:
 --- !u!4 &4842548275984100294 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6205737666926490461, guid: 5156d6689efbccb4991059f3a5755566, type: 3}
+  m_PrefabInstance: {fileID: 1525318977580718235}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8831507038617327698 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8044789423087911113, guid: 5156d6689efbccb4991059f3a5755566, type: 3}
   m_PrefabInstance: {fileID: 1525318977580718235}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1999116227342940731
@@ -658,6 +673,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e63ca3fea4f60741a8baa8e35e64f0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerChara: {fileID: 0}
+  maxHealth: 100
   health: 100
   velocity: 5
   sprintAdittion: 3.5
@@ -665,6 +682,7 @@ MonoBehaviour:
   jumpTime: 0.85
   gravity: 9.8
   monsterDistance: 20
+  bossDistance: 40
   attackPower: 5
   magicPower: 10
   healthMagic: {fileID: 0}

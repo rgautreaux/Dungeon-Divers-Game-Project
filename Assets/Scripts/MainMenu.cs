@@ -75,15 +75,6 @@ public class MainMenu : MonoBehaviour
                     Debug.Log("Check Out Game Credits");
                 }
             }
-            if (pressButton.collider.CompareTag("Continue"))
-            {
-                if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0))
-                {
-                    // sound effect
-                    ContributionButton();
-                    Debug.Log("Check Out Team Credits");
-                }
-            }
             if (pressButton.collider.CompareTag("GameInfo"))
             {
                 if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0))
@@ -93,7 +84,24 @@ public class MainMenu : MonoBehaviour
                     Debug.Log("Learn about the Game");
                 }
             }
-
+            if (pressButton.collider.CompareTag("HighScore"))
+            {
+                if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0))
+                {
+                    // sound effect
+                    HighScoreButton();
+                    Debug.Log("Learn about the Game");
+                }
+            }
+            if (pressButton.collider.CompareTag("Continue"))
+            {
+                if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0))
+                {
+                    // sound effect
+                    ContinueButton();
+                    Debug.Log("Learn about the Game");
+                }
+            }
         }
     }
 
@@ -109,7 +117,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartGameButton()
     {
-        SceneManager.LoadScene("Alien_Onslaught");
+        SceneManager.LoadScene("CharaSelect");
     }
 
     public void RestartGame()
@@ -122,7 +130,7 @@ public class MainMenu : MonoBehaviour
         GameStats.goldCoins = 0;
         GameStats.gameScore = 0;
 
-        SceneManager.LoadScene("Alien_Onslaught");
+        SceneManager.LoadScene("Dungeon");
     }
 
     public void BackButton()
@@ -143,12 +151,17 @@ public class MainMenu : MonoBehaviour
 
     public void StoryButton()
     {
-        SceneManager.LoadScene("LoreScreen");
+        SceneManager.LoadScene("StoryScreen");
     }
 
-    public void ContributionButton()
+    public void HighScoreButton()
     {
-        SceneManager.LoadScene("Contributions");
+        SceneManager.LoadScene("HighScore");
+    }
+
+    public void ContinueButton()
+    {
+        SceneManager.LoadScene("Controls");
     }
 
     private void OnGUI()

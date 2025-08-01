@@ -15,6 +15,8 @@ public enum HeroState { ATTACK, SPRINT, RUN, JUMP, DEFEND, WEAK, READY, DEAD, DE
 
 public class ProtagMovement : MonoBehaviour
 {
+    public GameObject playerChara;
+
     //Player Health
     public float maxHealth = 100f;
     public float health = 100f;
@@ -83,6 +85,7 @@ public class ProtagMovement : MonoBehaviour
     void Start()
     {
         // Starts any of the above variables when starting the game
+        playerChara = GetComponent<ProtagMovement>().playerChara;
         cc = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
 
