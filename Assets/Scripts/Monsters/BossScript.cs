@@ -172,7 +172,8 @@ public class BossScript : MonoBehaviour
             case BossState.ATTACK:
                 animator.SetBool("isAttacking", true);
 
-                while (state == BossState.ATTACK) {
+                while (state == BossState.ATTACK)
+                {
 
                     GetComponent<BossBreath>().attacking = true;
                     GameObject breath = gameObject.GetComponent<BossBreath>().magic;
@@ -190,7 +191,7 @@ public class BossScript : MonoBehaviour
 
                 }
                 break;
-            case    BossState.DEAD:
+            case BossState.DEAD:
 
                 GetComponent<BossBreath>().attacking = false;
                 animator.SetBool("isDead", true);
@@ -201,7 +202,7 @@ public class BossScript : MonoBehaviour
         }
     }
 
-    public void BreathAttack(GameObject breath, GameObject player) 
+    public void BreathAttack(GameObject breath, GameObject player)
     {
         Collider attack = breath.GetComponent<Collider>();
         Collider target = player.GetComponent<Collider>();
@@ -212,6 +213,7 @@ public class BossScript : MonoBehaviour
             bool potion = player.GetComponent<Potions>().potionEffect;
             float damageDealt = self.GetComponent<BossScript>().breathWeapon;
 
+            UpdateHealth(self, 5);
             playerControls.takeDamage(damageDealt, potion);
         }
     }
@@ -225,7 +227,7 @@ public class BossScript : MonoBehaviour
             bool potion = player.GetComponent<Potions>().potionEffect;
             float damageDealt = self.GetComponent<BossScript>().damage;
 
-            playerControls.takeDamage(damageDealt, potion); 
+            playerControls.takeDamage(damageDealt, potion);
         }
         else if (other.gameObject.CompareTag("Weapon"))
         {
@@ -254,7 +256,7 @@ public class BossScript : MonoBehaviour
         {
             float damageRecieved = player.gameObject.GetComponent<ProtagMovement>().attackPower;
 
-            Debug.Log("Collision (Stay) with Enemy");
+            Debug.Log("Collision (Stay) with Player");
             takeDamage(damageRecieved / 5);
             if (health < 0) health = 0;
         }
@@ -262,7 +264,7 @@ public class BossScript : MonoBehaviour
         {
             float damageRecieved = player.gameObject.GetComponent<ProtagMovement>().magicPower;
 
-            Debug.Log("Collision (Stay) with Enemy");
+            Debug.Log("Collision (Stay) with Magic");
             takeDamage(damageRecieved / 5);
             if (health < 0) health = 0;
         }
@@ -298,5 +300,8 @@ public class BossScript : MonoBehaviour
         }
     }
 
+    public static void UpdateHealth(GameObject creature, float healthIncrease)
+    {
+        creature.GetComponent<BossScript>().health += healthIncrease;
+    }
 }
-

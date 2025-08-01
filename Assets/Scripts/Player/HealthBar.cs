@@ -7,13 +7,19 @@ using UnityEngine.SceneManagement;
 
 public class HealthBar : MonoBehaviour
 {
+    public ProtagMovement player;
     public GameObject healthMeter; //Assign this in the inspector
     private static Image HealthBarImage;
-    private float health = 100.0f;
+    private float maxHealth = 100f;
+    private float health = 100f;
 
     // Start is called before the first frame update
     void Start()
     {
+
+        health = player.GetComponent<ProtagMovement>().health;
+        maxHealth = player.GetComponent<ProtagMovement>().maxHealth;
+
         if (healthMeter != null)
         {
             HealthBarImage = healthMeter.transform.GetComponent<Image>();
@@ -53,7 +59,10 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SetHealthBarValue(health / 100);
+        health = player.GetComponent<ProtagMovement>().health;
+        maxHealth = player.GetComponent<ProtagMovement>().maxHealth;
+
+        SetHealthBarValue(health / maxHealth);
 
         if (health <= 0)
         {
@@ -64,6 +73,8 @@ public class HealthBar : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
        object monster = gameObject.CompareTag("Monster");
+       object boss = gameObject.CompareTag("Boss");
+
 
         //Debug.Log("Collision with " + other.gameObject.name);
         if (other.gameObject == monster)
@@ -73,11 +84,25 @@ public class HealthBar : MonoBehaviour
             Debug.Log("Collision with Enemy");
             health -= damageRecieved;
             if (health < 0) health = 0;
+            if (health > maxHealth) health = maxHealth;
+
+        }
+        else if (other.gameObject == boss)
+        {
+            float damageRecieved = other.gameObject.GetComponent<BossScript>().damage;
+
+            Debug.Log("Collision with Enemy");
+            health -= damageRecieved;
+            if (health < 0) health = 0;
+            if (health > maxHealth) health = maxHealth;
+
         }
     }
     void OnTriggerStay(Collider other)
     {
         object monster = gameObject.CompareTag("Monster");
+        object boss = gameObject.CompareTag("Boss");
+
 
         if (other.gameObject == monster)
         {
@@ -86,6 +111,19 @@ public class HealthBar : MonoBehaviour
             Debug.Log("Collision (Stay) with Enemy");
             health -= damageRecieved / 5;
             if (health < 0) health = 0;
+            if (health > maxHealth) health = maxHealth;
+
+
+        }
+        else if (other.gameObject == boss)
+        {
+            float damageRecieved = other.gameObject.GetComponent<BossScript>().damage;
+
+            Debug.Log("Collision with Enemy");
+            health -= damageRecieved;
+            if (health < 0) health = 0;
+            if (health > maxHealth) health = maxHealth;
+
         }
     }
 

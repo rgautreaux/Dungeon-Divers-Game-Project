@@ -14,12 +14,17 @@ public class GameStats : MonoBehaviour
     public float maxDistance = 3f;
 
     public static int level = 1;
+
     public static int bossesFinished = 0;
     public static int monstersKilled = 0;
+
     public static int shopTrips = 0;
     public static int moneySpent = 0;
     public static int goldCoins = 0;
+
     public static int gameScore = 0;
+    public static int health;
+    public static int maxHealth;
 
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI bossCount;
@@ -37,6 +42,8 @@ public class GameStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        float health = player.GetComponent<ProtagMovement>().health;
+        float maxHealth = player.GetComponent<ProtagMovement>().maxHealth;
 
         bossCount.text = bossesFinished.ToString() + "/5 Boss Fights Defeated";
         monsterCount.text = monstersKilled.ToString() + " Total Monsters Slain";
@@ -48,6 +55,10 @@ public class GameStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateLevel(player, 15, 25, 5, 5);
+
+        float health = player.GetComponent<ProtagMovement>().health;
+        float maxHealth = player.GetComponent<ProtagMovement>().maxHealth;
 
         if (Physics.Raycast(player.transform.position, player.transform.forward, out RaycastHit hit, maxDistance))
         {
@@ -56,13 +67,8 @@ public class GameStats : MonoBehaviour
                 FirstBoss = true;
                 bossesFinished += 1;
                 gameScore += 20;
-
-                if (gameScore % 15 == 0)
-                {
-                    level += 1;
-                    player.GetComponent<ProtagMovement>().health += 50;
-
-                }
+                UpdateHealth(player, 50, health, maxHealth);
+                UpdateLevel(player, 25, 50, 10, 10);
 
             }
             else if (hit.collider.gameObject.name == "Boss2")
@@ -70,13 +76,8 @@ public class GameStats : MonoBehaviour
                 SecBoss = true;
                 bossesFinished += 1;
                 gameScore += 30;
-
-                if (gameScore % 20 == 0)
-                {
-                    level += 1;
-                    player.GetComponent<ProtagMovement>().health += 50;
-
-                }
+                UpdateHealth(player, 50, health, maxHealth);
+                UpdateLevel(player, 50, 50, 20, 20);
 
             }
             else if (hit.collider.gameObject.name == "Boss3")
@@ -84,13 +85,8 @@ public class GameStats : MonoBehaviour
                 ThirdBoss = true;
                 bossesFinished += 1;
                 gameScore += 40;
-
-                if (gameScore % 25 == 0)
-                {
-                    level += 1;
-                    player.GetComponent<ProtagMovement>().health += 50;
-
-                }
+                UpdateHealth(player, 50, health, maxHealth);
+                UpdateLevel(player, 75, 50, 30, 30);
 
             }
             else if (hit.collider.gameObject.name == "Boss4")
@@ -98,35 +94,18 @@ public class GameStats : MonoBehaviour
                 FourthBoss = true;
                 bossesFinished += 1;
                 gameScore += 50;
+                UpdateHealth(player, 50, health, maxHealth);
+                UpdateLevel(player, 100, 50, 40, 40);
 
-                if (gameScore % 30 == 0)
-                {
-                    level += 1;
-                    player.GetComponent<ProtagMovement>().health += 50;
-
-                }
             }
             else if (hit.collider.gameObject.name == "FinalBoss")
             {
                 Final = true;
                 bossesFinished += 1;
                 gameScore += 100;
+                UpdateHealth(player, 100, health, maxHealth);
+                UpdateLevel(player, 25, 50, 50, 50);
 
-                if (gameScore % 35 == 0)
-                {
-                    level += 1;
-                    player.GetComponent<ProtagMovement>().health += 100;
-
-                }
-            }
-            else
-            {
-                if (gameScore % 10 == 0)
-                {
-                    level += 1;
-                    player.GetComponent<ProtagMovement>().health += 50;
-
-                }
             }
         }
         else if (Input.GetKeyDown(KeyCode.Q))
@@ -167,16 +146,40 @@ public class GameStats : MonoBehaviour
         gameScore += 30;
     }
 
-    public static void UpdateHealth()
-    {
-        monstersKilled += 1;
-        gameScore += 10;
-    }
-
     public static void UpdateCurrency(float money)
     {
         goldCoins += 1;
         gameScore += 10;
+    }
+
+    public static void UpdateHealth(GameObject hero, float healthIncrease, float currenthealth, float maxHealth)
+    {
+        hero.GetComponent<ProtagMovement>().health += healthIncrease;
+        if (currenthealth > maxHealth) currenthealth = maxHealth;
+        gameScore += 5;
+    }
+    public static void UpdateLevel(GameObject hero, float levelThreshold, int healthMaxIncrease, float attackUpgrade, float magicUpgrade)
+    {
+        if (gameScore / levelThreshold == 0)
+        {
+            level += 1;
+            hero.GetComponent<ProtagMovement>().maxHealth += healthMaxIncrease;
+            UpdateAttack(hero, attackUpgrade);
+            UpdateMagic(hero, magicUpgrade);
+            levelThreshold *= 5;
+        }
+    }
+
+    public static void UpdateAttack(GameObject hero, float attackUpgrade)
+    {
+        hero.GetComponent<ProtagMovement>().attackPower += attackUpgrade;
+        gameScore += 5;
+    }
+
+    public static void UpdateMagic(GameObject hero, float magicUpgrade)
+    {
+        hero.GetComponent<ProtagMovement>().magicPower += magicUpgrade;
+        gameScore += 5;
     }
 
     void EndGame()

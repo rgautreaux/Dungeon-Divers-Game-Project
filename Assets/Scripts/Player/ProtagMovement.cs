@@ -16,7 +16,8 @@ public enum HeroState { ATTACK, SPRINT, RUN, JUMP, DEFEND, WEAK, READY, DEAD, DE
 public class ProtagMovement : MonoBehaviour
 {
     //Player Health
-    public float health = 100.0f;
+    public float maxHealth = 100f;
+    public float health = 100f;
 
     //Character Movement Speed
     public float velocity = 5f;
@@ -35,12 +36,13 @@ public class ProtagMovement : MonoBehaviour
 
     //Enemy Alertness
     public float monsterDistance = 20.0f;
+    public float bossDistance = 40f;
 
     //Attack Power
-    public float attackPower = 5f;
+    public float attackPower = 10f;
 
     //Magic Power
-    public float magicPower = 10f;
+    public float magicPower = 20f;
 
     //Potion Effects
     public ParticleSystem healthMagic;
@@ -75,6 +77,7 @@ public class ProtagMovement : MonoBehaviour
 
     //Detecting monsters
     GameObject monster;
+    GameObject boss;
 
 
     void Start()
@@ -89,6 +92,8 @@ public class ProtagMovement : MonoBehaviour
         shieldMagic = gameObject.GetComponent<ParticleSystem>();
 
         monster = GameObject.FindWithTag("Monster");
+        monster = GameObject.FindWithTag("Boss");
+
     }
 
 
@@ -96,10 +101,10 @@ public class ProtagMovement : MonoBehaviour
     void Update()
     {
         monster = GameObject.FindWithTag("Monster");
+        monster = GameObject.FindWithTag("Boss");
+
 
         // Check which input is being pressed
-        // Read the end of this script for a detailed explanation.
-
         inputHorizontal = Input.GetAxis("Horizontal");
         inputVertical = Input.GetAxis("Vertical");
         inputJump = Input.GetAxis("Jump") == 1f;
@@ -184,7 +189,12 @@ public class ProtagMovement : MonoBehaviour
                 Debug.Log("Player is ready for a fight!");
                 animator.SetBool("isReady", true);
             }
-            else if (health <= 50)
+            else if (Vector3.Distance(transform.position, boss.transform.position) < bossDistance)
+                {
+                    Debug.Log("Player is ready for a fight!");
+                    animator.SetBool("isReady", true);
+                }
+                else if (health <= 50)
             {
                 Debug.Log("Player needs healing");
                 animator.SetBool("isWeak", true);
@@ -340,10 +350,9 @@ public class ProtagMovement : MonoBehaviour
     public void takeDamage(float damage, bool strengthPotion)
     { 
         //Base Damage
-
         health -= damage;
         if (health < 0) health = 0;
-
+        if (health > maxHealth) health = maxHealth;
 
         //Strength Potion Effect
         strengthPotion = GetComponent<Potions>().potionEffect;
@@ -359,7 +368,7 @@ public class ProtagMovement : MonoBehaviour
             else { shieldMagic.Stop(); }
         }
 
-        Debug.Log("Monster dealt " + damage + "damage, " + health + "HP remain.");
+        Debug.Log(damage + " damage has been dealt, " + health + "HP remain.");
 
         if (health <= 0)
         {
