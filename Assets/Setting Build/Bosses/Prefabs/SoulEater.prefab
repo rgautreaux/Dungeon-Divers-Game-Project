@@ -1061,7 +1061,7 @@ GameObject:
   - component: {fileID: 1728358104587496373}
   m_Layer: 0
   m_Name: SoulEater
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

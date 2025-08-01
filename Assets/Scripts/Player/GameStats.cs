@@ -13,15 +13,13 @@ public class GameStats : MonoBehaviour
     public new Camera camera;
     public float maxDistance = 3f;
 
+    //Current Scores
     public static int level = 1;
-
     public static int bossesFinished = 0;
     public static int monstersKilled = 0;
-
     public static int shopTrips = 0;
     public static int moneySpent = 0;
     public static int goldCoins = 0;
-
     public static int gameScore = 0;
     public static int health;
     public static int maxHealth;
@@ -32,6 +30,22 @@ public class GameStats : MonoBehaviour
     public TextMeshProUGUI purchaseCount;
     public TextMeshProUGUI goldCount;
     public TextMeshProUGUI gameScoreText;
+
+    //High Scores
+    public static int highestLevel = 1;
+    public static int mostBossesFinished = 0;
+    public static int mostMonstersKilled = 0;
+    public static int mostShopTrips = 0;
+    public static int mostMoneySpent = 0;
+    public static int mostGoldCoins = 0;
+    public static int highScore = 0;
+
+    public TextMeshProUGUI lastLevel;
+    public TextMeshProUGUI lastBossCount;
+    public TextMeshProUGUI lastMonsterCount;
+    public TextMeshProUGUI lastPurchaseCount;
+    public TextMeshProUGUI lastGoldCount;
+    public TextMeshProUGUI highScoreText;
 
     public bool FirstBoss = false;
     public bool SecBoss = false;
@@ -56,6 +70,7 @@ public class GameStats : MonoBehaviour
     void Update()
     {
         UpdateLevel(player, 15, 25, 5, 5);
+        UpdateHighScore();
 
         float health = player.GetComponent<ProtagMovement>().health;
         float maxHealth = player.GetComponent<ProtagMovement>().maxHealth;
@@ -114,7 +129,6 @@ public class GameStats : MonoBehaviour
             bossesFinished = 5;
             gameScore += 60;
         }
-
     }
 
     private void OnGUI()
@@ -181,6 +195,38 @@ public class GameStats : MonoBehaviour
         hero.GetComponent<ProtagMovement>().magicPower += magicUpgrade;
         gameScore += 5;
     }
+
+    public static void UpdateHighScore()
+    {
+        if (level > highestLevel)
+        {
+            highestLevel = level;
+        }
+        if (bossesFinished > mostBossesFinished)
+        {
+            mostBossesFinished = bossesFinished;
+        }
+        if (monstersKilled > mostMonstersKilled)
+        {
+            mostMonstersKilled = monstersKilled;
+        }
+        if (shopTrips > mostShopTrips)
+        {
+            mostShopTrips = shopTrips;
+        }
+        if (moneySpent > mostMoneySpent)
+        {
+            mostMoneySpent = moneySpent;
+        }
+        if(goldCoins > mostGoldCoins)
+        {
+            mostGoldCoins = goldCoins; 
+        }
+        if(gameScore > highScore)
+        {
+            highScore = gameScore;
+        }
+}
 
     void EndGame()
     {
