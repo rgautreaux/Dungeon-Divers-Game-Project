@@ -9,12 +9,15 @@ public class CharaSelect : MonoBehaviour
     public RaycastHit select;
     private Camera camera;
 
+    public GameObject selected;
     public GameObject Gal;
     public GameObject Guy;
 
+    public bool galPicked = false;
+    public bool guyPicked = false;
+
     public GameObject galButton;
     public GameObject guyButton;
-
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +34,7 @@ public class CharaSelect : MonoBehaviour
         // Interact with knobs and switches
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out pressButton))
         {
-            if (pressButton.collider.CompareTag("Gal"))
+            if (pressButton.collider.CompareTag("PickGal"))
             {
                 if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0))
                 {
@@ -40,7 +43,7 @@ public class CharaSelect : MonoBehaviour
                     Debug.Log("Fem Adventurer Selected");
                 }
             }
-            if (pressButton.collider.CompareTag("Guy"))
+            if (pressButton.collider.CompareTag("PickGuy"))
             {
                 if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0))
                 {
@@ -54,17 +57,17 @@ public class CharaSelect : MonoBehaviour
 
     public void GalButton()
     {
-        GameObject selected = Gal;
+        galPicked = true;
+        selected = Gal;
         GetComponent<ProtagMovement>().playerChara = selected;
-
         SceneManager.LoadScene("Dungeon");
     }
 
     public void GuyButton()
     {
-        GameObject selected = Guy;
+        guyPicked = true;
+        selected = Guy;
         GetComponent<ProtagMovement>().playerChara = selected;
-
         SceneManager.LoadScene("Dungeon");
     }
 

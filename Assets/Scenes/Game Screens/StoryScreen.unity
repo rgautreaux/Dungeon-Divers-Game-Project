@@ -609,10 +609,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backButton: {fileID: 1421260961}
-  loreButton: {fileID: 0}
-  gameInfoButton: {fileID: 0}
-  creditsButton: {fileID: 0}
-  continueButton: {fileID: 0}
+  loreButton: {fileID: 1480745574}
+  gameInfoButton: {fileID: 1480745574}
+  creditsButton: {fileID: 1480745574}
+  continueButton: {fileID: 1480745574}
   levelText: {fileID: 0}
   bossCount: {fileID: 0}
   monsterCount: {fileID: 0}
@@ -6336,9 +6336,10 @@ GameObject:
   - component: {fileID: 1421260965}
   - component: {fileID: 1421260964}
   - component: {fileID: 1421260963}
+  - component: {fileID: 1421260966}
   m_Layer: 5
   m_Name: BACK
-  m_TagString: Untagged
+  m_TagString: Back
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6457,6 +6458,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1421260961}
   m_CullTransparentMesh: 1
+--- !u!65 &1421260966
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421260961}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!64 &1426116911
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6676,6 +6698,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 522926820628845222, guid: 2f3f7d4927009b84583c02fcbc509217, type: 3}
   m_PrefabInstance: {fileID: 1475456149}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1480745574
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1480745575}
+  m_Layer: 0
+  m_Name: EMPTY
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1480745575
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480745574}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -50.71, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1487191963
 GameObject:
   m_ObjectHideFlags: 0
@@ -8538,3 +8591,4 @@ SceneRoots:
   - {fileID: 1757521176}
   - {fileID: 943252793}
   - {fileID: 185745721}
+  - {fileID: 1480745575}

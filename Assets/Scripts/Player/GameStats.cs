@@ -56,6 +56,9 @@ public class GameStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = gameObject.GetComponent<CharaSelect>().selected;
+        camera = Camera.main;
+
         float health = player.GetComponent<ProtagMovement>().health;
         float maxHealth = player.GetComponent<ProtagMovement>().maxHealth;
 

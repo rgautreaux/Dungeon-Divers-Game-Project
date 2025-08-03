@@ -196,7 +196,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e63ca3fea4f60741a8baa8e35e64f0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerChara: {fileID: 0}
+  playerChara: {fileID: 4579048761404088230}
+  Gal: {fileID: 9094277931467091126, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
+  Guy: {fileID: 4579048761404088230}
+  galPicked: 0
+  guyPicked: 1
   maxHealth: 100
   health: 100
   velocity: 5
@@ -535,6 +539,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerChara: {fileID: 0}
+  Gal: {fileID: 0}
+  Guy: {fileID: 0}
+  galPicked: 0
+  guyPicked: 0
   maxHealth: 100
   health: 100
   velocity: 5

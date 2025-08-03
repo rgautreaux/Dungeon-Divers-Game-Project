@@ -1586,9 +1586,10 @@ GameObject:
   - component: {fileID: 490799646}
   - component: {fileID: 490799645}
   - component: {fileID: 490799644}
+  - component: {fileID: 490799647}
   m_Layer: 5
   m_Name: CONT
-  m_TagString: Untagged
+  m_TagString: Continue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1707,6 +1708,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 490799642}
   m_CullTransparentMesh: 1
+--- !u!65 &490799647
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490799642}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &501578961
 GameObject:
   m_ObjectHideFlags: 0
@@ -5360,11 +5382,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa9938b28eff9a647945cac4e26e5f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backButton: {fileID: 490799642}
-  loreButton: {fileID: 0}
-  gameInfoButton: {fileID: 0}
-  creditsButton: {fileID: 0}
-  continueButton: {fileID: 0}
+  backButton: {fileID: 1310220475}
+  loreButton: {fileID: 1310220475}
+  gameInfoButton: {fileID: 1310220475}
+  creditsButton: {fileID: 1310220475}
+  continueButton: {fileID: 490799642}
   levelText: {fileID: 0}
   bossCount: {fileID: 0}
   monsterCount: {fileID: 0}
@@ -5458,6 +5480,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7321029070664364311, guid: 44b00c7db33473946ad48053b41e081f, type: 3}
   m_PrefabInstance: {fileID: 1294697578}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1310220475
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1310220476}
+  m_Layer: 0
+  m_Name: EMPTY
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1310220476
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310220475}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -50.71, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &1310984325
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8534,3 +8587,4 @@ SceneRoots:
   - {fileID: 1661728291}
   - {fileID: 927476840}
   - {fileID: 1281989036}
+  - {fileID: 1310220476}

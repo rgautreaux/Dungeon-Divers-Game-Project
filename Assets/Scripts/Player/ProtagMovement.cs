@@ -16,6 +16,12 @@ public enum HeroState { ATTACK, SPRINT, RUN, JUMP, DEFEND, WEAK, READY, DEAD, DE
 public class ProtagMovement : MonoBehaviour
 {
     public GameObject playerChara;
+    public GameObject Gal;
+    public GameObject Guy;
+
+    public bool galPicked = false;
+    public bool guyPicked = false;
+
 
     //Player Health
     public float maxHealth = 100f;
@@ -85,7 +91,13 @@ public class ProtagMovement : MonoBehaviour
     void Start()
     {
         // Starts any of the above variables when starting the game
-        playerChara = GetComponent<ProtagMovement>().playerChara;
+        galPicked = gameObject.GetComponent<CharaSelect>().galPicked;
+        guyPicked = gameObject.GetComponent<CharaSelect>().guyPicked;
+        playerChara = gameObject.GetComponent<CharaSelect>().selected;
+
+        if (galPicked) playerChara = Gal;
+        if (guyPicked) playerChara = Guy;
+
         cc = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
 
@@ -103,6 +115,13 @@ public class ProtagMovement : MonoBehaviour
     // Update is only being used here to identify keys and trigger animations
     void Update()
     {
+        galPicked = gameObject.GetComponent<CharaSelect>().galPicked;
+        guyPicked = gameObject.GetComponent<CharaSelect>().guyPicked;
+        playerChara = gameObject.GetComponent<CharaSelect>().selected;
+
+        if (galPicked) playerChara = Gal;
+        if (guyPicked) playerChara = Guy;
+
         monster = GameObject.FindWithTag("Monster");
         monster = GameObject.FindWithTag("Boss");
 

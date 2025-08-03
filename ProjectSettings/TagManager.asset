@@ -15,6 +15,14 @@ TagManager:
   - Potion
   - Magic
   - Boss
+  - Story
+  - Credits
+  - GameInfo
+  - HighScore
+  - Back
+  - Continue
+  - PickGal
+  - PickGuy
   layers:
   - Default
   - TransparentFX

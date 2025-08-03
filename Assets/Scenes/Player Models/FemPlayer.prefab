@@ -228,6 +228,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerChara: {fileID: 9094277931467091126}
+  Gal: {fileID: 9094277931467091126}
+  Guy: {fileID: 4579048761404088230, guid: f3656249ed9d575499e5ff33ae66277b, type: 3}
+  galPicked: 1
+  guyPicked: 0
   maxHealth: 100
   health: 100
   velocity: 5
@@ -674,6 +678,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerChara: {fileID: 0}
+  Gal: {fileID: 0}
+  Guy: {fileID: 0}
+  galPicked: 0
+  guyPicked: 0
   maxHealth: 100
   health: 100
   velocity: 5

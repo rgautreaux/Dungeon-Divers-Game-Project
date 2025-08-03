@@ -9108,6 +9108,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2083164315}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &562273640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 562273641}
+  m_Layer: 0
+  m_Name: EMPTY
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &562273641
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 562273640}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -50.71, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &571066856
 GameObject:
   m_ObjectHideFlags: 0
@@ -11498,23 +11529,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa9938b28eff9a647945cac4e26e5f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backButton: {fileID: 1748330993}
-  loreButton: {fileID: 0}
-  gameInfoButton: {fileID: 0}
-  creditsButton: {fileID: 0}
-  continueButton: {fileID: 0}
+  backButton: {fileID: 562273640}
+  loreButton: {fileID: 562273640}
+  gameInfoButton: {fileID: 562273640}
+  creditsButton: {fileID: 562273640}
+  continueButton: {fileID: 562273640}
   levelText: {fileID: 1357326440}
   bossCount: {fileID: 1593502117}
   monsterCount: {fileID: 164816258}
   purchaseCount: {fileID: 1083818324}
   goldCount: {fileID: 600940206}
   gameScoreText: {fileID: 2002212101}
-  lastLevel: {fileID: 1357326440}
-  lastBossCount: {fileID: 1593502117}
-  lastMonsterCount: {fileID: 164816258}
-  lastPurchaseCount: {fileID: 1083818324}
-  lastGoldCount: {fileID: 600940206}
-  highScoreText: {fileID: 2002212101}
+  lastLevel: {fileID: 0}
+  lastBossCount: {fileID: 0}
+  lastMonsterCount: {fileID: 0}
+  lastPurchaseCount: {fileID: 0}
+  lastGoldCount: {fileID: 0}
+  highScoreText: {fileID: 0}
 --- !u!4 &757812653
 Transform:
   m_ObjectHideFlags: 0
@@ -30784,3 +30815,4 @@ SceneRoots:
   - {fileID: 403557596}
   - {fileID: 33083539}
   - {fileID: 757812653}
+  - {fileID: 562273641}
