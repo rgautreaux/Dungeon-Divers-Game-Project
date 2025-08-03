@@ -15,6 +15,8 @@ public class MainMenu : MonoBehaviour
     public GameObject gameInfoButton;
     public GameObject creditsButton;
     public GameObject continueButton;
+    public GameObject highScoreButton;
+
 
     //Current Scores
     public TextMeshProUGUI levelText;
@@ -48,7 +50,7 @@ public class MainMenu : MonoBehaviour
         // Interact with knobs and switches
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out pressButton))
         {
-            if (pressButton.collider.CompareTag("Story"))
+            if (pressButton.collider.CompareTag("Story") || pressButton.collider.gameObject == loreButton)
             {
                 if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0))
                 {
@@ -57,7 +59,7 @@ public class MainMenu : MonoBehaviour
                     Debug.Log("Read Story");
                 }
             }
-            if (pressButton.collider.CompareTag("Back"))
+            if (pressButton.collider.CompareTag("Back") || pressButton.collider.gameObject == backButton)
             {
                 if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0))
                 {
@@ -66,7 +68,7 @@ public class MainMenu : MonoBehaviour
                     Debug.Log("Back to Start");
                 }
             }
-            if (pressButton.collider.CompareTag("Credits"))
+            if (pressButton.collider.CompareTag("Credits") || pressButton.collider.gameObject == creditsButton)
             {
                 if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0))
                 {
@@ -75,7 +77,7 @@ public class MainMenu : MonoBehaviour
                     Debug.Log("Check Out Game Credits");
                 }
             }
-            if (pressButton.collider.CompareTag("GameInfo"))
+            if (pressButton.collider.CompareTag("GameInfo") || pressButton.collider.gameObject == gameInfoButton)
             {
                 if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0))
                 {
@@ -84,7 +86,7 @@ public class MainMenu : MonoBehaviour
                     Debug.Log("Learn about the Game");
                 }
             }
-            if (pressButton.collider.CompareTag("HighScore"))
+            if (pressButton.collider.CompareTag("HighScore") || pressButton.collider.gameObject == highScoreButton)
             {
                 if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0))
                 {
@@ -93,7 +95,7 @@ public class MainMenu : MonoBehaviour
                     Debug.Log("Learn about the Game");
                 }
             }
-            if (pressButton.collider.CompareTag("Continue"))
+            if (pressButton.collider.CompareTag("Continue") || pressButton.collider.gameObject == continueButton)
             {
                 if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0))
                 {
@@ -170,10 +172,12 @@ public class MainMenu : MonoBehaviour
         {
             levelText.text = "Level: " + GameStats.level.ToString();
         }
+
         if (bossCount)
         {
             bossCount.text = GameStats.bossesFinished.ToString() + "/8 Dragons Defeated";
         }
+
         if (monsterCount)
         {
             monsterCount.text = GameStats.monstersKilled.ToString() + " Total Monsters Slain";
@@ -181,45 +185,46 @@ public class MainMenu : MonoBehaviour
         if (goldCount)
         {
             goldCount.text = "You have earned" + GameStats.goldCoins.ToString() + "gold";
-
         }
+
         if (purchaseCount)
         {
             purchaseCount.text = "You visited [shop name] " + GameStats.shopTrips.ToString() + " times and spent " + GameStats.moneySpent.ToString() + "gold";
-
         }
+
         if (gameScoreText)
         {
             gameScoreText.text = "Game Score = " + GameStats.gameScore.ToString();
         }
 
-
         if (lastLevel)
         {
             lastLevel.text = "Highest Level: " + GameStats.highestLevel.ToString();
         }
+
         if (lastBossCount)
         {
             lastBossCount.text = "Most Dragons Defeated:  " + GameStats.mostBossesFinished.ToString();
         }
+
         if (lastMonsterCount)
         {
             lastMonsterCount.text = "Most Monsters Slain:  " + GameStats.mostMonstersKilled.ToString();
         }
+
         if (lastGoldCount)
         {
             lastGoldCount.text = "Most Gold Earned:  " + GameStats.mostGoldCoins.ToString() + "gold";
+        }                        
 
-        }
         if (lastPurchaseCount)
         {
             lastPurchaseCount.text = "You visited [shop name] " + GameStats.mostShopTrips.ToString() + " times last game, and spent " + GameStats.mostMoneySpent.ToString() + "gold";
-
         }
+
         if (highScoreText)
         {
             highScoreText.text = "High Score:  " + GameStats.highScore.ToString();
         }
-
     }
 }

@@ -34,7 +34,7 @@ public class CharaSelect : MonoBehaviour
         // Interact with knobs and switches
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out pressButton))
         {
-            if (pressButton.collider.CompareTag("PickGal"))
+            if (pressButton.collider.CompareTag("PickGal") || pressButton.collider.gameObject == galButton)
             {
                 if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0))
                 {
@@ -43,7 +43,7 @@ public class CharaSelect : MonoBehaviour
                     Debug.Log("Fem Adventurer Selected");
                 }
             }
-            if (pressButton.collider.CompareTag("PickGuy"))
+            if (pressButton.collider.CompareTag("PickGuy") || pressButton.collider.gameObject == guyButton)
             {
                 if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0))
                 {
@@ -52,6 +52,15 @@ public class CharaSelect : MonoBehaviour
                     Debug.Log("Masc Adventurer Selected");
                 }
             }
+        }
+
+        if (!galButton)
+        {
+            Destroy(galButton);
+
+        }else if (!guyButton)
+        {
+            Destroy (guyButton);
         }
     }
 
