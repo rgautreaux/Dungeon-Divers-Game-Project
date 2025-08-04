@@ -11,8 +11,14 @@ public class HealthBar : MonoBehaviour
     public ProtagMovement player;
     public GameObject healthMeter; //Assign this in the inspector
     private static Image HealthBarImage;
+
+    public GameObject staminaMeter; //Assign this in the inspector
+    private static Image StaminaBarImage;
+
     private float maxHealth = 100f;
     private float health = 100f;
+    private float stamina = 25f;
+    private float maxStamina = 25f;
 
     // Start is called before the first frame update
     void Start()
@@ -20,11 +26,23 @@ public class HealthBar : MonoBehaviour
         health = player.GetComponent<ProtagMovement>().health;
         maxHealth = player.GetComponent<ProtagMovement>().maxHealth;
 
+        stamina = player.GetComponent<ProtagMovement>().stamina;
+        maxHealth = player.GetComponent<ProtagMovement>().maxStamina;
+
+
+
         if (healthMeter != null)
         {
             HealthBarImage = healthMeter.transform.GetComponent<Image>();
         }
         SetHealthBarValue(health);
+
+
+        if (staminaMeter != null)
+        {
+            StaminaBarImage = staminaMeter.transform.GetComponent<Image>();
+        }
+        SetStaminaBarValue(stamina);
 
     }
 
@@ -45,14 +63,41 @@ public class HealthBar : MonoBehaviour
         }
     }
 
-    public static void SetHealthBarColor(Color healthColor)
+    public static void SetStaminaBarValue(float value)
     {
-        HealthBarImage.color = healthColor;
+        StaminaBarImage.fillAmount = value;
+        if (StaminaBarImage.fillAmount < 0.2f)
+        {
+            SetStaminaBarColor(Color.grey);
+        }
+        else if (StaminaBarImage.fillAmount < 0.4f)
+        {
+            SetStaminaBarColor(Color.blue);
+        }
+        else
+        {
+            SetStaminaBarColor(Color.cyan);
+        }
+    }
+
+    public static void SetHealthBarColor(Color staminaColor)
+    {
+        HealthBarImage.color = staminaColor;
+    }
+
+    public static void SetStaminaBarColor(Color staminaColor)
+    {
+        StaminaBarImage.color = staminaColor;
     }
 
     public static float GetHealthBarValue()
     {
         return HealthBarImage.fillAmount;
+    }
+
+    public static float GetStaminaBarValue()
+    {
+        return StaminaBarImage.fillAmount;
     }
 
 
@@ -62,11 +107,21 @@ public class HealthBar : MonoBehaviour
         health = player.GetComponent<ProtagMovement>().health;
         maxHealth = player.GetComponent<ProtagMovement>().maxHealth;
 
+        maxStamina = player.GetComponent<ProtagMovement>().maxStamina;
+        stamina = player.GetComponent<ProtagMovement>().stamina;
+
         SetHealthBarValue(health / maxHealth);
 
         if (health <= 0)
         {
             SceneManager.LoadScene("LoseScreen");
+        }
+
+        SetStaminaBarValue(stamina / maxStamina);
+
+        if (stamina <= 0)
+        {
+            stamina = 0;
         }
     }
 

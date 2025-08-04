@@ -33,6 +33,9 @@ public class ProtagMovement : MonoBehaviour
     //Sprint Speed
     public float sprintAdittion = 3.5f;
 
+    public float maxStamina = 25f;
+    public float stamina = 25f;
+
     //Jump Height
     public float jumpHeight = 1.5f;
 
@@ -91,9 +94,9 @@ public class ProtagMovement : MonoBehaviour
     void Start()
     {
         // Starts any of the above variables when starting the game
-        galPicked = gameObject.GetComponent<CharaSelect>().galPicked;
-        guyPicked = gameObject.GetComponent<CharaSelect>().guyPicked;
-        playerChara = gameObject.GetComponent<CharaSelect>().selected;
+        galPicked = GetComponent<CharaSelect>().galPicked;
+        guyPicked = GetComponent<CharaSelect>().guyPicked;
+        playerChara = GetComponent<CharaSelect>().selected;
 
         if (galPicked) playerChara = Gal;
         if (guyPicked) playerChara = Guy;
@@ -115,9 +118,9 @@ public class ProtagMovement : MonoBehaviour
     // Update is only being used here to identify keys and trigger animations
     void Update()
     {
-        galPicked = gameObject.GetComponent<CharaSelect>().galPicked;
-        guyPicked = gameObject.GetComponent<CharaSelect>().guyPicked;
-        playerChara = gameObject.GetComponent<CharaSelect>().selected;
+        galPicked = GetComponent<CharaSelect>().galPicked;
+        guyPicked = GetComponent<CharaSelect>().guyPicked;
+        playerChara = GetComponent<CharaSelect>().selected;
 
         if (galPicked) playerChara = Gal;
         if (guyPicked) playerChara = Guy;
@@ -143,7 +146,6 @@ public class ProtagMovement : MonoBehaviour
             if (cc.velocity.magnitude > minimumSpeed)
             {
                 Debug.Log("Player is running!");
-
                 animator.SetBool("isRunning", true);
                 animator.SetBool("isIdle", false);
                 animator.SetBool("isReady", false);
@@ -166,6 +168,28 @@ public class ProtagMovement : MonoBehaviour
             Debug.Log("Player is sprinting");
             isSprinting = true;
             isRunning = false;
+
+            if (isSprinting) {
+                for (int run = 0; run < stamina; run++)
+                {
+                    stamina --;
+
+                    if (stamina <= 0)
+                    {
+                        stamina = 0;
+                        isSprinting = false;
+                        isRunning = true;
+                        break;
+                    }
+                }
+
+                if (stamina == 0)
+                {
+                    stamina = 0;
+                    isSprinting = false;
+                    isRunning = true;
+                }
+            }
         }
         else
         {
@@ -173,6 +197,19 @@ public class ProtagMovement : MonoBehaviour
             isSprinting = false;
             isRunning = true;
 
+            if (!isSprinting)
+            {
+                for (int recover = 0; recover < stamina; recover++)
+                {
+                    stamina++;
+
+                    if (stamina > maxStamina) stamina = maxStamina;
+                    break;
+                }
+
+                if (stamina > maxStamina) stamina = maxStamina;
+
+            }
         }
 
         // After going through the above condition, we already have the answer to whether it is running or not within the variable

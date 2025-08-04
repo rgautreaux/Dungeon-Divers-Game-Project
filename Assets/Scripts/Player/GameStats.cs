@@ -72,7 +72,7 @@ public class GameStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateLevel(player, 15, 25, 5, 5);
+        UpdateLevel(player, 15, 25, 5, 5, 5);
         UpdateHighScore();
 
         float health = player.GetComponent<ProtagMovement>().health;
@@ -86,7 +86,7 @@ public class GameStats : MonoBehaviour
                 bossesFinished += 1;
                 gameScore += 20;
                 UpdateHealth(player, 50, health, maxHealth);
-                UpdateLevel(player, 25, 50, 10, 10);
+                UpdateLevel(player, 25, 50, 10, 10, 10);
 
             }
             else if (hit.collider.gameObject.name == "Boss2")
@@ -95,7 +95,7 @@ public class GameStats : MonoBehaviour
                 bossesFinished += 1;
                 gameScore += 30;
                 UpdateHealth(player, 50, health, maxHealth);
-                UpdateLevel(player, 50, 50, 20, 20);
+                UpdateLevel(player, 50, 50, 20, 20, 20);
 
             }
             else if (hit.collider.gameObject.name == "Boss3")
@@ -104,7 +104,7 @@ public class GameStats : MonoBehaviour
                 bossesFinished += 1;
                 gameScore += 40;
                 UpdateHealth(player, 50, health, maxHealth);
-                UpdateLevel(player, 75, 50, 30, 30);
+                UpdateLevel(player, 75, 50, 30, 30, 30);
 
             }
             else if (hit.collider.gameObject.name == "Boss4")
@@ -113,7 +113,7 @@ public class GameStats : MonoBehaviour
                 bossesFinished += 1;
                 gameScore += 50;
                 UpdateHealth(player, 50, health, maxHealth);
-                UpdateLevel(player, 100, 50, 40, 40);
+                UpdateLevel(player, 100, 50, 40, 40, 40);
 
             }
             else if (hit.collider.gameObject.name == "FinalBoss")
@@ -122,7 +122,7 @@ public class GameStats : MonoBehaviour
                 bossesFinished += 1;
                 gameScore += 100;
                 UpdateHealth(player, 100, health, maxHealth);
-                UpdateLevel(player, 25, 50, 50, 50);
+                UpdateLevel(player, 25, 50, 50, 50, 50);
 
             }
         }
@@ -175,7 +175,7 @@ public class GameStats : MonoBehaviour
         if (currenthealth > maxHealth) currenthealth = maxHealth;
         gameScore += 5;
     }
-    public static void UpdateLevel(GameObject hero, float levelThreshold, int healthMaxIncrease, float attackUpgrade, float magicUpgrade)
+    public static void UpdateLevel(GameObject hero, float levelThreshold, int healthMaxIncrease, float attackUpgrade, float magicUpgrade, int staminaIncrease)
     {
         if (gameScore / levelThreshold == 0)
         {
@@ -183,6 +183,7 @@ public class GameStats : MonoBehaviour
             hero.GetComponent<ProtagMovement>().maxHealth += healthMaxIncrease;
             UpdateAttack(hero, attackUpgrade);
             UpdateMagic(hero, magicUpgrade);
+            UpdateStaina(hero, staminaIncrease);
             levelThreshold *= 5;
         }
     }
@@ -196,6 +197,12 @@ public class GameStats : MonoBehaviour
     public static void UpdateMagic(GameObject hero, float magicUpgrade)
     {
         hero.GetComponent<ProtagMovement>().magicPower += magicUpgrade;
+        gameScore += 5;
+    }
+
+    public static void UpdateStaina(GameObject hero, float staminaIncrease)
+    {
+        hero.GetComponent<ProtagMovement>().maxStamina += staminaIncrease;
         gameScore += 5;
     }
 
