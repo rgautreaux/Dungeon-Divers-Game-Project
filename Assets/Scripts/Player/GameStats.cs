@@ -56,13 +56,13 @@ public class GameStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = gameObject.GetComponent<CharaSelect>().selected;
         camera = Camera.main;
 
         float health = player.GetComponent<ProtagMovement>().health;
         float maxHealth = player.GetComponent<ProtagMovement>().maxHealth;
 
-        bossCount.text = bossesFinished.ToString() + "/5 Boss Fights Defeated";
+        levelText.text = "Level " + level.ToString(); 
+        bossCount.text = bossesFinished.ToString() + "/8 Dragons Defeated";
         monsterCount.text = monstersKilled.ToString() + " Total Monsters Slain";
         goldCount.text = "You have earned" + goldCoins.ToString() + "gold";
         purchaseCount.text = "You visited [shop name] " + shopTrips.ToString() + " times and spent " + moneySpent.ToString() + "gold";
@@ -136,6 +136,7 @@ public class GameStats : MonoBehaviour
 
     private void OnGUI()
     {
+        levelText.text = "Level " + level.ToString();
         bossCount.text = bossesFinished.ToString() + "/8 Dragons Defeated";
         monsterCount.text = monstersKilled.ToString() + " Total Monsters Slain";
         goldCount.text = "You have earned" + goldCoins.ToString() + "gold";

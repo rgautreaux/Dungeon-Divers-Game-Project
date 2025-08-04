@@ -9,12 +9,8 @@ public class CharaSelect : MonoBehaviour
     public RaycastHit select;
     private Camera camera;
 
-    public GameObject selected;
     public GameObject Gal;
     public GameObject Guy;
-
-    public bool galPicked = false;
-    public bool guyPicked = false;
 
     public GameObject galButton;
     public GameObject guyButton;
@@ -53,30 +49,17 @@ public class CharaSelect : MonoBehaviour
                 }
             }
         }
-
-        if (!galButton)
-        {
-            Destroy(galButton);
-
-        }else if (!guyButton)
-        {
-            Destroy (guyButton);
-        }
     }
 
     public void GalButton()
     {
-        galPicked = true;
-        selected = Gal;
-        GetComponent<ProtagMovement>().playerChara = selected;
+        ProtagMovement.galPicked = true;
         SceneManager.LoadScene("Dungeon");
     }
 
     public void GuyButton()
     {
-        guyPicked = true;
-        selected = Guy;
-        GetComponent<ProtagMovement>().playerChara = selected;
+        ProtagMovement.guyPicked = true;
         SceneManager.LoadScene("Dungeon");
     }
 

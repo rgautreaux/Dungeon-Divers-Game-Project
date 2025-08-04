@@ -15,12 +15,10 @@ public enum HeroState { ATTACK, SPRINT, RUN, JUMP, DEFEND, WEAK, READY, DEAD, DE
 
 public class ProtagMovement : MonoBehaviour
 {
-    public GameObject playerChara;
-    public GameObject Gal;
-    public GameObject Guy;
+    public GameObject self;
 
-    public bool galPicked = false;
-    public bool guyPicked = false;
+    public static bool galPicked = false;
+    public static bool guyPicked = false;
 
 
     //Player Health
@@ -94,12 +92,15 @@ public class ProtagMovement : MonoBehaviour
     void Start()
     {
         // Starts any of the above variables when starting the game
-        galPicked = GetComponent<CharaSelect>().galPicked;
-        guyPicked = GetComponent<CharaSelect>().guyPicked;
-        playerChara = GetComponent<CharaSelect>().selected;
+        if (galPicked)
+        {
+            if (self.gameObject.name == "MascPlayer") Destroy(self.gameObject);  //Destroy unseleccted Player
+        }
+        else if (guyPicked)
+        {
+            if (self.gameObject.name == "FemPlayer") Destroy(self.gameObject);  //Destroy unseleccted Player
+        }
 
-        if (galPicked) playerChara = Gal;
-        if (guyPicked) playerChara = Guy;
 
         cc = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
@@ -118,12 +119,14 @@ public class ProtagMovement : MonoBehaviour
     // Update is only being used here to identify keys and trigger animations
     void Update()
     {
-        galPicked = GetComponent<CharaSelect>().galPicked;
-        guyPicked = GetComponent<CharaSelect>().guyPicked;
-        playerChara = GetComponent<CharaSelect>().selected;
-
-        if (galPicked) playerChara = Gal;
-        if (guyPicked) playerChara = Guy;
+        if (galPicked)
+        {
+            if (self.gameObject.name == "MascPlayer") Destroy(self.gameObject);  //Destroy unseleccted Player
+        }
+        else if (guyPicked)
+        {
+            if (self.gameObject.name == "FemPlayer") Destroy(self.gameObject);  //Destroy unseleccted Player
+        }
 
         monster = GameObject.FindWithTag("Monster");
         monster = GameObject.FindWithTag("Boss");

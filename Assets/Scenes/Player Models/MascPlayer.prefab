@@ -196,15 +196,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e63ca3fea4f60741a8baa8e35e64f0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerChara: {fileID: 4579048761404088230}
-  Gal: {fileID: 9094277931467091126, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
-  Guy: {fileID: 4579048761404088230}
+  self: {fileID: 4579048761404088230}
   galPicked: 0
   guyPicked: 1
   maxHealth: 100
   health: 100
   velocity: 5
   sprintAdittion: 3.5
+  maxStamina: 25
+  stamina: 25
   jumpHeight: 1.5
   jumpTime: 0.85
   gravity: 9.8
@@ -252,8 +252,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a978a2f575b68494b8e83e83e5c524fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  healthMeter: {fileID: 0}
+  player: {fileID: 3280574478441139230}
+  healthMeter: {fileID: 7036587263106288304, guid: e3c877175cb11644aa7031d657e96e92, type: 3}
+  staminaMeter: {fileID: 3680623484687511339, guid: 36716eefe6333154ebc987b1da2cad20, type: 3}
 --- !u!195 &301621734981470416
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -538,15 +539,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e63ca3fea4f60741a8baa8e35e64f0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerChara: {fileID: 0}
-  Gal: {fileID: 0}
-  Guy: {fileID: 0}
+  self: {fileID: 0}
   galPicked: 0
   guyPicked: 0
   maxHealth: 100
   health: 100
   velocity: 5
   sprintAdittion: 3.5
+  maxStamina: 25
+  stamina: 25
   jumpHeight: 1.5
   jumpTime: 0.85
   gravity: 9.8

@@ -204,6 +204,8 @@ MonoBehaviour:
   health: 100
   velocity: 5
   sprintAdittion: 3.5
+  maxStamina: 25
+  stamina: 25
   jumpHeight: 1.5
   jumpTime: 0.85
   gravity: 9.8
@@ -252,7 +254,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 276691780184228037}
-  healthMeter: {fileID: 0}
+  healthMeter: {fileID: 7036587263106288304, guid: e3c877175cb11644aa7031d657e96e92, type: 3}
+  staminaMeter: {fileID: 3680623484687511339, guid: 36716eefe6333154ebc987b1da2cad20, type: 3}
 --- !u!195 &2953083210075765641
 NavMeshAgent:
   m_ObjectHideFlags: 0

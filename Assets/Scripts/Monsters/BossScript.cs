@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public enum BossState { ATTACK, CHASE, MOVING, DEAD, DEFAULT };
 
@@ -25,9 +26,13 @@ public class BossScript : MonoBehaviour
 
     public float health = 0f;
     public GameObject self;
+    public GameObject[] bossCount;
+
 
     public GameObject healthMeter; //Assign this in the inspector
     private static Image HealthBarImage;
+    public TextMeshProUGUI name;
+
 
     //Boss States
     protected BossState state = BossState.DEFAULT;
@@ -42,6 +47,7 @@ public class BossScript : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         self = this.gameObject;
+        name.text = self.gameObject.name;
 
         agent = this.GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -81,7 +87,13 @@ public class BossScript : MonoBehaviour
         {
             HealthBarImage = healthMeter.transform.GetComponent<Image>();
         }
+
+
         SetHealthBarValue(health);
+        if (bossCount == null || bossCount.Length == 0)
+        {
+            SceneManager.LoadScene("Dungeon");
+        }
     }
 
     public static void SetHealthBarValue(float value)
@@ -89,7 +101,7 @@ public class BossScript : MonoBehaviour
         HealthBarImage.fillAmount = value;
         if (HealthBarImage.fillAmount < 0.2f)
         {
-            SetHealthBarColor(Color.red);
+            SetHealthBarColor(Color.black);
         }
         else if (HealthBarImage.fillAmount < 0.4f)
         {
@@ -97,7 +109,7 @@ public class BossScript : MonoBehaviour
         }
         else
         {
-            SetHealthBarColor(Color.green);
+            SetHealthBarColor(Color.red);
         }
     }
 
@@ -116,6 +128,11 @@ public class BossScript : MonoBehaviour
     void Update()
     {
         SetHealthBarValue(health / 100);
+        if (bossCount == null || bossCount.Length == 0)
+        {
+            SceneManager.LoadScene("Dungeon");
+        }
+
 
         switch (state)
         {
@@ -200,6 +217,8 @@ public class BossScript : MonoBehaviour
             default:
                 break;
         }
+
+        
     }
 
     public void BreathAttack(GameObject breath, GameObject player)
@@ -297,6 +316,9 @@ public class BossScript : MonoBehaviour
             state = BossState.DEAD;
             StartCoroutine(PlayAndDestroy(3.0f));
             GameStats.UpdateDragonsKilled();
+            Destroy(healthMeter);
+            Destroy(name);
+
         }
     }
 
