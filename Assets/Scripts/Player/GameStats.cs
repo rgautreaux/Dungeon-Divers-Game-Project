@@ -58,8 +58,8 @@ public class GameStats : MonoBehaviour
     {
         camera = Camera.main;
 
-        float health = player.GetComponent<ProtagMovement>().health;
-        float maxHealth = player.GetComponent<ProtagMovement>().maxHealth;
+        float health = ProtagMovement.health;
+        float maxHealth = ProtagMovement.maxHealth;
 
         levelText.text = "Level " + level.ToString(); 
         bossCount.text = bossesFinished.ToString() + "/8 Dragons Defeated";
@@ -72,57 +72,72 @@ public class GameStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateLevel(player, 15, 25, 5, 5, 5);
+        UpdateLevel(15, 25, 5, 5, 5);
         UpdateHighScore();
 
-        float health = player.GetComponent<ProtagMovement>().health;
-        float maxHealth = player.GetComponent<ProtagMovement>().maxHealth;
+        float health = ProtagMovement.health;
+        float maxHealth = ProtagMovement.maxHealth;
 
         if (Physics.Raycast(player.transform.position, player.transform.forward, out RaycastHit hit, maxDistance))
         {
-            if (hit.collider.gameObject.name  == "Boss1")
+            if (hit.collider.gameObject.name == "BossDoor0" || hit.collider.CompareTag("Boss1"))
             {
                 FirstBoss = true;
-                bossesFinished += 1;
                 gameScore += 20;
-                UpdateHealth(player, 50, health, maxHealth);
-                UpdateLevel(player, 25, 50, 10, 10, 10);
+                UpdateHealth(50, health, maxHealth);
+                UpdateLevel(25, 50, 10, 10, 10);
+                SceneManager.LoadScene("Boss1");
+
 
             }
-            else if (hit.collider.gameObject.name == "Boss2")
+            else if (hit.collider.gameObject.name == "BossDoor1" || hit.collider.CompareTag("Boss2"))
             {
                 SecBoss = true;
-                bossesFinished += 1;
                 gameScore += 30;
-                UpdateHealth(player, 50, health, maxHealth);
-                UpdateLevel(player, 50, 50, 20, 20, 20);
+                UpdateHealth(50, health, maxHealth);
+                UpdateLevel(50, 50, 20, 20, 20);
+                SceneManager.LoadScene("Boss2");
 
             }
-            else if (hit.collider.gameObject.name == "Boss3")
+            else if (hit.collider.gameObject.name == "BossDoor2" || hit.collider.CompareTag("Boss3"))
             {
                 ThirdBoss = true;
-                bossesFinished += 1;
                 gameScore += 40;
-                UpdateHealth(player, 50, health, maxHealth);
-                UpdateLevel(player, 75, 50, 30, 30, 30);
+                UpdateHealth(50, health, maxHealth);
+                UpdateLevel(75, 50, 30, 30, 30);
+                SceneManager.LoadScene("Boss3");
 
             }
-            else if (hit.collider.gameObject.name == "Boss4")
+            else if (hit.collider.gameObject.name == "BossDoor3" || hit.collider.CompareTag("Boss4"))
             {
                 FourthBoss = true;
-                bossesFinished += 1;
                 gameScore += 50;
-                UpdateHealth(player, 50, health, maxHealth);
-                UpdateLevel(player, 100, 50, 40, 40, 40);
+                UpdateHealth(50, health, maxHealth);
+                UpdateLevel(100, 50, 40, 40, 40);
+                SceneManager.LoadScene("Boss4");
+
 
             }
-            else if (hit.collider.gameObject.name == "FinalBoss")
+            else if (hit.collider.gameObject.name == "FinalBoss" || hit.collider.CompareTag("Finale"))
             {
-                Final = true;
-                bossesFinished += 1;
-                gameScore += 100;
-                UpdateHealth(player, 100, health, maxHealth);
-                UpdateLevel(player, 25, 50, 50, 50, 50);
+                if (FirstBoss && SecBoss && ThirdBoss && FourthBoss == true)
+                {
+                    Final = true;
+                    gameScore += 100;
+                    UpdateHealth(100, health, maxHealth);
+                    UpdateLevel(25, 50, 50, 50, 50);
+                    SceneManager.LoadScene("FinalBoss");
+                }
+                else
+                {
+                    Debug.Log("You're not ready yet.");
+                }
+
+            }
+            else if (hit.collider.gameObject.name == "SkeleShop")
+            {
+                Debug.Log("Enter the Shop");
+                SceneManager.LoadScene("Shop");
 
             }
         }
@@ -170,40 +185,40 @@ public class GameStats : MonoBehaviour
         gameScore += 10;
     }
 
-    public static void UpdateHealth(GameObject hero, float healthIncrease, float currenthealth, float maxHealth)
+    public static void UpdateHealth(float healthIncrease, float currenthealth, float maxHealth)
     {
-        hero.GetComponent<ProtagMovement>().health += healthIncrease;
+        ProtagMovement.health += healthIncrease;
         if (currenthealth > maxHealth) currenthealth = maxHealth;
         gameScore += 5;
     }
-    public static void UpdateLevel(GameObject hero, float levelThreshold, int healthMaxIncrease, float attackUpgrade, float magicUpgrade, int staminaIncrease)
+    public static void UpdateLevel(float levelThreshold, int healthMaxIncrease, float attackUpgrade, float magicUpgrade, int staminaIncrease)
     {
         if (gameScore / levelThreshold == 0)
         {
             level += 1;
-            hero.GetComponent<ProtagMovement>().maxHealth += healthMaxIncrease;
-            UpdateAttack(hero, attackUpgrade);
-            UpdateMagic(hero, magicUpgrade);
-            UpdateStaina(hero, staminaIncrease);
+            ProtagMovement.maxHealth += healthMaxIncrease;
+            UpdateAttack(attackUpgrade);
+            UpdateMagic(magicUpgrade);
+            UpdateStaina(staminaIncrease);
             levelThreshold *= 5;
         }
     }
 
-    public static void UpdateAttack(GameObject hero, float attackUpgrade)
+    public static void UpdateAttack(float attackUpgrade)
     {
-        hero.GetComponent<ProtagMovement>().attackPower += attackUpgrade;
+        ProtagMovement.attackPower += attackUpgrade;
         gameScore += 5;
     }
 
-    public static void UpdateMagic(GameObject hero, float magicUpgrade)
+    public static void UpdateMagic(float magicUpgrade)
     {
-        hero.GetComponent<ProtagMovement>().magicPower += magicUpgrade;
+        ProtagMovement.magicPower += magicUpgrade;
         gameScore += 5;
     }
 
-    public static void UpdateStaina(GameObject hero, float staminaIncrease)
+    public static void UpdateStaina(float staminaIncrease)
     {
-        hero.GetComponent<ProtagMovement>().maxStamina += staminaIncrease;
+        ProtagMovement.maxStamina += staminaIncrease;
         gameScore += 5;
     }
 

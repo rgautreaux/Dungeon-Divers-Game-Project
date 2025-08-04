@@ -22,7 +22,7 @@ public class Coins : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, 0, 5);
+        money.transform.Rotate(0, 0, 5);
     }
 
     void OnTriggerEnter(Collider collider)

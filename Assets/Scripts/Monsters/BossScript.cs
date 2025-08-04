@@ -250,13 +250,13 @@ public class BossScript : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Weapon"))
         {
-            float playerAttack = player.GetComponent<ProtagMovement>().attackPower;
+            float playerAttack = ProtagMovement.attackPower;
             takeDamage(playerAttack);
             if (health < 0) health = 0;
         }
         else if (other.gameObject.CompareTag("Magic"))
         {
-            float playerAttack = player.GetComponent<ProtagMovement>().magicPower;
+            float playerAttack = ProtagMovement.magicPower;
             takeDamage(playerAttack);
             if (health < 0) health = 0;
         }
@@ -273,7 +273,7 @@ public class BossScript : MonoBehaviour
         }
         else if (other.gameObject == gameObject.CompareTag("Weapon"))
         {
-            float damageRecieved = player.gameObject.GetComponent<ProtagMovement>().attackPower;
+            float damageRecieved = ProtagMovement.attackPower;
 
             Debug.Log("Collision (Stay) with Player");
             takeDamage(damageRecieved / 5);
@@ -281,7 +281,7 @@ public class BossScript : MonoBehaviour
         }
         else if (other.gameObject == gameObject.CompareTag("Magic"))
         {
-            float damageRecieved = player.gameObject.GetComponent<ProtagMovement>().magicPower;
+            float damageRecieved = ProtagMovement.magicPower;
 
             Debug.Log("Collision (Stay) with Magic");
             takeDamage(damageRecieved / 5);

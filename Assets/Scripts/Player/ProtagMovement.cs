@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -22,8 +23,8 @@ public class ProtagMovement : MonoBehaviour
 
 
     //Player Health
-    public float maxHealth = 100f;
-    public float health = 100f;
+    public static float maxHealth = 100f;
+    public static float health = 100f;
 
     //Character Movement Speed
     public float velocity = 5f;
@@ -31,8 +32,8 @@ public class ProtagMovement : MonoBehaviour
     //Sprint Speed
     public float sprintAdittion = 3.5f;
 
-    public float maxStamina = 25f;
-    public float stamina = 25f;
+    public static float maxStamina = 25f;
+    public static float stamina = 25f;
 
     //Jump Height
     public float jumpHeight = 1.5f;
@@ -48,16 +49,17 @@ public class ProtagMovement : MonoBehaviour
     public float bossDistance = 40f;
 
     //Attack Power
-    public float attackPower = 10f;
+    public static float attackPower = 10f;
 
     //Magic Power
-    public float magicPower = 20f;
+    public static float magicPower = 20f;
 
     //Potion Effects
-    public ParticleSystem healthMagic;
-    public ParticleSystem strengthMagic;
-    public ParticleSystem speedMagic;
-    public ParticleSystem shieldMagic;
+    public static ParticleSystem healthMagic;
+    public static ParticleSystem strengthMagic;
+    public static ParticleSystem speedMagic;
+    public static ParticleSystem shieldMagic;
+
 
 
     // Checks the character's current state
@@ -131,6 +133,11 @@ public class ProtagMovement : MonoBehaviour
         monster = GameObject.FindWithTag("Monster");
         monster = GameObject.FindWithTag("Boss");
 
+
+        healthMagic.Stop();
+        strengthMagic.Stop();
+        speedMagic.Stop();
+        shieldMagic.Stop();
 
         // Check which input is being pressed
         inputHorizontal = Input.GetAxis("Horizontal");
@@ -405,7 +412,6 @@ public class ProtagMovement : MonoBehaviour
         yield return new WaitForSeconds(10);
         shieldMagic.Stop();
         health -= damage;
-
 
     }
 

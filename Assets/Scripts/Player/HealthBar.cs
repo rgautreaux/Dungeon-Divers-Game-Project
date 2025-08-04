@@ -23,11 +23,11 @@ public class HealthBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = player.GetComponent<ProtagMovement>().health;
-        maxHealth = player.GetComponent<ProtagMovement>().maxHealth;
+        health = ProtagMovement.health;
+        maxHealth = ProtagMovement.maxHealth;
 
-        stamina = player.GetComponent<ProtagMovement>().stamina;
-        maxHealth = player.GetComponent<ProtagMovement>().maxStamina;
+        stamina = ProtagMovement.stamina;
+        maxHealth = ProtagMovement.maxStamina;
 
 
 
@@ -104,11 +104,11 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        health = player.GetComponent<ProtagMovement>().health;
-        maxHealth = player.GetComponent<ProtagMovement>().maxHealth;
+        health = ProtagMovement.health;
+        maxHealth = ProtagMovement.maxHealth;
 
-        maxStamina = player.GetComponent<ProtagMovement>().maxStamina;
-        stamina = player.GetComponent<ProtagMovement>().stamina;
+        maxStamina = ProtagMovement.maxStamina;
+        stamina = ProtagMovement.stamina;
 
         SetHealthBarValue(health / maxHealth);
 

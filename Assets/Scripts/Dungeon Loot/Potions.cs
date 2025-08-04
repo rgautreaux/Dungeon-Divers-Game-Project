@@ -12,7 +12,6 @@ public class Potions : MonoBehaviour
     private CharacterController characterControls;
 
     public GameObject potion;
-    public TextMeshProUGUI potionName;
     private ParticleSystem effect;
 
     //Detecting monsters
@@ -24,13 +23,16 @@ public class Potions : MonoBehaviour
         drink = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<ProtagMovement>();
         characterControls = player.GetComponent<ProtagMovement>().cc;
+        ProtagMovement.potionEffect.text = "   ";
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, 0, 5);
+        potion.transform.Rotate(0, 0, 5);
         monster = GameObject.FindWithTag("Monster");
+        effect.Stop();
 
     }
 
@@ -91,18 +93,17 @@ public class Potions : MonoBehaviour
     //increase health
     void HealthPotion()
     {
-        potionName.text = "Health Potion!";
-        effect = player.GetComponent<ProtagMovement>().healthMagic;
-        effect.Play();
-        player.GetComponent<ProtagMovement>().health += 5;
+        ProtagMovement.potionEffect.text = "Health Potion!";
+        ProtagMovement.healthMagic.Play();
+        ProtagMovement.health += 5;
         player.StartCoroutine(HealthEnd());
     }
     private IEnumerator HealthEnd()
     {
         yield return new WaitForSeconds(15);
-        potionName.text = "   ";
-        effect.Stop();
-        player.GetComponent<ProtagMovement>().health += 0;
+        ProtagMovement.potionEffect.text = "   ";
+        ProtagMovement.healthMagic.Stop();
+        ProtagMovement.health += 0;
         potionEffect = false;
     }
 
@@ -110,9 +111,8 @@ public class Potions : MonoBehaviour
     void StrengthPotion()
     {
         float damage = monster.GetComponent<Monsters>().damage;
-        potionName.text = "Strength Potion!";
-        effect = player.GetComponent<ProtagMovement>().strengthMagic;
-        effect.Play();
+        ProtagMovement.potionEffect.text = "Strength Potion!";
+        ProtagMovement.strengthMagic.Play();
         player.takeDamage(damage, true);
         player.StartCoroutine(StrengthOver());
     }
@@ -120,9 +120,8 @@ public class Potions : MonoBehaviour
     {
         float damage = monster.GetComponent<Monsters>().damage;
         yield return new WaitForSeconds(10);
-        potionName.text = "   ";
-        effect = player.GetComponent<ProtagMovement>().strengthMagic;
-        effect.Stop();
+        ProtagMovement.potionEffect.text = "   ";
+        ProtagMovement.strengthMagic.Stop();
         player.takeDamage(damage, false);
         potionEffect = false;
     }
@@ -130,18 +129,16 @@ public class Potions : MonoBehaviour
     //increase player's base speed
     void SpeedPotion()
     {
-        potionName.text = "Speed Potion!";
-        effect = player.GetComponent<ProtagMovement>().speedMagic;
-        effect.Play();
+        ProtagMovement.potionEffect.text = "Speed Potion!";
+        ProtagMovement.speedMagic.Play();
         player.UpdateSpeed(10f);
         player.StartCoroutine(SpeedOver());
     }
     private IEnumerator SpeedOver()
     {
         yield return new WaitForSeconds(5);
-        potionName.text = "   ";
-        effect = player.GetComponent<ProtagMovement>().speedMagic;
-        effect.Stop();
+        ProtagMovement.potionEffect.text = "   ";
+        ProtagMovement.speedMagic.Stop();
         player.UpdateSpeed(5f);
         potionEffect = false;
     }

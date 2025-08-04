@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1213360449886231123}
   - component: {fileID: 8781094155963152881}
   - component: {fileID: 6285517300576308986}
+  - component: {fileID: 4045926204941874088}
   m_Layer: 0
   m_Name: Health
   m_TagString: Potion
@@ -29,9 +30,9 @@ Transform:
   m_GameObject: {fileID: 7248919570390768941}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.9998742, z: 0, w: 0.01586448}
-  m_LocalPosition: {x: 4.375651, y: 1.4369007, z: -1.1055856}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 1.4369007, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1680774737435378766}
   m_Father: {fileID: 0}
@@ -126,6 +127,27 @@ MonoBehaviour:
   potionEffect: 0
   potion: {fileID: 7248919570390768941}
   potionName: {fileID: 0}
+--- !u!65 &4045926204941874088
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7248919570390768941}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.11773227, y: 0.2457084, z: 0.1359455}
+  m_Center: {x: 0, y: 0.12285425, z: 0}
 --- !u!1001 &1680774736055510827
 PrefabInstance:
   m_ObjectHideFlags: 0
