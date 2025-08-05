@@ -4,15 +4,23 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using static System.Net.Mime.MediaTypeNames;
+using System.Data;
 
 public class Shopping : MonoBehaviour
 {
     public RaycastHit select;
     private Camera camera;
-    public TextMeshProUGUI Dialogue;
     public TextMeshProUGUI bank;
-
     AudioSource purchase;
+
+
+    public string[] greeting = { "Word A", "Word B" };
+    public string[] rejection = { "Word A", "Word B" };
+    public string[] pun = { "Word A", "Word B" };
+    public string[] goodbye = { "Word A", "Word B" };
+
+    public TextMeshProUGUI Dialogue;
 
     public GameObject EXIT;
     public GameObject attackPwrButton;
@@ -40,8 +48,6 @@ public class Shopping : MonoBehaviour
 
     public static bool drinkStrength = false;
     public TextMeshProUGUI bPotionVal;
-
-
 
     public static int attackPrice = 10;
     public static int armorPrice = 15;
@@ -71,6 +77,11 @@ public class Shopping : MonoBehaviour
         hPotionVal.text = "+HEAL (" + healthCount.ToString() + ")";
         sPotionVal.text = "+SPEED (" + speedCount.ToString() + ")";
         bPotionVal.text = "+STR (" + strengthCount.ToString() + ")";
+
+
+        string hello = Greeting();
+        Dialogue.text = hello;
+
 
     }
 
@@ -105,7 +116,11 @@ public class Shopping : MonoBehaviour
                     }
                     else
                     {
-                        Dialogue.text = " ";
+                        string no = Nope();
+                        Dialogue.text = no;
+                        new WaitForSeconds(10);
+                        string pun = Joke();
+                        Dialogue.text = pun;
 
                     }
                 }
@@ -124,7 +139,12 @@ public class Shopping : MonoBehaviour
                     }
                     else
                     {
-                        Dialogue.text = " ";
+                        string no = Nope();
+                        Dialogue.text = no;
+                        new WaitForSeconds(10);
+                        string pun = Joke();
+                        Dialogue.text = pun;
+
                     }
                 }
             }
@@ -142,8 +162,11 @@ public class Shopping : MonoBehaviour
                     }
                     else
                     {
-                        Dialogue.text = " ";
-
+                        string no = Nope();
+                        Dialogue.text = no;
+                        new WaitForSeconds(10);
+                        string pun = Joke();
+                        Dialogue.text = pun;
                     }
                 }
             }
@@ -161,8 +184,11 @@ public class Shopping : MonoBehaviour
                     }
                     else
                     {
-                        Dialogue.text = " ";
-
+                        string no = Nope();
+                        Dialogue.text = no;
+                        new WaitForSeconds(10);
+                        string pun = Joke();
+                        Dialogue.text = pun;
                     }
                 }
             }
@@ -180,8 +206,11 @@ public class Shopping : MonoBehaviour
                     }
                     else
                     {
-                        Dialogue.text = " ";
-
+                        string no = Nope();
+                        Dialogue.text = no;
+                        new WaitForSeconds(10);
+                        string pun = Joke();
+                        Dialogue.text = pun;
                     }
                 }
             }
@@ -199,17 +228,21 @@ public class Shopping : MonoBehaviour
                     }
                     else
                     {
-                        Dialogue.text = " ";
-
+                        string no = Nope();
+                        Dialogue.text = no;
+                        new WaitForSeconds(10);
+                        string pun = Joke();
+                        Dialogue.text = pun;
                     }
                 }
             }
             if (pressButton.collider.CompareTag("Exit") || pressButton.collider.gameObject == EXIT)
             {
-                Dialogue.text = " ";
 
                 if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0))
                 {
+                    string bye = Goodbye();
+                    Dialogue.text = bye;
                     ExitShop();
                     Debug.Log("Leaving Shop");
                 }
@@ -230,6 +263,41 @@ public class Shopping : MonoBehaviour
         bPotionVal.text = "+STR (" + strengthCount.ToString() + ")";
     }
 
+    private string Greeting()
+    {
+        // grab a random string from the words array
+        string randomWord = greeting[Random.Range(0, greeting.Length)];
+
+        // return it (this will be the string that the script will use)
+        return randomWord;
+    }
+
+    private string Goodbye()
+    {
+        // grab a random string from the words array
+        string randomWord = goodbye[Random.Range(0, goodbye.Length)];
+
+        // return it (this will be the string that the script will use)
+        return randomWord;
+    }
+
+    private string Nope()
+    {
+        // grab a random string from the words array
+        string randomWord = rejection[Random.Range(0, rejection.Length)];
+
+        // return it (this will be the string that the script will use)
+        return randomWord;
+    }
+
+    private string Joke()
+    {
+        // grab a random string from the words array
+        string randomWord = pun[Random.Range(0, pun.Length)];
+
+        // return it (this will be the string that the script will use)
+        return randomWord;
+    }
 
     public void BuyAttack()
     {
@@ -291,6 +359,7 @@ public class Shopping : MonoBehaviour
     }
     public void ExitShop()
     {
+        new WaitForSeconds(15);
         SceneManager.LoadScene("Dungeon");
     }
 }
