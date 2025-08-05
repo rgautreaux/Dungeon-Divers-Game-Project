@@ -36,15 +36,23 @@ public class Potions : MonoBehaviour
 
         if (Shopping.drinkSpeed = true)
         {
-            SpeedPotion();
+            for (int i = 0; i < Shopping.speedCount; i++) {
+                SpeedPotion();
+            }
         }
         else if (Shopping.drinkStrength = true)
         {
-            StrengthPotion();
+            for (int i = 0; i < Shopping.strengthCount; i++)
+            {
+                StrengthPotion();
+            }
         }
         else if (Shopping.drinkHealth = true)
         {
-            HealthPotion();
+            for (int i = 0; i < Shopping.healthCount; i++)
+            {
+                HealthPotion();
+            }
         }
         else
         {

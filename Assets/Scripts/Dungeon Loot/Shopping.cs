@@ -10,9 +10,11 @@ public class Shopping : MonoBehaviour
     public RaycastHit select;
     private Camera camera;
     public TextMeshProUGUI Dialogue;
+    public TextMeshProUGUI bank;
+
     AudioSource purchase;
 
-    public GameObject exitButton;
+    public GameObject EXIT;
     public GameObject attackPwrButton;
     public GameObject armorPwrButton;
     public GameObject magicPwrButton;
@@ -21,12 +23,25 @@ public class Shopping : MonoBehaviour
     public GameObject StrengthPotionButton;
 
     public static float addAttack = 2;
+    public TextMeshProUGUI addAttackVal;
+
     public static float addArmor = 2;
+    public TextMeshProUGUI addArmorVal;
+
     public static float addMagic = 2;
+    public TextMeshProUGUI addMagicVal;
+
 
     public static bool drinkHealth = false;
+    public TextMeshProUGUI hPotionVal;
+
     public static bool drinkSpeed = false;
+    public TextMeshProUGUI sPotionVal;
+
     public static bool drinkStrength = false;
+    public TextMeshProUGUI bPotionVal;
+
+
 
     public static int attackPrice = 10;
     public static int armorPrice = 15;
@@ -36,6 +51,9 @@ public class Shopping : MonoBehaviour
     public float attkCount = 0;
     public float armorCount = 0;
     public float magicCount = 0;
+    public static float healthCount = 0;
+    public static float speedCount = 0;
+    public static float strengthCount = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -45,12 +63,28 @@ public class Shopping : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         purchase = GetComponent<AudioSource>();
 
+        bank.text = GameStats.goldCoins.ToString() +" GLD";
+
+        addAttackVal.text = "+" + addAttack.ToString() + "ATTK (" + attkCount.ToString() + ")";
+        addArmorVal.text = "+" + addArmor.ToString() + "DEF (" + armorCount.ToString() + ")";
+        addMagicVal.text = "+" + addMagic.ToString() + "MAGIC (" + magicCount.ToString() + ")";
+        hPotionVal.text = "+HEAL (" + healthCount.ToString() + ")";
+        sPotionVal.text = "+SPEED (" + speedCount.ToString() + ")";
+        bPotionVal.text = "+STR (" + strengthCount.ToString() + ")";
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        Dialogue.text = " ";
+        bank.text = GameStats.goldCoins.ToString() + " GLD";
+
+        addAttackVal.text = "+" + addAttack.ToString() + "ATTK (" + attkCount.ToString() + ")";
+        addArmorVal.text = "+" + addArmor.ToString() + "DEF (" + armorCount.ToString() + ")";
+        addMagicVal.text = "+" + addMagic.ToString() + "MAGIC (" + magicCount.ToString() + ")";
+        hPotionVal.text = "+HEAL (" + healthCount.ToString() + ")";
+        sPotionVal.text = "+SPEED (" + speedCount.ToString() + ")";
+        bPotionVal.text = "+STR (" + strengthCount.ToString() + ")";
 
         RaycastHit pressButton;
 
@@ -59,7 +93,7 @@ public class Shopping : MonoBehaviour
         {
             if (pressButton.collider.CompareTag("Sword") || pressButton.collider.gameObject == attackPwrButton)
             {
-                Dialogue.text = "Looking to increase your " + ProtagMovement.attackPower.ToString() + " Sword Sharpness by " + addAttack.ToString() + "?";
+                Dialogue.text = "Looking to increase your " + ProtagMovement.attackPower.ToString() + " Sword Sharpness by " + addAttack.ToString() + " for " + attackPrice.ToString() + "?";
 
                 if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0))
                 {
@@ -78,7 +112,7 @@ public class Shopping : MonoBehaviour
             }
             if (pressButton.collider.CompareTag("Shield") || pressButton.collider.gameObject == armorPwrButton)
             {
-                Dialogue.text = "Looking to increase your " + ProtagMovement.armorPower.ToString() + " Armor Strength by " + addArmor.ToString() + "?";
+                Dialogue.text = "Looking to increase your " + ProtagMovement.armorPower.ToString() + " Armor Strength by " + addArmor.ToString() + " for " + armorPrice.ToString() + "?";
 
                 if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0))
                 {
@@ -96,7 +130,7 @@ public class Shopping : MonoBehaviour
             }
             if (pressButton.collider.CompareTag("Spell") || pressButton.collider.gameObject == magicPwrButton)
             {
-                Dialogue.text = "Looking to increase your " + ProtagMovement.magicPower.ToString() + " Magic Strength by " + addMagic.ToString() + "?";
+                Dialogue.text = "Looking to increase your " + ProtagMovement.magicPower.ToString() + " Magic Strength by " + addMagic.ToString() + " for " + magicPrice.ToString() + "?";
 
                 if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0))
                 {
@@ -115,7 +149,7 @@ public class Shopping : MonoBehaviour
             }
             if (pressButton.collider.CompareTag("Health") || pressButton.collider.gameObject == HealthPotionButton)
             {
-                Dialogue.text = "Considering a Health Potion this time?";
+                Dialogue.text = "Considering a Health Potion this time? They're " + potionPrice.ToString() + "Gold.";
 
                 if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0))
                 {
@@ -170,9 +204,9 @@ public class Shopping : MonoBehaviour
                     }
                 }
             }
-            if (pressButton.collider.CompareTag("Exit") || pressButton.collider.gameObject == exitButton)
+            if (pressButton.collider.CompareTag("Exit") || pressButton.collider.gameObject == EXIT)
             {
-                Dialogue.text = "Bye";
+                Dialogue.text = " ";
 
                 if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0))
                 {
@@ -182,6 +216,20 @@ public class Shopping : MonoBehaviour
             }
         }
     }
+
+    private void OnGUI()
+    {
+
+        bank.text = GameStats.goldCoins.ToString() + " GLD";
+
+        addAttackVal.text = "+" + addAttack.ToString() + "ATTK (" + attkCount.ToString() + ")";
+        addArmorVal.text = "+" + addArmor.ToString() + "DEF (" + armorCount.ToString() + ")";
+        addMagicVal.text = "+" + addMagic.ToString() + "MAGIC (" + magicCount.ToString() + ")";
+        hPotionVal.text = "+HEAL (" + healthCount.ToString() + ")";
+        sPotionVal.text = "+SPEED (" + speedCount.ToString() + ")";
+        bPotionVal.text = "+STR (" + strengthCount.ToString() + ")";
+    }
+
 
     public void BuyAttack()
     {
@@ -245,5 +293,4 @@ public class Shopping : MonoBehaviour
     {
         SceneManager.LoadScene("Dungeon");
     }
-
 }
