@@ -18,6 +18,7 @@ public class CharaSelect : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        camera = Camera.main;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
@@ -27,7 +28,7 @@ public class CharaSelect : MonoBehaviour
     {
         RaycastHit pressButton;
 
-        // Interact with knobs and switches
+        // Interact with buttons
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out pressButton))
         {
             if (pressButton.collider.CompareTag("PickGal") || pressButton.collider.gameObject == galButton)

@@ -47,7 +47,7 @@ public class MainMenu : MonoBehaviour
     {
         RaycastHit pressButton;
 
-        // Interact with knobs and switches
+        // Interact with buttons
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out pressButton))
         {
             if (pressButton.collider.CompareTag("Story") || pressButton.collider.gameObject == loreButton)

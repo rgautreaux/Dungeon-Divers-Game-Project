@@ -72,7 +72,7 @@ public class GameStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateLevel(15, 25, 5, 5, 5);
+        UpdateLevel(15, 25, 5, 5, 5, 0.5F);
         UpdateHighScore();
 
         float health = ProtagMovement.health;
@@ -85,7 +85,7 @@ public class GameStats : MonoBehaviour
                 FirstBoss = true;
                 gameScore += 20;
                 UpdateHealth(50, health, maxHealth);
-                UpdateLevel(25, 50, 10, 10, 10);
+                UpdateLevel(25, 50, 10, 10, 10, 1);
                 SceneManager.LoadScene("Boss1");
 
 
@@ -95,7 +95,7 @@ public class GameStats : MonoBehaviour
                 SecBoss = true;
                 gameScore += 30;
                 UpdateHealth(50, health, maxHealth);
-                UpdateLevel(50, 50, 20, 20, 20);
+                UpdateLevel(50, 50, 20, 20, 20, 1);
                 SceneManager.LoadScene("Boss2");
 
             }
@@ -104,7 +104,7 @@ public class GameStats : MonoBehaviour
                 ThirdBoss = true;
                 gameScore += 40;
                 UpdateHealth(50, health, maxHealth);
-                UpdateLevel(75, 50, 30, 30, 30);
+                UpdateLevel(75, 50, 30, 30, 30, 1);
                 SceneManager.LoadScene("Boss3");
 
             }
@@ -113,7 +113,7 @@ public class GameStats : MonoBehaviour
                 FourthBoss = true;
                 gameScore += 50;
                 UpdateHealth(50, health, maxHealth);
-                UpdateLevel(100, 50, 40, 40, 40);
+                UpdateLevel(100, 50, 40, 40, 40, 1);
                 SceneManager.LoadScene("Boss4");
 
 
@@ -125,7 +125,7 @@ public class GameStats : MonoBehaviour
                     Final = true;
                     gameScore += 100;
                     UpdateHealth(100, health, maxHealth);
-                    UpdateLevel(25, 50, 50, 50, 50);
+                    UpdateLevel(25, 50, 50, 50, 50, 1);
                     SceneManager.LoadScene("FinalBoss");
                 }
                 else
@@ -137,6 +137,7 @@ public class GameStats : MonoBehaviour
             else if (hit.collider.gameObject.name == "SkeleShop")
             {
                 Debug.Log("Enter the Shop");
+                shopTrips += 1;
                 SceneManager.LoadScene("Shop");
 
             }
@@ -191,7 +192,7 @@ public class GameStats : MonoBehaviour
         if (currenthealth > maxHealth) currenthealth = maxHealth;
         gameScore += 5;
     }
-    public static void UpdateLevel(float levelThreshold, int healthMaxIncrease, float attackUpgrade, float magicUpgrade, int staminaIncrease)
+    public static void UpdateLevel(float levelThreshold, int healthMaxIncrease, float attackUpgrade, float magicUpgrade, int staminaIncrease, float armorUpgrade)
     {
         if (gameScore / levelThreshold == 0)
         {
@@ -200,13 +201,30 @@ public class GameStats : MonoBehaviour
             UpdateAttack(attackUpgrade);
             UpdateMagic(magicUpgrade);
             UpdateStaina(staminaIncrease);
+            UpdateArmor(armorUpgrade);
             levelThreshold *= 5;
+
+            Shopping.addAttack *= 2;
+            Shopping.addArmor *= 2;
+            Shopping.addMagic *= 2;
+
+            Shopping.attackPrice += 5;
+            Shopping.armorPrice += 5;
+            Shopping.magicPrice += 5;
+            Shopping.potionPrice += 5;
+
         }
     }
 
     public static void UpdateAttack(float attackUpgrade)
     {
         ProtagMovement.attackPower += attackUpgrade;
+        gameScore += 5;
+    }
+
+    public static void UpdateArmor(float armorUpgrade)
+    {
+        ProtagMovement.armorPower += armorUpgrade;
         gameScore += 5;
     }
 

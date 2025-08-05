@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Playables;
@@ -53,6 +54,9 @@ public class ProtagMovement : MonoBehaviour
 
     //Magic Power
     public static float magicPower = 20f;
+
+    //Armor
+    public static float armorPower = 0f;
 
     //Potion Effects
     public GameObject healing;
@@ -416,17 +420,19 @@ public class ProtagMovement : MonoBehaviour
     public IEnumerable MagicShield(float damage)
     {
         shieldMagic.Play();
-        health -= damage / 5;
+        float protection = damage - armorPower;
+        health -= protection / 5;
         yield return new WaitForSeconds(10);
         shieldMagic.Stop();
-        health -= damage;
+        health -= protection;
 
     }
 
     public void takeDamage(float damage, bool strengthPotion)
-    { 
+    {
         //Base Damage
-        health -= damage;
+        float protection = damage - armorPower;
+        health -= protection;
         if (health < 0) health = 0;
         if (health > maxHealth) health = maxHealth;
 
@@ -434,17 +440,17 @@ public class ProtagMovement : MonoBehaviour
         strengthPotion = GetComponent<Potions>().potionEffect;
         if (strengthPotion || Input.GetKeyDown(KeyCode.E))
         {
-            health -= damage / 2;
+            health -= protection / 2;
             if (health < 0) health = 0;
 
             if (Input.GetKeyDown(KeyCode.E) && Input.GetKeyDown(KeyCode.R)) 
             {
-                MagicShield(damage);
+                MagicShield(protection);
             }
             else { shieldMagic.Stop(); }
         }
 
-        Debug.Log(damage + " damage has been dealt, " + health + "HP remain.");
+        Debug.Log(protection + " damage has been dealt, " + health + "HP remain.");
 
         if (health <= 0)
         {

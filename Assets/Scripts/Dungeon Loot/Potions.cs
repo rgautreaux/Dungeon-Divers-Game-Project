@@ -34,6 +34,23 @@ public class Potions : MonoBehaviour
         monster = GameObject.FindWithTag("Monster");
         effect.Stop();
 
+        if (Shopping.drinkSpeed = true)
+        {
+            SpeedPotion();
+        }
+        else if (Shopping.drinkStrength = true)
+        {
+            StrengthPotion();
+        }
+        else if (Shopping.drinkHealth = true)
+        {
+            HealthPotion();
+        }
+        else
+        {
+            effect.Stop();
+        }
+
     }
 
     void OnTriggerEnter(Collider collider)
@@ -105,6 +122,7 @@ public class Potions : MonoBehaviour
         ProtagMovement.healthMagic.Stop();
         ProtagMovement.health += 0;
         potionEffect = false;
+        Shopping.drinkHealth = false;
     }
 
     //reduce damage to player
@@ -124,6 +142,7 @@ public class Potions : MonoBehaviour
         ProtagMovement.strengthMagic.Stop();
         player.takeDamage(damage, false);
         potionEffect = false;
+        Shopping.drinkStrength = false;
     }
 
     //increase player's base speed
@@ -141,5 +160,6 @@ public class Potions : MonoBehaviour
         ProtagMovement.speedMagic.Stop();
         player.UpdateSpeed(5f);
         potionEffect = false;
+        Shopping.drinkSpeed = false;
     }
 }
