@@ -55,11 +55,19 @@ public class ProtagMovement : MonoBehaviour
     public static float magicPower = 20f;
 
     //Potion Effects
+    public GameObject healing;
     public static ParticleSystem healthMagic;
+
+    public GameObject strong;
     public static ParticleSystem strengthMagic;
+
+    public GameObject fast;
     public static ParticleSystem speedMagic;
+
+    public GameObject defense;
     public static ParticleSystem shieldMagic;
 
+    public static TextMeshProUGUI potionName;
 
 
     // Checks the character's current state
@@ -107,10 +115,10 @@ public class ProtagMovement : MonoBehaviour
         cc = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
 
-        healthMagic = gameObject.GetComponent<ParticleSystem>();
-        strengthMagic = gameObject.GetComponent<ParticleSystem>();
-        speedMagic = gameObject.GetComponent<ParticleSystem>();
-        shieldMagic = gameObject.GetComponent<ParticleSystem>();
+        healthMagic = healing.GetComponent<ParticleSystem>();
+        strengthMagic = strong.GetComponent<ParticleSystem>();
+        speedMagic = fast.GetComponent<ParticleSystem>();
+        shieldMagic = defense.GetComponent<ParticleSystem>();
 
         monster = GameObject.FindWithTag("Monster");
         monster = GameObject.FindWithTag("Boss");

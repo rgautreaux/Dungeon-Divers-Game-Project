@@ -23,7 +23,7 @@ public class Potions : MonoBehaviour
         drink = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<ProtagMovement>();
         characterControls = player.GetComponent<ProtagMovement>().cc;
-        ProtagMovement.potionEffect.text = "   ";
+        ProtagMovement.potionName.text = "   ";
 
     }
 
@@ -93,7 +93,7 @@ public class Potions : MonoBehaviour
     //increase health
     void HealthPotion()
     {
-        ProtagMovement.potionEffect.text = "Health Potion!";
+        ProtagMovement.potionName.text = "Health Potion!";
         ProtagMovement.healthMagic.Play();
         ProtagMovement.health += 5;
         player.StartCoroutine(HealthEnd());
@@ -101,7 +101,7 @@ public class Potions : MonoBehaviour
     private IEnumerator HealthEnd()
     {
         yield return new WaitForSeconds(15);
-        ProtagMovement.potionEffect.text = "   ";
+        ProtagMovement.potionName.text = "   ";
         ProtagMovement.healthMagic.Stop();
         ProtagMovement.health += 0;
         potionEffect = false;
@@ -111,7 +111,7 @@ public class Potions : MonoBehaviour
     void StrengthPotion()
     {
         float damage = monster.GetComponent<Monsters>().damage;
-        ProtagMovement.potionEffect.text = "Strength Potion!";
+        ProtagMovement.potionName.text = "Strength Potion!";
         ProtagMovement.strengthMagic.Play();
         player.takeDamage(damage, true);
         player.StartCoroutine(StrengthOver());
@@ -120,7 +120,7 @@ public class Potions : MonoBehaviour
     {
         float damage = monster.GetComponent<Monsters>().damage;
         yield return new WaitForSeconds(10);
-        ProtagMovement.potionEffect.text = "   ";
+        ProtagMovement.potionName.text = "   ";
         ProtagMovement.strengthMagic.Stop();
         player.takeDamage(damage, false);
         potionEffect = false;
@@ -129,7 +129,7 @@ public class Potions : MonoBehaviour
     //increase player's base speed
     void SpeedPotion()
     {
-        ProtagMovement.potionEffect.text = "Speed Potion!";
+        ProtagMovement.potionName.text = "Speed Potion!";
         ProtagMovement.speedMagic.Play();
         player.UpdateSpeed(10f);
         player.StartCoroutine(SpeedOver());
@@ -137,7 +137,7 @@ public class Potions : MonoBehaviour
     private IEnumerator SpeedOver()
     {
         yield return new WaitForSeconds(5);
-        ProtagMovement.potionEffect.text = "   ";
+        ProtagMovement.potionName.text = "   ";
         ProtagMovement.speedMagic.Stop();
         player.UpdateSpeed(5f);
         potionEffect = false;
