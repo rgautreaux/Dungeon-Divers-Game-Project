@@ -12,7 +12,12 @@ public class Potions : MonoBehaviour
     private CharacterController characterControls;
 
     public GameObject potion;
-    private ParticleSystem effect;
+    private ParticleSystem hEffect;
+    private ParticleSystem sEffect;
+    private ParticleSystem bEffect;
+    private ParticleSystem pEffect;
+
+
 
     //Detecting monsters
     GameObject monster;
@@ -25,6 +30,11 @@ public class Potions : MonoBehaviour
         characterControls = player.GetComponent<ProtagMovement>().cc;
         ProtagMovement.potionName.text = "   ";
 
+        hEffect = ProtagMovement.healthMagic;
+        sEffect = ProtagMovement.speedMagic;
+        bEffect = ProtagMovement.strengthMagic;
+        pEffect = ProtagMovement.shieldMagic;
+
     }
 
     // Update is called once per frame
@@ -32,7 +42,10 @@ public class Potions : MonoBehaviour
     {
         potion.transform.Rotate(0, 0, 5);
         monster = GameObject.FindWithTag("Monster");
-        effect.Stop();
+        hEffect.Stop();
+        sEffect.Stop();
+        bEffect.Stop();
+        pEffect.Stop();
 
         if (Shopping.drinkSpeed = true)
         {
@@ -56,7 +69,10 @@ public class Potions : MonoBehaviour
         }
         else
         {
-            effect.Stop();
+            hEffect.Stop();
+            sEffect.Stop();
+            bEffect.Stop();
+            pEffect.Stop();
         }
 
     }

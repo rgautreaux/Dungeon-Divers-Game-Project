@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using static System.Net.Mime.MediaTypeNames;
 using System.Data;
+using UnityEditor;
 
 public class Shopping : MonoBehaviour
 {
@@ -15,10 +16,10 @@ public class Shopping : MonoBehaviour
     AudioSource purchase;
 
 
-    public string[] greeting = { "Word A", "Word B" };
-    public string[] rejection = { "Word A", "Word B" };
-    public string[] pun = { "Word A", "Word B" };
-    public string[] goodbye = { "Word A", "Word B" };
+    private string[] greeting = { "Welcome back! How's the dungeon crawl treatin ya?", "Hello again. You lasted a lot longer than I thought you would.", "Well look what the Dragon dragged in.. what can I do for ya?", "Been a bit buddy, how's it hanging?", "Was worried you'd be lookin like me next time I saw ya, glad you're in one piece.", "Find any dragons yet? I think you got a fightin chance."};
+    private string[] rejection = { "No can do pal.", "Sorry buddy, but can't do that.", "Maybe next time but.. no.", "Nice try, but no can do pal.", "Sorry to say, but that's not happening.", "Are you pulling my femur? No chance.", "Are you serious? Ain't happening pal.", "Don't make me throw ya out, I'm trying to run a bone-a-fide busniess here buddy!", "No way pal, don't even try that."};
+    private string[] pun = { "Hope exploring this dungeon hasn't left you too rattled.", "I'll have you know the this place is the only place you'll find these bone-a fide finds.", "This is going tibia long time before you get to the end, but don't give up!", "Not a fan of my jokes? I found them humerus.. but maybe your sense of humor is the more bone-dry joke variety."};
+    private string[] goodbye = { "Good luck out there!", "See ya later! Maybe.. hopefully!", "Rootin for ya pal!", "Try not to become Dragon Chow!", "You know where to find me.", "Byeeeeeeeeee!", "Best of luck pal!", "Knock 'em dead buddy!", "Bring back some gold and I'll try to find somthing good for ya.", "Go on and rattle 'em pal!"};
 
     public TextMeshProUGUI Dialogue;
 
@@ -61,6 +62,9 @@ public class Shopping : MonoBehaviour
     public static float speedCount = 0;
     public static float strengthCount = 0;
 
+    public static float itemLimit = 10;
+    public int patience = 3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,7 +73,7 @@ public class Shopping : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         purchase = GetComponent<AudioSource>();
 
-        bank.text = GameStats.goldCoins.ToString() +" GLD";
+        bank.text = GameStats.goldCoins.ToString() + " GLD";
 
         addAttackVal.text = "+" + addAttack.ToString() + "ATTK (" + attkCount.ToString() + ")";
         addArmorVal.text = "+" + addArmor.ToString() + "DEF (" + armorCount.ToString() + ")";
@@ -78,11 +82,34 @@ public class Shopping : MonoBehaviour
         sPotionVal.text = "+SPEED (" + speedCount.ToString() + ")";
         bPotionVal.text = "+STR (" + strengthCount.ToString() + ")";
 
+        if (GameStats.shopTrips == 1 && GameStats.totalTimesPlayed <= 1) 
+        {
+            Dialogue.text = "Welcome, newcomer, to the Undead Deals! Name's Skullivan Marrow, but my pals call me Skully. Its nice to see a fresh face around here, hope you last longer than the last guy...";
+            new WaitForSeconds(10);
+            Dialogue.text = "Welp, let me know if anything suits your fancy.";
 
-        string hello = Greeting();
-        Dialogue.text = hello;
+        }
+        if (GameStats.shopTrips == 1 && GameStats.totalTimesPlayed > 1)
+        {
+            Dialogue.text = "Welcome, newcomer, to the Undead Deals! Name's Skully, but you... look familiar... Must be deja vu!";
+            new WaitForSeconds(10);
+            Dialogue.text = "Anyway, let me know if anything suits your fancy pal.";
 
+        }
+        else 
+        {
+            string hello = Greeting();
+            Dialogue.text = hello;
+        }
 
+        patience = 3;
+
+        attkCount = Random.Range(1, itemLimit);
+        armorCount = Random.Range(1, itemLimit);
+        magicCount = Random.Range(1, itemLimit);
+        healthCount = Random.Range(1, itemLimit);
+        speedCount = Random.Range(1, itemLimit);
+        strengthCount = Random.Range(1, itemLimit);
     }
 
     // Update is called once per frame
@@ -108,7 +135,7 @@ public class Shopping : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0))
                 {
-                    if (GameStats.goldCoins > 0 || GameStats.goldCoins < attackPrice)
+                    if (GameStats.goldCoins > 0 && GameStats.goldCoins >= attackPrice && attkCount > 0)
                     {
                         purchase.Play();
                         BuyAttack();
@@ -118,6 +145,7 @@ public class Shopping : MonoBehaviour
                     {
                         string no = Nope();
                         Dialogue.text = no;
+                        patience -= 1;
                         new WaitForSeconds(10);
                         string pun = Joke();
                         Dialogue.text = pun;
@@ -131,7 +159,7 @@ public class Shopping : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0))
                 {
-                    if (GameStats.goldCoins > 0 || GameStats.goldCoins < armorPrice)
+                    if (GameStats.goldCoins > 0 && GameStats.goldCoins >= armorPrice && armorCount > 0)
                     {
                         purchase.Play();
                         BuyArmor();
@@ -141,6 +169,7 @@ public class Shopping : MonoBehaviour
                     {
                         string no = Nope();
                         Dialogue.text = no;
+                        patience -= 1;
                         new WaitForSeconds(10);
                         string pun = Joke();
                         Dialogue.text = pun;
@@ -154,7 +183,7 @@ public class Shopping : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0))
                 {
-                    if (GameStats.goldCoins > 0 || GameStats.goldCoins < magicPrice)
+                    if (GameStats.goldCoins > 0 && GameStats.goldCoins >= magicPrice && magicCount > 0)
                     {
                         purchase.Play();
                         BuyMagic();
@@ -164,6 +193,7 @@ public class Shopping : MonoBehaviour
                     {
                         string no = Nope();
                         Dialogue.text = no;
+                        patience -= 1;
                         new WaitForSeconds(10);
                         string pun = Joke();
                         Dialogue.text = pun;
@@ -176,7 +206,7 @@ public class Shopping : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0))
                 {
-                    if (GameStats.goldCoins > 0 || GameStats.goldCoins < potionPrice)
+                    if (GameStats.goldCoins > 0 && GameStats.goldCoins >= potionPrice && healthCount > 0)
                     {
                         purchase.Play();
                         BuyHPotion();
@@ -186,6 +216,7 @@ public class Shopping : MonoBehaviour
                     {
                         string no = Nope();
                         Dialogue.text = no;
+                        patience -= 1;
                         new WaitForSeconds(10);
                         string pun = Joke();
                         Dialogue.text = pun;
@@ -198,7 +229,7 @@ public class Shopping : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0))
                 {
-                    if (GameStats.goldCoins > 0 || GameStats.goldCoins < potionPrice)
+                    if (GameStats.goldCoins > 0 && GameStats.goldCoins >= potionPrice && speedCount > 0)
                     {
                         purchase.Play();
                         BuySPotion();
@@ -208,6 +239,7 @@ public class Shopping : MonoBehaviour
                     {
                         string no = Nope();
                         Dialogue.text = no;
+                        patience -= 1;
                         new WaitForSeconds(10);
                         string pun = Joke();
                         Dialogue.text = pun;
@@ -220,7 +252,7 @@ public class Shopping : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButtonDown(0))
                 {
-                    if (GameStats.goldCoins > 0 || GameStats.goldCoins < potionPrice)
+                    if (GameStats.goldCoins > 0 && GameStats.goldCoins >= potionPrice && strengthCount > 0)
                     {
                         purchase.Play();
                         BuyBPotion();
@@ -230,6 +262,7 @@ public class Shopping : MonoBehaviour
                     {
                         string no = Nope();
                         Dialogue.text = no;
+                        patience -= 1;
                         new WaitForSeconds(10);
                         string pun = Joke();
                         Dialogue.text = pun;
@@ -247,6 +280,15 @@ public class Shopping : MonoBehaviour
                     Debug.Log("Leaving Shop");
                 }
             }
+        }
+
+        if (patience <= 0)
+        {
+            GameStats.health -= 5;
+            string bye = Goodbye();
+            Dialogue.text = bye;
+            ExitShop();
+            Debug.Log("Leaving Shop");
         }
     }
 
@@ -304,6 +346,7 @@ public class Shopping : MonoBehaviour
         GameStats.UpdateAttack(addAttack);
         GameStats.goldCoins -= attackPrice;
         GameStats.moneySpent += attackPrice;
+        attkCount -= 1;
 
         if (GameStats.goldCoins < 0) GameStats.goldCoins = 0;
     }
@@ -312,6 +355,7 @@ public class Shopping : MonoBehaviour
         GameStats.UpdateArmor(addArmor);
         GameStats.goldCoins -= armorPrice;
         GameStats.moneySpent += armorPrice;
+        armorCount -= 1;
 
         if (GameStats.goldCoins < 0) GameStats.goldCoins = 0;
 
@@ -322,6 +366,7 @@ public class Shopping : MonoBehaviour
         GameStats.UpdateMagic(addMagic);
         GameStats.goldCoins -= magicPrice;
         GameStats.moneySpent += magicPrice;
+        magicCount -= 1;
 
         if (GameStats.goldCoins < 0) GameStats.goldCoins = 0;
 
@@ -332,6 +377,7 @@ public class Shopping : MonoBehaviour
         drinkHealth = true;
         GameStats.goldCoins -= potionPrice;
         GameStats.moneySpent += potionPrice;
+        healthCount -= 1;
 
         if (GameStats.goldCoins < 0) GameStats.goldCoins = 0;
 
@@ -342,6 +388,7 @@ public class Shopping : MonoBehaviour
         drinkSpeed = true;
         GameStats.goldCoins -= potionPrice;
         GameStats.moneySpent += potionPrice;
+        speedCount -= 1;
 
         if (GameStats.goldCoins < 0) GameStats.goldCoins = 0;
 
@@ -352,6 +399,7 @@ public class Shopping : MonoBehaviour
         drinkStrength = true;
         GameStats.goldCoins -= potionPrice;
         GameStats.moneySpent += potionPrice;
+        strengthCount -= 1;
 
         if (GameStats.goldCoins < 0) GameStats.goldCoins = 0;
 

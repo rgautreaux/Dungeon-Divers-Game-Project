@@ -29,14 +29,15 @@ TagManager:
   - Boss3
   - Boss4
   - Finale
+  - MiniMapComponents
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - MiniMapIcons
   - Water
   - UI
-  - 
+  - Ceiling
   - 
   - 
   - 

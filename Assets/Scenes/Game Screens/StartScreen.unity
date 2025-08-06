@@ -5687,6 +5687,7 @@ MonoBehaviour:
   purchaseCount: {fileID: 1996105778}
   goldCount: {fileID: 1996105778}
   gameScoreText: {fileID: 1996105778}
+  playCount: {fileID: 1996105778}
   lastLevel: {fileID: 1996105778}
   lastBossCount: {fileID: 1996105778}
   lastMonsterCount: {fileID: 1996105778}

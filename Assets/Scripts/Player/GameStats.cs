@@ -32,7 +32,8 @@ public class GameStats : MonoBehaviour
     public TextMeshProUGUI gameScoreText;
 
     //High Scores
-    public static int highestLevel = 1;
+    public static int totalTimesPlayed;
+    public static int highestLevel = 0;
     public static int mostBossesFinished = 0;
     public static int mostMonstersKilled = 0;
     public static int mostShopTrips = 0;
@@ -40,6 +41,7 @@ public class GameStats : MonoBehaviour
     public static int mostGoldCoins = 0;
     public static int highScore = 0;
 
+    public TextMeshProUGUI playCount;
     public TextMeshProUGUI lastLevel;
     public TextMeshProUGUI lastBossCount;
     public TextMeshProUGUI lastMonsterCount;
@@ -55,17 +57,20 @@ public class GameStats : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    { 
         camera = Camera.main;
+
+        totalTimesPlayed = MainMenu.timesPlayed;
 
         float health = ProtagMovement.health;
         float maxHealth = ProtagMovement.maxHealth;
 
-        levelText.text = "Level " + level.ToString(); 
+        playCount.text = "You've played Dungeon Diver " + totalTimesPlayed.ToString() + " times";
+        levelText.text = "Level " + level.ToString();
         bossCount.text = bossesFinished.ToString() + "/8 Dragons Defeated";
         monsterCount.text = monstersKilled.ToString() + " Total Monsters Slain";
         goldCount.text = "You have earned" + goldCoins.ToString() + "gold";
-        purchaseCount.text = "You visited [shop name] " + shopTrips.ToString() + " times and spent " + moneySpent.ToString() + "gold";
+        purchaseCount.text = "You visited Undead Deals " + shopTrips.ToString() + " times and spent " + moneySpent.ToString() + "gold";
         gameScoreText.text = "Game Score = " + gameScore.ToString();
     }
 
@@ -156,7 +161,7 @@ public class GameStats : MonoBehaviour
         bossCount.text = bossesFinished.ToString() + "/8 Dragons Defeated";
         monsterCount.text = monstersKilled.ToString() + " Total Monsters Slain";
         goldCount.text = "You have earned" + goldCoins.ToString() + "gold";
-        purchaseCount.text = "You visited [shop name] " + shopTrips.ToString() + " times and spent " + moneySpent.ToString() + "gold";
+        purchaseCount.text = "You visited Undead Deals " + shopTrips.ToString() + " times and spent " + moneySpent.ToString() + "gold";
         gameScoreText.text = "Game Score = " + gameScore.ToString();
     
 
@@ -213,6 +218,7 @@ public class GameStats : MonoBehaviour
             Shopping.magicPrice += 5;
             Shopping.potionPrice += 5;
 
+            Shopping.itemLimit += Random.Range(1, 5);
         }
     }
 

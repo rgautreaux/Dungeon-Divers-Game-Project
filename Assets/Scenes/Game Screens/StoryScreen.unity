@@ -620,6 +620,7 @@ MonoBehaviour:
   purchaseCount: {fileID: 331805213}
   goldCount: {fileID: 331805213}
   gameScoreText: {fileID: 331805213}
+  playCount: {fileID: 331805213}
   lastLevel: {fileID: 331805213}
   lastBossCount: {fileID: 331805213}
   lastMonsterCount: {fileID: 331805213}
@@ -2787,7 +2788,9 @@ MonoBehaviour:
 
 
     Now, it is your turn
-    to dive into the den of the dragons.'
+    to dive into the den of the dragons.
+
+    Good Luck.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
 {
     public RaycastHit select;
     private Camera camera;
+    public static int timesPlayed;
 
     public GameObject backButton;
     public GameObject loreButton;
@@ -27,6 +28,7 @@ public class MainMenu : MonoBehaviour
     public TextMeshProUGUI gameScoreText;
 
     //High Scores
+    public TextMeshProUGUI playCount;
     public TextMeshProUGUI lastLevel;
     public TextMeshProUGUI lastBossCount;
     public TextMeshProUGUI lastMonsterCount;
@@ -119,11 +121,13 @@ public class MainMenu : MonoBehaviour
 
     public void StartGameButton()
     {
+        timesPlayed += 1;
         SceneManager.LoadScene("CharaSelect");
     }
 
     public void RestartGame()
     {
+        timesPlayed += 1;
         GameStats.level = 1;
         GameStats.bossesFinished = 0;
         GameStats.monstersKilled = 0;
@@ -171,6 +175,11 @@ public class MainMenu : MonoBehaviour
         if (levelText)
         {
             levelText.text = "Level: " + GameStats.level.ToString();
+        }
+
+        if (playCount)
+        {
+            playCount.text = "You've played Dungeon Diver " + timesPlayed.ToString() + "times";
         }
 
         if (bossCount)
