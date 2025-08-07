@@ -47,20 +47,20 @@ public class Potions : MonoBehaviour
         bEffect.Stop();
         pEffect.Stop();
 
-        if (Shopping.drinkSpeed = true)
+        if (Shopping.drinkSpeed == true)
         {
             for (int i = 0; i < Shopping.speedCount; i++) {
                 SpeedPotion();
             }
         }
-        else if (Shopping.drinkStrength = true)
+        else if (Shopping.drinkStrength == true)
         {
             for (int i = 0; i < Shopping.strengthCount; i++)
             {
                 StrengthPotion();
             }
         }
-        else if (Shopping.drinkHealth = true)
+        else if (Shopping.drinkHealth == true)
         {
             for (int i = 0; i < Shopping.healthCount; i++)
             {
@@ -136,6 +136,8 @@ public class Potions : MonoBehaviour
     {
         ProtagMovement.potionName.text = "Health Potion!";
         ProtagMovement.healthMagic.Play();
+        ProtagMovement.healSound.Play();
+
         ProtagMovement.health += 5;
         player.StartCoroutine(HealthEnd());
     }
@@ -144,6 +146,7 @@ public class Potions : MonoBehaviour
         yield return new WaitForSeconds(15);
         ProtagMovement.potionName.text = "   ";
         ProtagMovement.healthMagic.Stop();
+        ProtagMovement.healSound.Stop();
         ProtagMovement.health += 0;
         potionEffect = false;
         Shopping.drinkHealth = false;
@@ -155,6 +158,8 @@ public class Potions : MonoBehaviour
         float damage = monster.GetComponent<Monsters>().damage;
         ProtagMovement.potionName.text = "Strength Potion!";
         ProtagMovement.strengthMagic.Play();
+        ProtagMovement.strengthSound.Play();
+
         player.takeDamage(damage, true);
         player.StartCoroutine(StrengthOver());
     }
@@ -164,6 +169,7 @@ public class Potions : MonoBehaviour
         yield return new WaitForSeconds(10);
         ProtagMovement.potionName.text = "   ";
         ProtagMovement.strengthMagic.Stop();
+        ProtagMovement.strengthSound.Stop();
         player.takeDamage(damage, false);
         potionEffect = false;
         Shopping.drinkStrength = false;
@@ -174,6 +180,7 @@ public class Potions : MonoBehaviour
     {
         ProtagMovement.potionName.text = "Speed Potion!";
         ProtagMovement.speedMagic.Play();
+        ProtagMovement.speedSound.Play();
         player.UpdateSpeed(10f);
         player.StartCoroutine(SpeedOver());
     }
@@ -182,6 +189,7 @@ public class Potions : MonoBehaviour
         yield return new WaitForSeconds(5);
         ProtagMovement.potionName.text = "   ";
         ProtagMovement.speedMagic.Stop();
+        ProtagMovement.speedSound.Stop();
         player.UpdateSpeed(5f);
         potionEffect = false;
         Shopping.drinkSpeed = false;

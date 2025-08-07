@@ -30,6 +30,13 @@ TagManager:
   - Boss4
   - Finale
   - MiniMapComponents
+  - Sword
+  - Shield
+  - Spell
+  - Health
+  - Speed
+  - Strength
+  - Exit
   layers:
   - Default
   - TransparentFX

@@ -55,6 +55,7 @@ public class MagicAttack : MonoBehaviour
         {
             //Destroy it after a certain time
             Destroy(magic);
+            myaudio.Stop();
             for (int i = 0; i < magicPowers.Length; i++) {
                 magicPowers[i].Stop();
             }

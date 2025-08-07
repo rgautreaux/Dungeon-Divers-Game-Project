@@ -61,15 +61,19 @@ public class ProtagMovement : MonoBehaviour
     //Potion Effects
     public GameObject healing;
     public static ParticleSystem healthMagic;
+    public static AudioSource healSound;
 
     public GameObject strong;
     public static ParticleSystem strengthMagic;
+    public static AudioSource strengthSound;
 
     public GameObject fast;
     public static ParticleSystem speedMagic;
+    public static AudioSource speedSound;
 
     public GameObject defense;
     public static ParticleSystem shieldMagic;
+    public static AudioSource shieldSound;
 
     public static TextMeshProUGUI potionName;
 
@@ -120,9 +124,16 @@ public class ProtagMovement : MonoBehaviour
         animator = GetComponent<Animator>();
 
         healthMagic = healing.GetComponent<ParticleSystem>();
+        healSound = healing.GetComponent<AudioSource>();
+
         strengthMagic = strong.GetComponent<ParticleSystem>();
+        strengthSound = strong.GetComponent<AudioSource>();
+
         speedMagic = fast.GetComponent<ParticleSystem>();
+        speedSound = fast.GetComponent<AudioSource>();
+
         shieldMagic = defense.GetComponent<ParticleSystem>();
+        shieldSound = defense.GetComponent<AudioSource>();
 
         monster = GameObject.FindWithTag("Monster");
         monster = GameObject.FindWithTag("Boss");
@@ -147,9 +158,13 @@ public class ProtagMovement : MonoBehaviour
 
 
         healthMagic.Stop();
+        healSound.Stop();
         strengthMagic.Stop();
+        strengthSound.Stop();
         speedMagic.Stop();
+        speedSound.Stop();
         shieldMagic.Stop();
+        shieldSound.Stop();
 
         // Check which input is being pressed
         inputHorizontal = Input.GetAxis("Horizontal");
@@ -420,9 +435,11 @@ public class ProtagMovement : MonoBehaviour
     public IEnumerable MagicShield(float damage)
     {
         shieldMagic.Play();
+        shieldSound.Play();
         float protection = damage - armorPower;
         health -= protection / 5;
         yield return new WaitForSeconds(10);
+        shieldSound.Stop();
         shieldMagic.Stop();
         health -= protection;
 
