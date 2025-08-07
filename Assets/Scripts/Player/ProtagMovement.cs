@@ -18,7 +18,7 @@ public enum HeroState { ATTACK, SPRINT, RUN, JUMP, DEFEND, WEAK, READY, DEAD, DE
 public class ProtagMovement : MonoBehaviour
 {
     public GameObject self;
-
+    public AudioSource ouch;
     public static bool galPicked = false;
     public static bool guyPicked = false;
 
@@ -122,6 +122,7 @@ public class ProtagMovement : MonoBehaviour
 
         cc = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        ouch = GetComponent<AudioSource>();
 
         healthMagic = healing.GetComponent<ParticleSystem>();
         healSound = healing.GetComponent<AudioSource>();
@@ -450,6 +451,7 @@ public class ProtagMovement : MonoBehaviour
         //Base Damage
         float protection = damage - armorPower;
         health -= protection;
+        ouch.Play();
         if (health < 0) health = 0;
         if (health > maxHealth) health = maxHealth;
 
