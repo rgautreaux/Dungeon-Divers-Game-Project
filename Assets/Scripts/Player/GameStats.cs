@@ -24,6 +24,8 @@ public class GameStats : MonoBehaviour
     public static int health;
     public static int maxHealth;
 
+    public TextMeshPro FinalBossText;
+
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI bossCount;
     public TextMeshProUGUI monsterCount;
@@ -83,6 +85,8 @@ public class GameStats : MonoBehaviour
         float health = ProtagMovement.health;
         float maxHealth = ProtagMovement.maxHealth;
 
+        FinalBossText.transform.Rotate(0, 0, 5);
+
         if (Physics.Raycast(player.transform.position, player.transform.forward, out RaycastHit hit, maxDistance))
         {
             if (hit.collider.gameObject.name == "BossDoor0" || hit.collider.CompareTag("Boss1"))
@@ -127,6 +131,7 @@ public class GameStats : MonoBehaviour
             {
                 if (FirstBoss && SecBoss && ThirdBoss && FourthBoss == true)
                 {
+                    FinalBossText.text = "You are now ready";
                     Final = true;
                     gameScore += 100;
                     UpdateHealth(100, health, maxHealth);
@@ -135,6 +140,7 @@ public class GameStats : MonoBehaviour
                 }
                 else
                 {
+                    FinalBossText.text = "You are not ready for this fight";
                     Debug.Log("You're not ready yet.");
                 }
 

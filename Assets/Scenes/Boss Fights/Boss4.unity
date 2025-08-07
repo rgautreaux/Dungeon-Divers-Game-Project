@@ -9732,6 +9732,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 650555737}
     - target: {fileID: 6053942059298060758, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 650555738}
+    - target: {fileID: 6053942059298060758, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
       propertyPath: bossCount
       value: 
       objectReference: {fileID: 1444889154}
@@ -9748,9 +9752,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2009457806}
     - target: {fileID: 6053942059298060758, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
+      propertyPath: playCount
+      value: 
+      objectReference: {fileID: 1790077784}
+    - target: {fileID: 6053942059298060758, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
       propertyPath: monsterCount
       value: 
       objectReference: {fileID: 1790077784}
+    - target: {fileID: 6053942059298060758, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
+      propertyPath: FinalBossText
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6053942059298060758, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
       propertyPath: gameScoreText
       value: 
@@ -9824,13 +9836,19 @@ PrefabInstance:
       value: FemPlayer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1917404679246150583, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
 --- !u!20 &650555737 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 8454614321632055599, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
+  m_PrefabInstance: {fileID: 650555736}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &650555738 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 15165278366423110, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
   m_PrefabInstance: {fileID: 650555736}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &656533091
@@ -14885,6 +14903,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1023832238}
     - target: {fileID: 7530602637048808439, guid: f3656249ed9d575499e5ff33ae66277b, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1023832239}
+    - target: {fileID: 7530602637048808439, guid: f3656249ed9d575499e5ff33ae66277b, type: 3}
       propertyPath: bossCount
       value: 
       objectReference: {fileID: 1444889154}
@@ -14901,9 +14923,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2009457806}
     - target: {fileID: 7530602637048808439, guid: f3656249ed9d575499e5ff33ae66277b, type: 3}
+      propertyPath: playCount
+      value: 
+      objectReference: {fileID: 1790077784}
+    - target: {fileID: 7530602637048808439, guid: f3656249ed9d575499e5ff33ae66277b, type: 3}
       propertyPath: monsterCount
       value: 
       objectReference: {fileID: 1790077784}
+    - target: {fileID: 7530602637048808439, guid: f3656249ed9d575499e5ff33ae66277b, type: 3}
+      propertyPath: FinalBossText
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7530602637048808439, guid: f3656249ed9d575499e5ff33ae66277b, type: 3}
       propertyPath: gameScoreText
       value: 
@@ -14941,13 +14971,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 740545184}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 734412978595517697, guid: f3656249ed9d575499e5ff33ae66277b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3656249ed9d575499e5ff33ae66277b, type: 3}
 --- !u!20 &1023832238 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 910843194663846454, guid: f3656249ed9d575499e5ff33ae66277b, type: 3}
+  m_PrefabInstance: {fileID: 1023832237}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1023832239 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3582845617744342302, guid: f3656249ed9d575499e5ff33ae66277b, type: 3}
   m_PrefabInstance: {fileID: 1023832237}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1026555260
