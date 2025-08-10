@@ -710,7 +710,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Strength
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5152191429782256975, guid: ce16b0f492ce18a408fdbb5146e2bf1b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1767,7 +1768,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6285517300576308986, guid: bff524a88ec370347b8c9750e421f5f4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2444,7 +2446,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9155078628455877717, guid: 8fc0b602aa814a149ae8f846b49a87dc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2862,7 +2865,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Strength
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5152191429782256975, guid: ce16b0f492ce18a408fdbb5146e2bf1b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3384,7 +3388,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -89.537
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9155078628455877717, guid: 8fc0b602aa814a149ae8f846b49a87dc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3458,7 +3463,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6285517300576308986, guid: bff524a88ec370347b8c9750e421f5f4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3668,7 +3674,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Strength (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5152191429782256975, guid: ce16b0f492ce18a408fdbb5146e2bf1b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3951,7 +3958,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Strength
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5152191429782256975, guid: ce16b0f492ce18a408fdbb5146e2bf1b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4888,7 +4896,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9155078628455877717, guid: 8fc0b602aa814a149ae8f846b49a87dc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5100,7 +5109,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Strength
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5152191429782256975, guid: ce16b0f492ce18a408fdbb5146e2bf1b, type: 3}
     m_RemovedGameObjects:
     - {fileID: 70067283014712033, guid: ce16b0f492ce18a408fdbb5146e2bf1b, type: 3}
     m_AddedGameObjects: []
@@ -5374,7 +5384,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9155078628455877717, guid: 8fc0b602aa814a149ae8f846b49a87dc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -6013,7 +6024,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6285517300576308986, guid: bff524a88ec370347b8c9750e421f5f4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -6259,7 +6271,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9155078628455877717, guid: 8fc0b602aa814a149ae8f846b49a87dc, type: 3}
     m_RemovedGameObjects:
     - {fileID: 894801800399249400, guid: 8fc0b602aa814a149ae8f846b49a87dc, type: 3}
     m_AddedGameObjects: []
@@ -6334,7 +6347,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Strength
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5152191429782256975, guid: ce16b0f492ce18a408fdbb5146e2bf1b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -6613,7 +6627,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6285517300576308986, guid: bff524a88ec370347b8c9750e421f5f4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -7610,7 +7625,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6285517300576308986, guid: bff524a88ec370347b8c9750e421f5f4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -8325,7 +8341,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9155078628455877717, guid: 8fc0b602aa814a149ae8f846b49a87dc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
