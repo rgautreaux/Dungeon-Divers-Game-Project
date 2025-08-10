@@ -1255,6 +1255,7 @@ GameObject:
   - component: {fileID: 382382564}
   - component: {fileID: 382382563}
   - component: {fileID: 382382562}
+  - component: {fileID: 382382566}
   m_Layer: 5
   m_Name: HIGH SCORE
   m_TagString: HighScore
@@ -1398,6 +1399,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 382382560}
   m_CullTransparentMesh: 1
+--- !u!65 &382382566
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382382560}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &461258463
 GameObject:
   m_ObjectHideFlags: 0
@@ -2487,6 +2509,7 @@ GameObject:
   - component: {fileID: 566068971}
   - component: {fileID: 566068970}
   - component: {fileID: 566068969}
+  - component: {fileID: 566068973}
   m_Layer: 5
   m_Name: CREDITS
   m_TagString: Credits
@@ -2630,6 +2653,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 566068967}
   m_CullTransparentMesh: 1
+--- !u!65 &566068973
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566068967}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &642540178
 GameObject:
   m_ObjectHideFlags: 0
@@ -4000,6 +4044,7 @@ GameObject:
   - component: {fileID: 887935398}
   - component: {fileID: 887935397}
   - component: {fileID: 887935396}
+  - component: {fileID: 887935400}
   m_Layer: 5
   m_Name: GAME INFO
   m_TagString: GameInfo
@@ -4143,6 +4188,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 887935394}
   m_CullTransparentMesh: 1
+--- !u!65 &887935400
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887935394}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &902600174
 GameObject:
   m_ObjectHideFlags: 0
@@ -4677,6 +4743,7 @@ GameObject:
   - component: {fileID: 1064973462}
   - component: {fileID: 1064973461}
   - component: {fileID: 1064973460}
+  - component: {fileID: 1064973464}
   m_Layer: 5
   m_Name: STORY
   m_TagString: Story
@@ -4820,6 +4887,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1064973458}
   m_CullTransparentMesh: 1
+--- !u!65 &1064973464
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064973458}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!64 &1066433026
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5815,11 +5903,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backButton: {fileID: 1672022723}
-  loreButton: {fileID: 0}
-  gameInfoButton: {fileID: 0}
-  creditsButton: {fileID: 0}
+  loreButton: {fileID: 1064973458}
+  gameInfoButton: {fileID: 887935394}
+  creditsButton: {fileID: 566068967}
   continueButton: {fileID: 1672022723}
-  highScoreButton: {fileID: 0}
+  highScoreButton: {fileID: 382382560}
   levelText: {fileID: 1996105778}
   bossCount: {fileID: 1996105778}
   monsterCount: {fileID: 1996105778}
