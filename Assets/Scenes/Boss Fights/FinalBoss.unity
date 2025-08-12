@@ -4321,7 +4321,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 1e6f3e6ea1146a742a66a6acc8799037, type: 3}
   m_Resource: {fileID: 8300000, guid: 1e6f3e6ea1146a742a66a6acc8799037, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -7253,7 +7253,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -15819,7 +15819,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 1e6f3e6ea1146a742a66a6acc8799037, type: 3}
   m_Resource: {fileID: 8300000, guid: 1e6f3e6ea1146a742a66a6acc8799037, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -26782,6 +26782,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1399653692176538783, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
+      propertyPath: gameMusic
+      value: 
+      objectReference: {fileID: 1052793195}
     - target: {fileID: 3723350367818554028, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
       propertyPath: healthMeter
       value: 
@@ -27864,6 +27868,10 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 119
       objectReference: {fileID: 0}
+    - target: {fileID: 2268438455441029426, guid: f3656249ed9d575499e5ff33ae66277b, type: 3}
+      propertyPath: gameMusic
+      value: 
+      objectReference: {fileID: 303554149}
     - target: {fileID: 2800683065814542556, guid: f3656249ed9d575499e5ff33ae66277b, type: 3}
       propertyPath: m_CustomSkybox
       value: 
@@ -32508,7 +32516,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3291122818405212581}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8761153103341983436, guid: 6345c19cb94e41f49bfb690fb4ef7e4c, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6345c19cb94e41f49bfb690fb4ef7e4c, type: 3}
@@ -32598,7 +32607,8 @@ PrefabInstance:
       value: TerrorBringer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3820625390994259826, guid: e28e4514fbc093842a7cf2c918f15e43, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e28e4514fbc093842a7cf2c918f15e43, type: 3}
@@ -32688,7 +32698,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 644319831924586175, guid: 48810bd08d52cc547b38324c9a10babc, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48810bd08d52cc547b38324c9a10babc, type: 3}
@@ -32778,7 +32789,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6384462005502983303, guid: 5143f882bcde97c4d806f094f689ce28, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5143f882bcde97c4d806f094f689ce28, type: 3}

@@ -1528,6 +1528,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3602327623119439809, guid: e28e4514fbc093842a7cf2c918f15e43, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3602327623119439809, guid: e28e4514fbc093842a7cf2c918f15e43, type: 3}
       propertyPath: m_Resource
       value: 
       objectReference: {fileID: 8300000, guid: 1870855ad7b679049b8b6c7055543052, type: 3}
@@ -9732,6 +9736,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1399653692176538783, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
+      propertyPath: gameMusic
+      value: 
+      objectReference: {fileID: 81451062}
     - target: {fileID: 3723350367818554028, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
       propertyPath: healthMeter
       value: 
@@ -14901,6 +14909,10 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 119
       objectReference: {fileID: 0}
+    - target: {fileID: 2268438455441029426, guid: f3656249ed9d575499e5ff33ae66277b, type: 3}
+      propertyPath: gameMusic
+      value: 
+      objectReference: {fileID: 81451062}
     - target: {fileID: 2800683065814542556, guid: f3656249ed9d575499e5ff33ae66277b, type: 3}
       propertyPath: m_CustomSkybox
       value: 

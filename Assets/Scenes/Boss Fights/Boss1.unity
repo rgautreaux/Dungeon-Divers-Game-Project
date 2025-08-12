@@ -18563,6 +18563,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1072883186825348543, guid: 48810bd08d52cc547b38324c9a10babc, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1072883186825348543, guid: 48810bd08d52cc547b38324c9a10babc, type: 3}
       propertyPath: m_Resource
       value: 
       objectReference: {fileID: 8300000, guid: 9754348eca22c8a479f149c2c970b9ce, type: 3}
@@ -26106,6 +26110,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1399653692176538783, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
+      propertyPath: fast
+      value: 
+      objectReference: {fileID: 1805563045}
+    - target: {fileID: 1399653692176538783, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
+      propertyPath: self
+      value: 
+      objectReference: {fileID: 1805563042}
+    - target: {fileID: 1399653692176538783, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
+      propertyPath: healing
+      value: 
+      objectReference: {fileID: 1805563046}
+    - target: {fileID: 1399653692176538783, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
+      propertyPath: gameMusic
+      value: 
+      objectReference: {fileID: 1281312610}
     - target: {fileID: 3723350367818554028, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
       propertyPath: healthMeter
       value: 
@@ -26276,6 +26296,16 @@ Skybox:
   m_GameObject: {fileID: 1805563043}
   m_Enabled: 1
   m_CustomSkybox: {fileID: 2100000, guid: 369b9ebe3a62b904dbc19bd332b44086, type: 2}
+--- !u!1 &1805563045 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6648242524049757219, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
+  m_PrefabInstance: {fileID: 1805563040}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1805563046 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7393436260975148060, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
+  m_PrefabInstance: {fileID: 1805563040}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1811501308
 GameObject:
   m_ObjectHideFlags: 0

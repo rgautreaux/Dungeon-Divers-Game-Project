@@ -696,7 +696,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 00e4eb96f4f6cc249a632e4027644cad, type: 3}
   m_Resource: {fileID: 8300000, guid: 00e4eb96f4f6cc249a632e4027644cad, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -863,7 +863,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
   m_Resource: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1030,7 +1030,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 6cf9c85b5a3b88c468b21b9d21250adf, type: 3}
   m_Resource: {fileID: 8300000, guid: 6cf9c85b5a3b88c468b21b9d21250adf, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1259,7 +1259,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: b0e62ed71b1538648b719821f4f63b4c, type: 3}
   m_Resource: {fileID: 8300000, guid: b0e62ed71b1538648b719821f4f63b4c, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1450,9 +1450,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e63ca3fea4f60741a8baa8e35e64f0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  self: {fileID: 0}
+  self: {fileID: 15165278366423110}
   ouch: {fileID: 0}
-  gameMusic: {fileID: 0}
+  gameMusic: {fileID: 2263278010684634031}
   velocity: 5
   sprintAdittion: 3.5
   jumpHeight: 1.5
@@ -1460,10 +1460,10 @@ MonoBehaviour:
   gravity: 9.8
   monsterDistance: 20
   bossDistance: 40
-  healing: {fileID: 0}
-  strong: {fileID: 0}
-  fast: {fileID: 0}
-  defense: {fileID: 0}
+  healing: {fileID: 7393436260975148060}
+  strong: {fileID: 417313707007376259}
+  fast: {fileID: 6648242524049757219}
+  defense: {fileID: 4785155949637532275}
   animator: {fileID: 933522120772499366}
   cc: {fileID: 7184778339198566772}
 --- !u!143 &7184778339198566772
