@@ -125,12 +125,12 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 0e5285bc991504e5c87d4da7d6bc2a2d, type: 3}
+  m_Resource: {fileID: 8300000, guid: 0e5285bc991504e5c87d4da7d6bc2a2d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -416,6 +416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   self: {fileID: 4579048761404088230}
   ouch: {fileID: 0}
+  gameMusic: {fileID: 252530575544792336}
   velocity: 5
   sprintAdittion: 3.5
   jumpHeight: 1.5
@@ -1218,6 +1219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   self: {fileID: 0}
   ouch: {fileID: 0}
+  gameMusic: {fileID: 0}
   velocity: 5
   sprintAdittion: 3.5
   jumpHeight: 1.5

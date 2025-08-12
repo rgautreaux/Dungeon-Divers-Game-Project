@@ -6876,6 +6876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bank: {fileID: 744005548}
+  shopSound: {fileID: 699796515}
   Dialogue: {fileID: 392206958}
   EXIT: {fileID: 1570228397}
   attackPwrButton: {fileID: 1597347540}

@@ -53,7 +53,6 @@ public class BossScript : MonoBehaviour
         animator = GetComponent<Animator>();
         myaudio = GetComponent<AudioSource>();
 
-
         //assign unique damage level
         if (self.gameObject.name == "SoulEater")
         {
@@ -127,6 +126,7 @@ public class BossScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         SetHealthBarValue(health / 100);
         if (bossCount == null || bossCount.Length == 0)
         {

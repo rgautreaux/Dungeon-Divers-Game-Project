@@ -19,6 +19,8 @@ public class ProtagMovement : MonoBehaviour
 {
     public GameObject self;
     public AudioSource ouch;
+    public AudioSource gameMusic;
+
     public static bool galPicked = false;
     public static bool guyPicked = false;
 
@@ -139,6 +141,8 @@ public class ProtagMovement : MonoBehaviour
         monster = GameObject.FindWithTag("Monster");
         monster = GameObject.FindWithTag("Boss");
 
+        gameMusic.playOnAwake = true;
+        gameMusic.loop = true;
     }
 
 
@@ -157,6 +161,21 @@ public class ProtagMovement : MonoBehaviour
         monster = GameObject.FindWithTag("Monster");
         monster = GameObject.FindWithTag("Boss");
 
+
+        if (GetComponent<CharaSelect>().selectMusic.isPlaying)
+        {
+            gameMusic.Stop();
+        }
+        else if (GetComponent<Shopping>().shopSound.isPlaying)
+        {
+            gameMusic.Stop();
+        }
+        else if (GetComponent<MainMenu>().music.isPlaying)
+        { gameMusic.Stop(); }
+        else
+        {
+            gameMusic.Play();
+        }
 
         healthMagic.Stop();
         healSound.Stop();

@@ -3693,7 +3693,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: f29fd9080df8842c491fabe35bff9389, type: 3}
   m_Resource: {fileID: 8300000, guid: f29fd9080df8842c491fabe35bff9389, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -5902,6 +5902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa9938b28eff9a647945cac4e26e5f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  music: {fileID: 820503692}
   backButton: {fileID: 1672022723}
   loreButton: {fileID: 1064973458}
   gameInfoButton: {fileID: 887935394}

@@ -737,7 +737,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa9938b28eff9a647945cac4e26e5f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backButton: {fileID: 0}
+  music: {fileID: 87337170}
+  backButton: {fileID: 279659394}
   loreButton: {fileID: 1480745574}
   gameInfoButton: {fileID: 1480745574}
   creditsButton: {fileID: 1480745574}

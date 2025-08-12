@@ -1504,6 +1504,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1297052752}
     - target: {fileID: 668986903762844196, guid: e28e4514fbc093842a7cf2c918f15e43, type: 3}
+      propertyPath: bossMusic
+      value: 
+      objectReference: {fileID: 81451062}
+    - target: {fileID: 668986903762844196, guid: e28e4514fbc093842a7cf2c918f15e43, type: 3}
       propertyPath: healthMeter
       value: 
       objectReference: {fileID: 633305839}
@@ -1539,6 +1543,11 @@ PrefabInstance:
 --- !u!1 &81451061 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2553781175218252472, guid: e28e4514fbc093842a7cf2c918f15e43, type: 3}
+  m_PrefabInstance: {fileID: 81451060}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &81451062 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3602327623119439809, guid: e28e4514fbc093842a7cf2c918f15e43, type: 3}
   m_PrefabInstance: {fileID: 81451060}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &84399108
@@ -9731,6 +9740,10 @@ PrefabInstance:
       propertyPath: staminaMeter
       value: 
       objectReference: {fileID: 740545184}
+    - target: {fileID: 3968886138356383116, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
+      propertyPath: gameMusic
+      value: 
+      objectReference: {fileID: 81451062}
     - target: {fileID: 4669076977293444422, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
       propertyPath: m_LocalPosition.y
       value: 2.27
@@ -9858,6 +9871,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1917404679246150583, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
+    - {fileID: 689535705139749240, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1313604315840810471, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
@@ -14931,6 +14945,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3280574478441139230, guid: f3656249ed9d575499e5ff33ae66277b, type: 3}
+      propertyPath: gameMusic
+      value: 
+      objectReference: {fileID: 81451062}
     - target: {fileID: 4124383723243017823, guid: f3656249ed9d575499e5ff33ae66277b, type: 3}
       propertyPath: m_LocalPosition.y
       value: 2.27
@@ -15018,6 +15036,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 734412978595517697, guid: f3656249ed9d575499e5ff33ae66277b, type: 3}
+    - {fileID: 3606596738463216499, guid: f3656249ed9d575499e5ff33ae66277b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7768139583846801150, guid: f3656249ed9d575499e5ff33ae66277b, type: 3}

@@ -8,7 +8,7 @@ public class CharaSelect : MonoBehaviour
 {
     public RaycastHit select;
     private Camera camera;
-
+    public AudioSource selectMusic;
     public GameObject Gal;
     public GameObject Guy;
 
@@ -21,15 +21,18 @@ public class CharaSelect : MonoBehaviour
         camera = Camera.main;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        selectMusic.playOnAwake = true;
+        selectMusic.loop = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        RaycastHit pressButton;
+        //create ray
+        Ray mouseCursor = camera.ScreenPointToRay(Input.mousePosition);
 
         // Interact with buttons
-        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out pressButton))
+        if (Physics.Raycast(mouseCursor, out RaycastHit pressButton, 10f))
         {
             if (pressButton.collider.CompareTag("PickGal") || pressButton.collider.gameObject == galButton)
             {
@@ -55,12 +58,14 @@ public class CharaSelect : MonoBehaviour
     public void GalButton()
     {
         ProtagMovement.galPicked = true;
+        selectMusic.Stop();
         SceneManager.LoadScene("Dungeon");
     }
 
     public void GuyButton()
     {
         ProtagMovement.guyPicked = true;
+        selectMusic.Stop();
         SceneManager.LoadScene("Dungeon");
     }
 

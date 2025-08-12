@@ -7,9 +7,10 @@ using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
-    public RaycastHit select;
-    private Camera camera;
+    public RaycastHit pressButton;
+    private new Camera camera;
     public static int timesPlayed;
+    public AudioSource music;
 
     public GameObject backButton;
     public GameObject loreButton;
@@ -40,6 +41,9 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        music.playOnAwake = true;
+        music.loop = true;
+        camera = Camera.main;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
@@ -47,10 +51,11 @@ public class MainMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit pressButton;
-
+        //create ray
+        Ray mouseCursor = camera.ScreenPointToRay(Input.mousePosition);
+        
         // Interact with buttons
-        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out pressButton))
+        if (Physics.Raycast(mouseCursor, out RaycastHit pressButton, 10f))
         {
             if (pressButton.collider.CompareTag("Story") || pressButton.collider.gameObject == loreButton)
             {

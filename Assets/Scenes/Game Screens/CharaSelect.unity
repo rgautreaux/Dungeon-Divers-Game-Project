@@ -2540,6 +2540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1879e580c3cee9147b76e74e4148609c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectMusic: {fileID: 722502944}
   Gal: {fileID: 9094277931467091126, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
   Guy: {fileID: 4579048761404088230, guid: f3656249ed9d575499e5ff33ae66277b, type: 3}
   galButton: {fileID: 129692253}

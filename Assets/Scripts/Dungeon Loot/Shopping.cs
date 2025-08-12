@@ -14,6 +14,7 @@ public class Shopping : MonoBehaviour
     private Camera camera;
     public TextMeshProUGUI bank;
     AudioSource purchase;
+    public AudioSource shopSound;
 
 
     private string[] greeting = { "Welcome back! How's the dungeon crawl treatin ya?", "Hello again. You lasted a lot longer than I thought you would.", "Well look what the Dragon dragged in.. what can I do for ya?", "Been a bit buddy, how's it hanging?", "Was worried you'd be lookin like me next time I saw ya, glad you're in one piece.", "Find any dragons yet? I think you got a fightin chance."};
@@ -72,6 +73,8 @@ public class Shopping : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         purchase = GetComponent<AudioSource>();
+        shopSound.playOnAwake = true;
+        shopSound.loop = true;
 
         bank.text = GameStats.goldCoins.ToString() + " GLD";
 
@@ -124,10 +127,11 @@ public class Shopping : MonoBehaviour
         sPotionVal.text = "+SPEED (" + speedCount.ToString() + ")";
         bPotionVal.text = "+STR (" + strengthCount.ToString() + ")";
 
-        RaycastHit pressButton;
+        //create ray
+        Ray mouseCursor = camera.ScreenPointToRay(Input.mousePosition);
 
         // Interact with buttons
-        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out pressButton))
+        if (Physics.Raycast(mouseCursor, out RaycastHit pressButton, 10f))
         {
             if (pressButton.collider.CompareTag("Sword") || pressButton.collider.gameObject == attackPwrButton)
             {
@@ -408,6 +412,7 @@ public class Shopping : MonoBehaviour
     public void ExitShop()
     {
         new WaitForSeconds(15);
+        shopSound.Stop();
         SceneManager.LoadScene("Dungeon");
     }
 }
