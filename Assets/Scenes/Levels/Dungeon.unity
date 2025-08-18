@@ -19009,6 +19009,14 @@ PrefabInstance:
       propertyPath: staminaMeter
       value: 
       objectReference: {fileID: 1369818639}
+    - target: {fileID: 3968886138356383116, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
+      propertyPath: cc
+      value: 
+      objectReference: {fileID: 1515700127}
+    - target: {fileID: 3968886138356383116, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1515700126}
     - target: {fileID: 5302477064177064589, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
       propertyPath: orthographic size
       value: 25
@@ -19128,6 +19136,16 @@ PrefabInstance:
 --- !u!4 &1515700125 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6910116742157472153, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
+  m_PrefabInstance: {fileID: 1515700124}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1515700126 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7286092320260406368, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
+  m_PrefabInstance: {fileID: 1515700124}
+  m_PrefabAsset: {fileID: 0}
+--- !u!143 &1515700127 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 1786745996481131319, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
   m_PrefabInstance: {fileID: 1515700124}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1591216673

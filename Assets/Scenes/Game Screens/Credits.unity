@@ -5788,9 +5788,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "This game was made in the Unity Engine by Rebecca Gautreaux.  \n\nAll
-    Assets are from the Unity Asset Store. \nSounds are from ???.  \n\nScripts were
-    written with references from previous works created for school or from the Unity
-    Asset Store."
+    Assets are from the Unity Asset Store, including: Sounds, Models, Effects, etc.\n\nScripts
+    were written with references from previous works created for school or from the
+    Unity Asset Store, but were written by myself."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
