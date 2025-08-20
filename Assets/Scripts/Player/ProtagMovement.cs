@@ -21,8 +21,8 @@ public class ProtagMovement : MonoBehaviour
     public AudioSource ouch;
     public AudioSource gameMusic;
 
-    public static bool galPicked = false;
-    public static bool guyPicked = false;
+    public bool galPicked = false;
+    public bool guyPicked = false;
 
 
     //Player Health
@@ -112,11 +112,11 @@ public class ProtagMovement : MonoBehaviour
     void Start()
     {
         // Starts any of the above variables when starting the game
-        if (galPicked)
+        if (GetComponent<CharaSelect>().galPicked)
         {
             if (self.gameObject.name == "MascPlayer") Destroy(self.gameObject);  //Destroy unseleccted Player
         }
-        else if (guyPicked)
+        else if (GetComponent<CharaSelect>().guyPicked)
         {
             if (self.gameObject.name == "FemPlayer") Destroy(self.gameObject);  //Destroy unseleccted Player
         }
@@ -147,7 +147,7 @@ public class ProtagMovement : MonoBehaviour
 
 
     // Update is only being used here to identify keys and trigger animations
-    void Update()
+    void Update(int recover)
     {
         if (galPicked)
         {
@@ -256,7 +256,7 @@ public class ProtagMovement : MonoBehaviour
 
             if (!isSprinting)
             {
-                for (int recover = 0; recover < stamina; recover++)
+                for (int r = 0; r < stamina; r++)
                 {
                     stamina++;
 

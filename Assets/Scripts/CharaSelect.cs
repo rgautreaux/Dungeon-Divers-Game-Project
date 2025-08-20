@@ -7,13 +7,16 @@ using TMPro;
 public class CharaSelect : MonoBehaviour
 {
     public RaycastHit select;
-    private Camera camera;
+    private new Camera camera;
     public AudioSource selectMusic;
     public GameObject Gal;
     public GameObject Guy;
 
     public GameObject galButton;
     public GameObject guyButton;
+
+    public bool galPicked = false;
+    public bool guyPicked = false;
 
     // Start is called before the first frame update
     void Start()
@@ -57,14 +60,14 @@ public class CharaSelect : MonoBehaviour
 
     public void GalButton()
     {
-        ProtagMovement.galPicked = true;
+        galPicked = true;
         selectMusic.Stop();
         SceneManager.LoadScene("Dungeon");
     }
 
     public void GuyButton()
     {
-        ProtagMovement.guyPicked = true;
+        guyPicked = true;
         selectMusic.Stop();
         SceneManager.LoadScene("Dungeon");
     }

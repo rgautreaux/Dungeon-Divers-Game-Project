@@ -167,9 +167,9 @@ public class HealthBar : MonoBehaviour
     }
     void OnTriggerStay(Collider other)
     {
-        object monster = gameObject.CompareTag("Monster");
-        object boss = gameObject.CompareTag("Boss");
-        object breath = gameObject.GetComponent<BossBreath>().magic;
+        bool monster = gameObject.CompareTag("Monster");
+        bool boss = gameObject.CompareTag("Boss");
+        GameObject breath = FindAnyObjectByType<BossBreath>().magic;
 
 
         if (other.gameObject == monster)
