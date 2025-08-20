@@ -138,8 +138,8 @@ public class ProtagMovement : MonoBehaviour
         shieldMagic = defense.GetComponent<ParticleSystem>();
         shieldSound = defense.GetComponent<AudioSource>();
 
-        monster = GameObject.FindWithTag("Monster");
-        monster = GameObject.FindWithTag("Boss");
+        GameObject monster = GetComponent<Monsters>().self;
+        GameObject boss = GetComponent<Monsters>().self;
 
         gameMusic.playOnAwake = true;
         gameMusic.loop = true;
@@ -158,8 +158,8 @@ public class ProtagMovement : MonoBehaviour
             if (self.gameObject.name == "FemPlayer") Destroy(self.gameObject);  //Destroy unseleccted Player
         }
 
-        monster = GameObject.FindWithTag("Monster");
-        monster = GameObject.FindWithTag("Boss");
+        monster = GameObject.FindGameObjectWithTag("Monster");
+        boss = GameObject.FindGameObjectWithTag("Boss");
 
 
         if (GetComponent<CharaSelect>().selectMusic.isPlaying)

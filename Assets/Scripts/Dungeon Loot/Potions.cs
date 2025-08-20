@@ -21,6 +21,7 @@ public class Potions : MonoBehaviour
 
     //Detecting monsters
     GameObject monster;
+    GameObject boss;
 
     // Start is called before the first frame update
     void Start()
@@ -35,13 +36,19 @@ public class Potions : MonoBehaviour
         bEffect = ProtagMovement.strengthMagic;
         pEffect = ProtagMovement.shieldMagic;
 
+        GameObject monster = GetComponent<Monsters>().self;
+        GameObject boss = GetComponent<Monsters>().self;
     }
 
     // Update is called once per frame
     void Update()
     {
         potion.transform.Rotate(0, 0, 5);
-        monster = GameObject.FindWithTag("Monster");
+
+        monster = GameObject.FindGameObjectWithTag("Monster");
+        boss = GameObject.FindGameObjectWithTag("Boss");
+
+
         hEffect.Stop();
         sEffect.Stop();
         bEffect.Stop();

@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+using System.Threading;
 using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class HealthBar : MonoBehaviour
@@ -20,6 +21,10 @@ public class HealthBar : MonoBehaviour
     private float stamina = 25f;
     private float maxStamina = 25f;
 
+    GameObject monster;
+    GameObject boss;
+    GameObject breath;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +34,9 @@ public class HealthBar : MonoBehaviour
         stamina = ProtagMovement.stamina;
         maxHealth = ProtagMovement.maxStamina;
 
+        GameObject monster = GetComponent<Monsters>().self;
+        GameObject boss = GetComponent<Monsters>().self;
+        GameObject breath = GetComponent<BossBreath>().magic;
 
 
         if (healthMeter != null)
@@ -110,6 +118,12 @@ public class HealthBar : MonoBehaviour
         maxStamina = ProtagMovement.maxStamina;
         stamina = ProtagMovement.stamina;
 
+        GameObject monster = GetComponent<Monsters>().self;
+        GameObject boss = GetComponent<Monsters>().self;
+        GameObject breath = GetComponent<BossBreath>().magic;
+
+
+
         SetHealthBarValue(health / maxHealth);
 
         if (health <= 0)
@@ -127,11 +141,6 @@ public class HealthBar : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-       object monster = gameObject.CompareTag("Monster");
-       object boss = gameObject.CompareTag("Boss");
-       object breath = gameObject.GetComponent<BossBreath>().magic;
-
-
         //Debug.Log("Collision with " + other.gameObject.name);
         if (other.gameObject == monster)
         {

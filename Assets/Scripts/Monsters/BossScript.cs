@@ -31,7 +31,7 @@ public class BossScript : MonoBehaviour
 
     public GameObject healthMeter; //Assign this in the inspector
     private static Image HealthBarImage;
-    public TextMeshProUGUI name;
+    public new TextMeshProUGUI name;
 
 
     //Boss States
