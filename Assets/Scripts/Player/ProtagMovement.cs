@@ -147,7 +147,7 @@ public class ProtagMovement : MonoBehaviour
 
 
     // Update is only being used here to identify keys and trigger animations
-    void Update(int recover)
+    void Update()
     {
         if (galPicked)
         {
