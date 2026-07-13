@@ -1,2 +1,16 @@
 fileFormatVersion: 2
 guid: 1879e580c3cee9147b76e74e4148609c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - selectMusic: {instanceID: 0}
+  - Gal: {fileID: 9094277931467091126, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
+  - Guy: {fileID: 4579048761404088230, guid: f3656249ed9d575499e5ff33ae66277b, type: 3}
+  - galButton: {instanceID: 0}
+  - guyButton: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

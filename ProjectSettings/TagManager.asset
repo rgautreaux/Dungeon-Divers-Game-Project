@@ -3,48 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Section 2
-  - Section 3
-  - Section 4
-  - Weapon
-  - Monster
-  - FlameAttack
-  - Chest
-  - Coin
-  - Potion
-  - Magic
-  - Boss
-  - Story
-  - Credits
-  - GameInfo
-  - HighScore
-  - Back
-  - Continue
-  - PickGal
-  - PickGuy
-  - SkeleShop
-  - Boss1
-  - Boss2
-  - Boss3
-  - Boss4
-  - Finale
-  - MiniMapComponents
-  - Sword
-  - Shield
-  - Spell
-  - Health
-  - Speed
-  - Strength
-  - Exit
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - MiniMapIcons
+  - 
   - Water
   - UI
-  - Ceiling
+  - 
   - 
   - 
   - 
