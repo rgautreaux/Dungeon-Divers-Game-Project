@@ -136,6 +136,17 @@ public class ProtagMovement : MonoBehaviour
         }
 
 
+        //Make sure only ONE player model exists
+        GameObject[] playerList = GameObject.FindGameObjectsWithTag("Player");
+        int playerCount = playerList.Length;
+        Debug.Log("Number of players in scene: " + playerCount);
+        if (playerCount > 1)
+        {
+            int randomSelect = UnityEngine.Random.RandomRange(0, playerCount);
+            Destroy(playerList[randomSelect]);
+        }
+
+
         //Animations
         cc = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
