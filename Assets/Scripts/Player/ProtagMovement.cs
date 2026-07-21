@@ -114,18 +114,25 @@ public class ProtagMovement : MonoBehaviour
     {
 
         player = GameObject.FindWithTag("Player");
+        GameObject selected = GetComponent<CharaSelect>().chosenPlayer;
+        GameObject guyOption = GetComponent<CharaSelect>().Guy;
+        GameObject galOption = GetComponent<CharaSelect>().Gal;
+
 
         // Starts any of the above variables when starting the game
-        if (GetComponent<CharaSelect>().galPicked)
+        //Pick Gal
+        if (GetComponent<CharaSelect>().galPicked && selected == galOption)
         {
-            player = GetComponent<CharaSelect>().Gal;
-            if (player.gameObject.name == "MascPlayer") 
-                Destroy(player.gameObject);  //Destroy unseleccted Player
+            player = galOption;
+            if (player.gameObject.name == "MascPlayer" || player.gameObject == guyOption) 
+                Destroy(player.gameObject);  //Destroy unseleccted Male Player
         }
-        else if (GetComponent<CharaSelect>().guyPicked)
+        //Pick Guy
+        else if (GetComponent<CharaSelect>().guyPicked && selected == galOption)
         {
-            player = GetComponent<CharaSelect>().Guy;
-            if (player.gameObject.name == "FemPlayer") Destroy(player.gameObject);  //Destroy unseleccted Player
+            player = guyOption;
+            if (player.gameObject.name == "FemPlayer" || player.gameObject == galOption)
+                Destroy(player.gameObject);  //Destroy unseleccted Fem Player
         }
 
 
