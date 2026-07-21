@@ -36,6 +36,10 @@ public class Monsters : MonoBehaviour
         potion = player.GetComponent<Potions>().potionEffect;
         damageDealt = self.GetComponent<Monsters>().damage;
 
+        //Start Timer for despawn if spawned outside of maze
+        float lifeSpan = Random.Range(900.0f, 450.0f);
+        StartCoroutine(DespawnEnemy(lifeSpan));
+
         //assign unique damage level
         if (self.gameObject.name == "Bunny 0")
         { damage = 1f; }
@@ -171,7 +175,7 @@ public class Monsters : MonoBehaviour
 
         if (col.gameObject.CompareTag("Player"))
         {
-             playerControls.takeDamage(damageDealt, potion);
+            playerControls.takeDamage(damageDealt, potion);
         }
         else if (col.gameObject.CompareTag("Weapon") || col.gameObject.CompareTag("Magic"))
         {
@@ -195,5 +199,12 @@ public class Monsters : MonoBehaviour
         Destroy(gameObject);
     }
 
-}
+    //For any enemies that spawn outside of the maze;despawn them after a certain amount of time to avoid cluttering the scene and only have interactable enemies count
+    private IEnumerator DespawnEnemy(float lifeTime)
+    {
+        myaudio.Play();
+        yield return new WaitForSecondsRealtime(lifeTime); 
+        Destroy(gameObject);
+    }
 
+}
