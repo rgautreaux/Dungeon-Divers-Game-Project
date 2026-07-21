@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 public class GameStats : MonoBehaviour
 {
     public GameObject player;
-    public new Camera camera;
+    public Camera camera;
     public float maxDistance = 3f;
 
     //Current Scores
@@ -71,7 +71,7 @@ public class GameStats : MonoBehaviour
         levelText.text = "Level " + level.ToString();
         bossCount.text = bossesFinished.ToString() + "/8 Dragons Defeated";
         monsterCount.text = monstersKilled.ToString() + " Total Monsters Slain";
-        goldCount.text = "You have earned" + goldCoins.ToString() + "gold";
+        goldCount.text = "You have earned " + goldCoins.ToString() + "gold";
         purchaseCount.text = "You visited Undead Deals " + shopTrips.ToString() + " times and spent " + moneySpent.ToString() + "gold";
         gameScoreText.text = "Game Score = " + gameScore.ToString();
     }

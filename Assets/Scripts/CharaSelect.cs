@@ -7,7 +7,7 @@ using TMPro;
 public class CharaSelect : MonoBehaviour
 {
     public RaycastHit select;
-    private new Camera camera;
+    public Camera camera;
     public AudioSource selectMusic;
     public GameObject Gal;
     public GameObject Guy;
@@ -61,6 +61,7 @@ public class CharaSelect : MonoBehaviour
     public void GalButton()
     {
         galPicked = true;
+        GameObject chosenPlayer = Gal;
         selectMusic.Stop();
         SceneManager.LoadScene("Dungeon");
     }
@@ -68,6 +69,7 @@ public class CharaSelect : MonoBehaviour
     public void GuyButton()
     {
         guyPicked = true;
+        GameObject chosenPlayer = Guy;
         selectMusic.Stop();
         SceneManager.LoadScene("Dungeon");
     }

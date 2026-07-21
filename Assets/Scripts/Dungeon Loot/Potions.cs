@@ -36,17 +36,14 @@ public class Potions : MonoBehaviour
         bEffect = ProtagMovement.strengthMagic;
         pEffect = ProtagMovement.shieldMagic;
 
-        GameObject monster = GetComponent<Monsters>().self;
-        GameObject boss = GetComponent<Monsters>().self;
+        monster = GameObject.FindGameObjectWithTag("Monster");
+        boss = GameObject.FindGameObjectWithTag("Boss");
     }
 
     // Update is called once per frame
     void Update()
     {
         potion.transform.Rotate(0, 0, 5);
-
-        monster = GameObject.FindGameObjectWithTag("Monster");
-        boss = GameObject.FindGameObjectWithTag("Boss");
 
 
         hEffect.Stop();

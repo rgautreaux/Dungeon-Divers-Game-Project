@@ -11,7 +11,7 @@ using UnityEditor;
 public class Shopping : MonoBehaviour
 {
     public RaycastHit select;
-    private new Camera camera;
+    private Camera camera;
     public TextMeshProUGUI bank;
     AudioSource purchase;
     public AudioSource shopSound;

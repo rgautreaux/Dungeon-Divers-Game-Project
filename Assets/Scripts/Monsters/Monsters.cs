@@ -15,6 +15,8 @@ public class Monsters : MonoBehaviour
     public float chaseDistance = 10.0f;
     public float damage = 0f;
     public GameObject self;
+    public bool potion;
+    float damageDealt;
 
     protected MonsterState state = MonsterState.DEFAULT;
     protected Vector3 destination = new Vector3(0, 0, 0);
@@ -27,12 +29,12 @@ public class Monsters : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        self = this.gameObject;
-
         agent = this.GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         myaudio = GetComponent<AudioSource>();
 
+        potion = player.GetComponent<Potions>().potionEffect;
+        damageDealt = self.GetComponent<Monsters>().damage;
 
         //assign unique damage level
         if (self.gameObject.name == "Bunny 0")
@@ -169,11 +171,7 @@ public class Monsters : MonoBehaviour
 
         if (col.gameObject.CompareTag("Player"))
         {
-            bool potion = player.GetComponent<Potions>().potionEffect;
-            float damageDealt = self.GetComponent<Monsters>().damage;
-
-
-            playerControls.takeDamage(damageDealt, potion);
+             playerControls.takeDamage(damageDealt, potion);
         }
         else if (col.gameObject.CompareTag("Weapon") || col.gameObject.CompareTag("Magic"))
         {

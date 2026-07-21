@@ -46,7 +46,6 @@ public class BossScript : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        self = this.gameObject;
         name.text = self.gameObject.name;
 
         agent = this.GetComponent<NavMeshAgent>();

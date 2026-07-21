@@ -8,7 +8,7 @@ using TMPro;
 public class MainMenu : MonoBehaviour
 {
     public RaycastHit pressButton;
-    private new Camera camera;
+    private Camera camera;
     public static int timesPlayed;
     public AudioSource music;
 

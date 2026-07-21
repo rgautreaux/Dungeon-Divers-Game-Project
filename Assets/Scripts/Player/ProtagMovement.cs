@@ -17,13 +17,11 @@ public enum HeroState { ATTACK, SPRINT, RUN, JUMP, DEFEND, WEAK, READY, DEAD, DE
 
 public class ProtagMovement : MonoBehaviour
 {
-    public GameObject self;
+    public GameObject player;
+    public Camera playerCam;
     public AudioSource ouch;
+    private bool healPotion;
     public AudioSource gameMusic;
-
-    public bool galPicked = false;
-    public bool guyPicked = false;
-
 
     //Player Health
     public static float maxHealth = 100f;
@@ -64,11 +62,11 @@ public class ProtagMovement : MonoBehaviour
     public GameObject healing;
     public static ParticleSystem healthMagic;
     public static AudioSource healSound;
-
+    private bool strengthPotion;
     public GameObject strong;
     public static ParticleSystem strengthMagic;
     public static AudioSource strengthSound;
-
+    private bool speedPotion;
     public GameObject fast;
     public static ParticleSystem speedMagic;
     public static AudioSource speedSound;
@@ -107,39 +105,60 @@ public class ProtagMovement : MonoBehaviour
     //Detecting monsters
     GameObject monster;
     GameObject boss;
-
+    private IEnumerable coroutine;
+    private AudioSource selectMusic;
+    private AudioSource shopMusic;
+    private AudioSource menuMusic;
 
     void Start()
     {
+
+        player = GameObject.FindWithTag("Player");
+
         // Starts any of the above variables when starting the game
         if (GetComponent<CharaSelect>().galPicked)
         {
-            if (self.gameObject.name == "MascPlayer") Destroy(self.gameObject);  //Destroy unseleccted Player
+            player = GetComponent<CharaSelect>().Gal;
+            if (player.gameObject.name == "MascPlayer") 
+                Destroy(player.gameObject);  //Destroy unseleccted Player
         }
         else if (GetComponent<CharaSelect>().guyPicked)
         {
-            if (self.gameObject.name == "FemPlayer") Destroy(self.gameObject);  //Destroy unseleccted Player
+            player = GetComponent<CharaSelect>().Guy;
+            if (player.gameObject.name == "FemPlayer") Destroy(player.gameObject);  //Destroy unseleccted Player
         }
 
 
+        //Animations
         cc = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         ouch = GetComponent<AudioSource>();
 
+        //Magic Effects
+        healPotion = GetComponent<Potions>().potionEffect;
         healthMagic = healing.GetComponent<ParticleSystem>();
         healSound = healing.GetComponent<AudioSource>();
 
+        strengthPotion = GetComponent<Potions>().potionEffect;
         strengthMagic = strong.GetComponent<ParticleSystem>();
         strengthSound = strong.GetComponent<AudioSource>();
 
+        speedPotion = GetComponent<Potions>().potionEffect;
         speedMagic = fast.GetComponent<ParticleSystem>();
         speedSound = fast.GetComponent<AudioSource>();
 
         shieldMagic = defense.GetComponent<ParticleSystem>();
         shieldSound = defense.GetComponent<AudioSource>();
 
-        GameObject monster = GetComponent<Monsters>().self;
-        GameObject boss = GetComponent<Monsters>().self;
+        //Enemies
+        monster = GameObject.FindGameObjectWithTag("Monster");
+        boss = GameObject.FindGameObjectWithTag("Boss");
+
+
+        //Music
+        selectMusic = GetComponent<CharaSelect>().selectMusic;
+        shopMusic = GetComponent<Shopping>().shopSound;
+        menuMusic = GetComponent<MainMenu>().music;
 
         gameMusic.playOnAwake = true;
         gameMusic.loop = true;
@@ -149,29 +168,11 @@ public class ProtagMovement : MonoBehaviour
     // Update is only being used here to identify keys and trigger animations
     void Update()
     {
-        if (galPicked)
-        {
-            if (self.gameObject.name == "MascPlayer") Destroy(self.gameObject);  //Destroy unseleccted Player
-        }
-        else if (guyPicked)
-        {
-            if (self.gameObject.name == "FemPlayer") Destroy(self.gameObject);  //Destroy unseleccted Player
-        }
 
-        monster = GameObject.FindGameObjectWithTag("Monster");
-        boss = GameObject.FindGameObjectWithTag("Boss");
-
-
-        if (GetComponent<CharaSelect>().selectMusic.isPlaying)
+        if (selectMusic.isPlaying || shopMusic.isPlaying || menuMusic.isPlaying)
         {
             gameMusic.Stop();
         }
-        else if (GetComponent<Shopping>().shopSound.isPlaying)
-        {
-            gameMusic.Stop();
-        }
-        else if (GetComponent<MainMenu>().music.isPlaying)
-        { gameMusic.Stop(); }
         else
         {
             gameMusic.Play();
@@ -256,7 +257,7 @@ public class ProtagMovement : MonoBehaviour
 
             if (!isSprinting)
             {
-                for (int r = 0; r < stamina; r++)
+                for (int run = 0; run < stamina; run++)
                 {
                     stamina++;
 
@@ -452,19 +453,6 @@ public class ProtagMovement : MonoBehaviour
 
     }
 
-    public IEnumerable MagicShield(float damage)
-    {
-        shieldMagic.Play();
-        shieldSound.Play();
-        float protection = damage - armorPower;
-        health -= protection / 5;
-        yield return new WaitForSeconds(10);
-        shieldSound.Stop();
-        shieldMagic.Stop();
-        health -= protection;
-
-    }
-
     public void takeDamage(float damage, bool strengthPotion)
     {
         //Base Damage
@@ -475,7 +463,6 @@ public class ProtagMovement : MonoBehaviour
         if (health > maxHealth) health = maxHealth;
 
         //Strength Potion Effect
-        strengthPotion = GetComponent<Potions>().potionEffect;
         if (strengthPotion || Input.GetKeyDown(KeyCode.E))
         {
             health -= protection / 2;
@@ -483,7 +470,11 @@ public class ProtagMovement : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E) && Input.GetKeyDown(KeyCode.R)) 
             {
-                MagicShield(protection);
+                coroutine = MagicShield(protection);
+                StartCoroutine((IEnumerator)coroutine);
+                shieldSound.Stop();
+                shieldMagic.Stop();
+                health -= protection;
             }
             else { shieldMagic.Stop(); }
         }
@@ -502,6 +493,19 @@ public class ProtagMovement : MonoBehaviour
 
             animator.SetBool("isDead", true);
         }
+    }
+
+    private IEnumerable MagicShield(float damage)
+    {
+        shieldMagic.Play();
+        shieldSound.Play();
+        float protection = damage - armorPower;
+        health -= protection / 5;
+        yield return new WaitForSeconds(10);
+        shieldSound.Stop();
+        shieldMagic.Stop();
+        health -= protection;
+
     }
 
     public void UpdateSpeed(float speedPotion)

@@ -4,6 +4,54 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Game Screens/StartScreen.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Game Screens/GameInfo.unity
+    guid: e9be4ed039cd7e5439de58a8cadc0714
+  - enabled: 1
+    path: Assets/Scenes/Game Screens/Credits.unity
+    guid: e8cd357633a41e54dba4a68dafb168ce
+  - enabled: 1
+    path: Assets/Scenes/Game Screens/Controls.unity
+    guid: 726137e6ffe7a7841a8ebd3459ca5794
+  - enabled: 1
+    path: Assets/Scenes/Game Screens/HighScore.unity
+    guid: 24cf0875d5169a84c828f7a6f05bd2d1
+  - enabled: 1
+    path: Assets/Scenes/Game Screens/StoryScreen.unity
+    guid: 15f4d4ae965ed38408773bcaf105e764
+  - enabled: 1
+    path: Assets/Scenes/Game Screens/CharaSelect.unity
+    guid: 106db727b53332442a212216113a86dd
+  - enabled: 1
+    path: Assets/Scenes/Levels/Dungeon.unity
+    guid: 634336fe09f218144adc4b2ff74bb378
+  - enabled: 1
+    path: Assets/Scenes/Levels/Shop.unity
+    guid: a9d3ff6de45eb474299a1ccb672e2169
+  - enabled: 1
+    path: Assets/Scenes/Boss Fights/Boss1.unity
+    guid: c5eba4a1fc93c6942808b55fab4e1052
+  - enabled: 1
+    path: Assets/Scenes/Boss Fights/Boss2.unity
+    guid: c09414b94ef19f149a233f7217ad1586
+  - enabled: 1
+    path: Assets/Scenes/Boss Fights/Boss3.unity
+    guid: 22638be57182a9242b47009a9d003323
+  - enabled: 1
+    path: Assets/Scenes/Boss Fights/Boss4.unity
+    guid: 2de4c2de9a742664c9a01f7f95520e3f
+  - enabled: 1
+    path: Assets/Scenes/Boss Fights/FinalBoss.unity
+    guid: 8b0c61c7e0a5f324e8e1e9d3664c4eb6
+  - enabled: 1
+    path: Assets/Scenes/Game Screens/WinScreen.unity
+    guid: b8340f8ee23a82f4ba1ec015ddeddbbb
+  - enabled: 1
+    path: Assets/Scenes/Game Screens/LoseScreen.unity
+    guid: f32bebe45a4446347874371772be9c55
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
