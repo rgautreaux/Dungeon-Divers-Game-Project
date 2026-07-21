@@ -6,7 +6,7 @@ public class MonsterSpawner : MonoBehaviour
 {
     public GameObject[] monsterPrefabs;
     private GameObject parentObject;
-    public int maxEnemyCount = 25;
+    public static int maxEnemyCount = 25;
     public float secondsBetweenSpawn = 2;
 
     float elapsedTime = 0;
@@ -48,7 +48,7 @@ public class MonsterSpawner : MonoBehaviour
 
     private Vector3 RandomPositionAroundPlayer()
     {
-        Vector3 randPos = new Vector3(Random.Range(-30.0f, 30.0f), 0, Random.Range(-30.0f, 30.0f));
+        Vector3 randPos = new Vector3(Random.Range(-15.0f, 15.0f), 0, Random.Range(-15.0f, 15.0f));
         Vector3 playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
         randPos += playerPos;
         randPos.x += 10.0f;

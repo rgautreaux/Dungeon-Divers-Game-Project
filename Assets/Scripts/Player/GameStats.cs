@@ -66,6 +66,7 @@ public class GameStats : MonoBehaviour
 
         float health = ProtagMovement.health;
         float maxHealth = ProtagMovement.maxHealth;
+        int monsterSpawn = MonsterSpawner.maxEnemyCount;
 
         playCount.text = "You've played Dungeon Diver " + totalTimesPlayed.ToString() + " times";
         levelText.text = "Level " + level.ToString();
@@ -208,6 +209,7 @@ public class GameStats : MonoBehaviour
         if (gameScore / levelThreshold == 0)
         {
             level += 1;
+            MonsterSpawner.maxEnemyCount *= 2;
             ProtagMovement.maxHealth += healthMaxIncrease;
             UpdateAttack(attackUpgrade);
             UpdateMagic(magicUpgrade);
