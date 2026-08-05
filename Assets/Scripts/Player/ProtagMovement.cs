@@ -169,7 +169,15 @@ public class ProtagMovement : MonoBehaviour
 
         //Enemies
         monster = GameObject.FindGameObjectWithTag("Monster");
+        if (monster != null) 
+            Debug.Log("There are no monsters in the scene.");
+            //monster = GameObject.FindGameObjectWithTag("Monster");
+
+
         boss = GameObject.FindGameObjectWithTag("Boss");
+        if (boss != null)
+            Debug.Log("There are no bosses in the scene.");
+            //boss = GameObject.FindGameObjectWithTag("Boss");
 
 
         //Music
@@ -183,7 +191,7 @@ public class ProtagMovement : MonoBehaviour
 
         MainMenu mainMenu = GetComponent<MainMenu>();
         if (mainMenu != null) menuMusic = mainMenu.music;
-        else mainMenu = null;
+        else menuMusic = null;
 
         gameMusic.playOnAwake = true;
         gameMusic.loop = true;
@@ -194,7 +202,7 @@ public class ProtagMovement : MonoBehaviour
     void Update()
     {
 
-        if (selectMusic != null && selectMusic.isPlaying || shopMusic != null && shopMusic.isPlaying || menuMusic != null && menuMusic.isPlaying)
+        if ((selectMusic != null && selectMusic.isPlaying) || (shopMusic != null && shopMusic.isPlaying) || (menuMusic != null && menuMusic.isPlaying))
         {
             gameMusic.Stop();
         }
@@ -243,17 +251,13 @@ public class ProtagMovement : MonoBehaviour
             Debug.Log("Player is sprinting");
             isSprinting = true;
             isRunning = false;
-
-            while(isSprinting || isSprinting)
+            
+            stamina--;
+            if (stamina <= 0)
             {
-                stamina--;
-
-                if (stamina <= 0)
-                {
-                    stamina = 0;
-                    isSprinting = false;
-                    isRunning = true;
-                }
+                stamina = 0;
+                isSprinting = false;
+                isRunning = true;
             }
         }
         else
@@ -262,11 +266,10 @@ public class ProtagMovement : MonoBehaviour
             isSprinting = false;
             isRunning = true;
 
-            while (!isSprinting || isRunning)
+          
+            stamina++;
+            if (stamina > maxStamina)
             {
-                stamina++;
-
-                if (stamina > maxStamina) { }
                 stamina = maxStamina;
             }
         }
@@ -303,12 +306,12 @@ public class ProtagMovement : MonoBehaviour
 
         if (!isRunning && !isJumping && !isSprinting && !isDefending && !isAttacking && !isDead)
         {
-            if (Vector3.Distance(transform.position, monster.transform.position) < monsterDistance)
+            if (monster != null && Vector3.Distance(transform.position, monster.transform.position) < monsterDistance)
             {
                 Debug.Log("Player is ready for a fight!");
                 animator.SetBool("isReady", true);
             }
-            else if (Vector3.Distance(transform.position, boss.transform.position) < bossDistance)
+            else if (boss != null && Vector3.Distance(transform.position, boss.transform.position) < bossDistance)
             {
                 Debug.Log("Player is ready for a fight!");
                 animator.SetBool("isReady", true);
@@ -472,8 +475,7 @@ public class ProtagMovement : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E) && Input.GetKeyDown(KeyCode.R)) 
             {
-                coroutine = MagicShield(protection);
-                StartCoroutine((IEnumerator)coroutine);
+                StartCoroutine(MagicShield);
                 shieldSound.Stop();
                 shieldMagic.Stop();
                 health -= protection;
@@ -497,7 +499,7 @@ public class ProtagMovement : MonoBehaviour
         }
     }
 
-    private IEnumerable MagicShield(float damage)
+    private IEnumerator MagicShield(float damage)
     {
         shieldMagic.Play();
         shieldSound.Play();

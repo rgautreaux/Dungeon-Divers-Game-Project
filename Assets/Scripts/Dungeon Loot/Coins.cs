@@ -43,12 +43,12 @@ public class Coins : MonoBehaviour
         grab.Play();
         yield return new WaitForSeconds(waitTime);
 
-        if (money.gameObject.tag == "Coin")
+        if (money.gameObject.CompareTag("Coin"))
         {
             GameStats.UpdateCurrency(5f);
             Debug.Log("Obtained Coin");
         }
-        else if (money.gameObject.tag == "Chest")
+        else if (money.gameObject.CompareTag("Chest"))
         {
 
             GameStats.UpdateCurrency(20f);

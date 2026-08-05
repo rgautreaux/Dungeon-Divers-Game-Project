@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using static System.Net.Mime.MediaTypeNames;
 using System.Data;
-using UnityEditor;
 
 public class Shopping : MonoBehaviour
 {

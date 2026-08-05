@@ -270,7 +270,7 @@ public class BossScript : MonoBehaviour
 
             playerControls.takeDamage(damageDealt / 5, potion);
         }
-        else if (other.gameObject == gameObject.CompareTag("Weapon"))
+        else if (other.gameObject.CompareTag("Weapon"))
         {
             float damageRecieved = ProtagMovement.attackPower;
 
@@ -278,7 +278,7 @@ public class BossScript : MonoBehaviour
             takeDamage(damageRecieved / 5);
             if (health < 0) health = 0;
         }
-        else if (other.gameObject == gameObject.CompareTag("Magic"))
+        else if (other.gameObject.CompareTag("Magic"))
         {
             float damageRecieved = ProtagMovement.magicPower;
 

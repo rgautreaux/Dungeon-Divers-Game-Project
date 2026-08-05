@@ -146,13 +146,26 @@ public class Potions : MonoBehaviour
     //reduce damage to player
     void StrengthPotion()
     {
-        float damage = monster.GetComponent<Monsters>().damage;
-        ProtagMovement.potionName.text = "Strength Potion!";
-        ProtagMovement.strengthMagic.Play();
-        ProtagMovement.strengthSound.Play();
+        if (monster != null)
+        {
+            float damage = monster.GetComponent<Monsters>().damage;
+            ProtagMovement.potionName.text = "Strength Potion!";
+            ProtagMovement.strengthMagic.Play();
+            ProtagMovement.strengthSound.Play();
 
-        player.takeDamage(damage, true);
-        player.StartCoroutine(StrengthOver());
+            player.takeDamage(damage, true);
+            player.StartCoroutine(StrengthOver());
+        }
+        else if (boss != null)
+        {
+            float damage = monster.GetComponent<BossScript>().damage;
+            ProtagMovement.potionName.text = "Strength Potion!";
+            ProtagMovement.strengthMagic.Play();
+            ProtagMovement.strengthSound.Play();
+
+            player.takeDamage(damage, true);
+            player.StartCoroutine(StrengthOver());
+        }
     }
     private IEnumerator StrengthOver()
     {
