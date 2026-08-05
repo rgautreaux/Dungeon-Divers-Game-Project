@@ -21,13 +21,14 @@ public class MagicAttack : MonoBehaviour
 
     public ParticleSystem[] magicPowers;
 
+
     // Start is called before the first frame update
     void Start()
     {
         myaudio = GetComponent<AudioSource>();
 
         magicTypes = magicPowers.Length;
-        magicPowers = gameObject.GetComponent<ParticleSystem[]>();
+        //magicPowers = gameObject.GetComponent<ParticleSystem[]>();
     }
 
     // Update is called once per frame
@@ -54,7 +55,7 @@ public class MagicAttack : MonoBehaviour
         else
         {
             //Destroy it after a certain time
-            Destroy(magic);
+            //Destroy(magic);
             myaudio.Stop();
             for (int i = 0; i < magicPowers.Length; i++) {
                 magicPowers[i].Stop();

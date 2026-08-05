@@ -7,7 +7,7 @@ using TMPro;
 public class CharaSelect : MonoBehaviour
 {
     public RaycastHit select;
-    public Camera camera;
+    public Camera mainCamera;
     public AudioSource selectMusic;
     public GameObject Gal;
     public GameObject Guy;
@@ -22,7 +22,7 @@ public class CharaSelect : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        camera = Camera.main;
+        mainCamera = Camera.main;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         selectMusic.playOnAwake = true;
@@ -33,7 +33,7 @@ public class CharaSelect : MonoBehaviour
     void Update()
     {
         //create ray
-        Ray mouseCursor = camera.ScreenPointToRay(Input.mousePosition);
+        Ray mouseCursor = mainCamera.ScreenPointToRay(Input.mousePosition);
 
         // Interact with buttons
         if (Physics.Raycast(mouseCursor, out RaycastHit pressButton, 10f))
@@ -62,7 +62,7 @@ public class CharaSelect : MonoBehaviour
     public void GalButton()
     {
         galPicked = true;
-        GameObject chosenPlayer = Gal;
+        chosenPlayer = Gal;
         selectMusic.Stop();
         SceneManager.LoadScene("Dungeon");
     }
@@ -70,7 +70,7 @@ public class CharaSelect : MonoBehaviour
     public void GuyButton()
     {
         guyPicked = true;
-        GameObject chosenPlayer = Guy;
+        chosenPlayer = Guy;
         selectMusic.Stop();
         SceneManager.LoadScene("Dungeon");
     }

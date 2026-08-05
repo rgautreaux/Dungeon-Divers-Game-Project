@@ -11,7 +11,7 @@ using UnityEditor;
 public class Shopping : MonoBehaviour
 {
     public RaycastHit select;
-    private Camera camera;
+    private Camera mainCamera;
     public TextMeshProUGUI bank;
     AudioSource purchase;
     public AudioSource shopSound;
@@ -69,7 +69,7 @@ public class Shopping : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        camera = Camera.main;
+        mainCamera = Camera.main;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         purchase = GetComponent<AudioSource>();
@@ -88,14 +88,14 @@ public class Shopping : MonoBehaviour
         if (GameStats.shopTrips == 1 && GameStats.totalTimesPlayed <= 1) 
         {
             Dialogue.text = "Welcome, newcomer, to the Undead Deals! Name's Skullivan Marrow, but my pals call me Skully. Its nice to see a fresh face around here, hope you last longer than the last guy...";
-            new WaitForSeconds(10);
+            StartCoroutine(DialogPause());
             Dialogue.text = "Welp, let me know if anything suits your fancy.";
 
         }
         if (GameStats.shopTrips == 1 && GameStats.totalTimesPlayed > 1)
         {
             Dialogue.text = "Welcome, newcomer, to the Undead Deals! Name's Skully, but you... look familiar... Must be deja vu!";
-            new WaitForSeconds(10);
+            StartCoroutine(DialogPause());
             Dialogue.text = "Anyway, let me know if anything suits your fancy pal.";
 
         }
@@ -128,7 +128,7 @@ public class Shopping : MonoBehaviour
         bPotionVal.text = "+STR (" + strengthCount.ToString() + ")";
 
         //create ray
-        Ray mouseCursor = camera.ScreenPointToRay(Input.mousePosition);
+        Ray mouseCursor = mainCamera.ScreenPointToRay(Input.mousePosition);
 
         // Interact with buttons
         if (Physics.Raycast(mouseCursor, out RaycastHit pressButton, 10f))
@@ -150,7 +150,7 @@ public class Shopping : MonoBehaviour
                         string no = Nope();
                         Dialogue.text = no;
                         patience -= 1;
-                        new WaitForSeconds(10);
+                        StartCoroutine(DialogPause());
                         string pun = Joke();
                         Dialogue.text = pun;
 
@@ -174,7 +174,7 @@ public class Shopping : MonoBehaviour
                         string no = Nope();
                         Dialogue.text = no;
                         patience -= 1;
-                        new WaitForSeconds(10);
+                        StartCoroutine(DialogPause());
                         string pun = Joke();
                         Dialogue.text = pun;
 
@@ -198,7 +198,7 @@ public class Shopping : MonoBehaviour
                         string no = Nope();
                         Dialogue.text = no;
                         patience -= 1;
-                        new WaitForSeconds(10);
+                        StartCoroutine(DialogPause());
                         string pun = Joke();
                         Dialogue.text = pun;
                     }
@@ -221,7 +221,7 @@ public class Shopping : MonoBehaviour
                         string no = Nope();
                         Dialogue.text = no;
                         patience -= 1;
-                        new WaitForSeconds(10);
+                        StartCoroutine(DialogPause());
                         string pun = Joke();
                         Dialogue.text = pun;
                     }
@@ -244,7 +244,7 @@ public class Shopping : MonoBehaviour
                         string no = Nope();
                         Dialogue.text = no;
                         patience -= 1;
-                        new WaitForSeconds(10);
+                        StartCoroutine(DialogPause());
                         string pun = Joke();
                         Dialogue.text = pun;
                     }
@@ -266,8 +266,8 @@ public class Shopping : MonoBehaviour
                     {
                         string no = Nope();
                         Dialogue.text = no;
-                        patience -= 1;
-                        new WaitForSeconds(10);
+                        patience -= 1;  
+                        StartCoroutine(DialogPause());
                         string pun = Joke();
                         Dialogue.text = pun;
                     }
@@ -280,6 +280,7 @@ public class Shopping : MonoBehaviour
                 {
                     string bye = Goodbye();
                     Dialogue.text = bye;
+                    StartCoroutine(DialogPause());
                     ExitShop();
                     Debug.Log("Leaving Shop");
                 }
@@ -343,6 +344,13 @@ public class Shopping : MonoBehaviour
 
         // return it (this will be the string that the script will use)
         return randomWord;
+    }
+
+    private IEnumerator DialogPause()
+    {
+        yield return new WaitForSeconds(10);
+        string pun = Joke();
+        Dialogue.text = pun;
     }
 
     public void BuyAttack()

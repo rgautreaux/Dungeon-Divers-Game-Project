@@ -442,11 +442,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e63ca3fea4f60741a8baa8e35e64f0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  self: {fileID: 9094277931467091126}
+  player: {fileID: 9094277931467091126}
+  playerCam: {fileID: 0}
   ouch: {fileID: 0}
   gameMusic: {fileID: 2263278010684634031}
-  galPicked: 0
-  guyPicked: 0
   velocity: 5
   sprintAdittion: 3.5
   jumpHeight: 1.5

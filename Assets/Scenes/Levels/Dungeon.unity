@@ -19083,7 +19083,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5302477064177064589, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 63
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6053942059298060758, guid: f559b30275e7d2b45939a9dfb88bc299, type: 3}
       propertyPath: bossCount

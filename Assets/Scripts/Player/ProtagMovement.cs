@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Playables;
@@ -128,7 +127,7 @@ public class ProtagMovement : MonoBehaviour
                 Destroy(player.gameObject);  //Destroy unseleccted Male Player
         }
         //Pick Guy
-        else if (GetComponent<CharaSelect>().guyPicked && selected == galOption)
+        else if (GetComponent<CharaSelect>().guyPicked && selected == guyOption)
         {
             player = guyOption;
             if (player.gameObject.name == "FemPlayer" || player.gameObject == galOption)
@@ -142,7 +141,7 @@ public class ProtagMovement : MonoBehaviour
         Debug.Log("Number of players in scene: " + playerCount);
         if (playerCount > 1)
         {
-            int randomSelect = UnityEngine.Random.RandomRange(0, playerCount);
+            int randomSelect = UnityEngine.Random.Range(0, playerCount); 
             Destroy(playerList[randomSelect]);
         }
 
@@ -174,9 +173,17 @@ public class ProtagMovement : MonoBehaviour
 
 
         //Music
-        selectMusic = GetComponent<CharaSelect>().selectMusic;
-        shopMusic = GetComponent<Shopping>().shopSound;
-        menuMusic = GetComponent<MainMenu>().music;
+        CharaSelect charaSelect = GetComponent<CharaSelect>();
+        if (charaSelect != null) selectMusic = charaSelect.selectMusic;
+        else selectMusic = null;
+
+        Shopping shopping = GetComponent<Shopping>();
+        if (shopping != null) shopMusic = shopping.shopSound;
+        else shopMusic = null;
+
+        MainMenu mainMenu = GetComponent<MainMenu>();
+        if (mainMenu != null) menuMusic = mainMenu.music;
+        else mainMenu = null;
 
         gameMusic.playOnAwake = true;
         gameMusic.loop = true;
@@ -187,7 +194,7 @@ public class ProtagMovement : MonoBehaviour
     void Update()
     {
 
-        if (selectMusic.isPlaying || shopMusic.isPlaying || menuMusic.isPlaying)
+        if (selectMusic != null && selectMusic.isPlaying || shopMusic != null && shopMusic.isPlaying || menuMusic != null && menuMusic.isPlaying)
         {
             gameMusic.Stop();
         }
@@ -196,14 +203,6 @@ public class ProtagMovement : MonoBehaviour
             gameMusic.Play();
         }
 
-        healthMagic.Stop();
-        healSound.Stop();
-        strengthMagic.Stop();
-        strengthSound.Stop();
-        speedMagic.Stop();
-        speedSound.Stop();
-        shieldMagic.Stop();
-        shieldSound.Stop();
 
         // Check which input is being pressed
         inputHorizontal = Input.GetAxis("Horizontal");
@@ -245,21 +244,11 @@ public class ProtagMovement : MonoBehaviour
             isSprinting = true;
             isRunning = false;
 
-            if (isSprinting) {
-                for (int run = 0; run < stamina; run++)
-                {
-                    stamina --;
+            while(isSprinting || isSprinting)
+            {
+                stamina--;
 
-                    if (stamina <= 0)
-                    {
-                        stamina = 0;
-                        isSprinting = false;
-                        isRunning = true;
-                        break;
-                    }
-                }
-
-                if (stamina == 0)
+                if (stamina <= 0)
                 {
                     stamina = 0;
                     isSprinting = false;
@@ -273,20 +262,15 @@ public class ProtagMovement : MonoBehaviour
             isSprinting = false;
             isRunning = true;
 
-            if (!isSprinting)
+            while (!isSprinting || isRunning)
             {
-                for (int run = 0; run < stamina; run++)
-                {
-                    stamina++;
+                stamina++;
 
-                    if (stamina > maxStamina) stamina = maxStamina;
-                    break;
-                }
-
-                if (stamina > maxStamina) stamina = maxStamina;
-
+                if (stamina > maxStamina) { }
+                stamina = maxStamina;
             }
         }
+
 
         // After going through the above condition, we already have the answer to whether it is running or not within the variable
         animator.SetBool("isRunning", isRunning);
@@ -325,11 +309,11 @@ public class ProtagMovement : MonoBehaviour
                 animator.SetBool("isReady", true);
             }
             else if (Vector3.Distance(transform.position, boss.transform.position) < bossDistance)
-                {
-                    Debug.Log("Player is ready for a fight!");
-                    animator.SetBool("isReady", true);
-                }
-                else if (health <= 50)
+            {
+                Debug.Log("Player is ready for a fight!");
+                animator.SetBool("isReady", true);
+            }
+            else if (health <= 50)
             {
                 Debug.Log("Player needs healing");
                 animator.SetBool("isWeak", true);

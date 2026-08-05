@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 public class GameStats : MonoBehaviour
 {
     public GameObject player;
-    public Camera camera;
+    public Camera mainCamera;
     public float maxDistance = 3f;
 
     //Current Scores
@@ -60,7 +60,7 @@ public class GameStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     { 
-        camera = Camera.main;
+        mainCamera = Camera.main;
 
         totalTimesPlayed = MainMenu.timesPlayed;
 

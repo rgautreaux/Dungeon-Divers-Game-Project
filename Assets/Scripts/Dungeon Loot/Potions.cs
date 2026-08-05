@@ -45,12 +45,6 @@ public class Potions : MonoBehaviour
     {
         potion.transform.Rotate(0, 0, 5);
 
-
-        hEffect.Stop();
-        sEffect.Stop();
-        bEffect.Stop();
-        pEffect.Stop();
-
         if (Shopping.drinkSpeed == true)
         {
             for (int i = 0; i < Shopping.speedCount; i++) {
@@ -70,13 +64,6 @@ public class Potions : MonoBehaviour
             {
                 HealthPotion();
             }
-        }
-        else
-        {
-            hEffect.Stop();
-            sEffect.Stop();
-            bEffect.Stop();
-            pEffect.Stop();
         }
 
     }

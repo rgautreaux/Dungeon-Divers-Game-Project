@@ -8,7 +8,7 @@ using TMPro;
 public class MainMenu : MonoBehaviour
 {
     public RaycastHit pressButton;
-    private Camera camera;
+    private Camera mainCamera;
     public static int timesPlayed;
     public AudioSource music;
 
@@ -43,7 +43,7 @@ public class MainMenu : MonoBehaviour
     {
         music.playOnAwake = true;
         music.loop = true;
-        camera = Camera.main;
+        mainCamera = Camera.main;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
@@ -52,7 +52,7 @@ public class MainMenu : MonoBehaviour
     void Update()
     {
         //create ray
-        Ray mouseCursor = camera.ScreenPointToRay(Input.mousePosition);
+        Ray mouseCursor = mainCamera.ScreenPointToRay(Input.mousePosition);
         
         // Interact with buttons
         if (Physics.Raycast(mouseCursor, out RaycastHit pressButton, 10f))
