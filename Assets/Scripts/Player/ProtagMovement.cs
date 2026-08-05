@@ -225,7 +225,8 @@ public class ProtagMovement : MonoBehaviour
         if (cc.isGrounded)
         {
             // Check the player's speed and whether it is high enough to trigger the running animation
-            float minimumSpeed = 0.9f;
+            float minimumSpeed = 0.10f;
+
             if (cc.velocity.magnitude > minimumSpeed)
             {
                 Debug.Log("Player is running!");
@@ -243,10 +244,30 @@ public class ProtagMovement : MonoBehaviour
                 Debug.Log("Player stopped running");
 
             }
+
+            //If a character is growing weak, they will move slower and will not be able to sprint until they heal. This is to simulate the character being too weak to run or sprint.
+            if (health <= 50)
+            {
+                isWeak = true;
+                while (isWeak)
+                {
+                    isSprinting = false;
+                }
+                minimumSpeed = 0.5f;
+
+            }
+
+            //If they are healed enough, they will be able to run and sprint again as normal.
+            else
+            {
+                minimumSpeed = 0.10f;
+
+            }
+
         }
 
         // Same logic as the run, but adding the sprint input condition
-        if (cc.velocity.magnitude > 0.9f && inputSprint)
+        if (cc.velocity.magnitude > 0.10f && inputSprint)
         {
             Debug.Log("Player is sprinting");
             isSprinting = true;
@@ -273,7 +294,6 @@ public class ProtagMovement : MonoBehaviour
                 stamina = maxStamina;
             }
         }
-
 
         // After going through the above condition, we already have the answer to whether it is running or not within the variable
         animator.SetBool("isRunning", isRunning);
@@ -320,6 +340,12 @@ public class ProtagMovement : MonoBehaviour
             {
                 Debug.Log("Player needs healing");
                 animator.SetBool("isWeak", true);
+                
+            }
+            else if (health > 50)
+            {
+                Debug.Log("Player is healthy");
+                animator.SetBool("isWeak", false);
             }
             else
             {
@@ -475,7 +501,7 @@ public class ProtagMovement : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E) && Input.GetKeyDown(KeyCode.R)) 
             {
-                StartCoroutine(MagicShield);
+                StartCoroutine(MagicShield(protection));
                 shieldSound.Stop();
                 shieldMagic.Stop();
                 health -= protection;
