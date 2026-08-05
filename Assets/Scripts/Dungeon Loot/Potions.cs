@@ -17,7 +17,7 @@ public class Potions : MonoBehaviour
     private ParticleSystem bEffect;
     private ParticleSystem pEffect;
 
-
+    private static int currentDamage = 0;
 
     //Detecting monsters
     GameObject monster;
@@ -45,25 +45,25 @@ public class Potions : MonoBehaviour
     {
         potion.transform.Rotate(0, 0, 5);
 
-        if (Shopping.drinkSpeed == true)
+        if (Shopping.drinkSpeed == true && !potionEffect)
         {
-            for (int i = 0; i < Shopping.speedCount; i++) {
-                SpeedPotion();
-            }
+            SpeedPotion();
+            potionEffect = true;
+
         }
-        else if (Shopping.drinkStrength == true)
+        else if (Shopping.drinkStrength == true && !potionEffect)
         {
-            for (int i = 0; i < Shopping.strengthCount; i++)
-            {
-                StrengthPotion();
-            }
+            StrengthPotion();
+            potionEffect = true;
+
+
         }
-        else if (Shopping.drinkHealth == true)
+        else if (Shopping.drinkHealth == true && !potionEffect)
         {
-            for (int i = 0; i < Shopping.healthCount; i++)
-            {
-                HealthPotion();
-            }
+             HealthPotion();
+             potionEffect = true;
+
+
         }
 
     }
@@ -122,6 +122,7 @@ public class Potions : MonoBehaviour
         Destroy(gameObject);
     }
 
+
     //increase health
     void HealthPotion()
     {
@@ -148,33 +149,32 @@ public class Potions : MonoBehaviour
     {
         if (monster != null)
         {
-            float damage = monster.GetComponent<Monsters>().damage;
+            float currentDamage = monster.GetComponent<Monsters>().damage;
             ProtagMovement.potionName.text = "Strength Potion!";
             ProtagMovement.strengthMagic.Play();
             ProtagMovement.strengthSound.Play();
 
-            player.takeDamage(damage, true);
+            player.takeDamage(currentDamage, true);
             player.StartCoroutine(StrengthOver());
         }
         else if (boss != null)
         {
-            float damage = monster.GetComponent<BossScript>().damage;
+            float currentDamage = monster.GetComponent<BossScript>().damage;
             ProtagMovement.potionName.text = "Strength Potion!";
             ProtagMovement.strengthMagic.Play();
             ProtagMovement.strengthSound.Play();
 
-            player.takeDamage(damage, true);
+            player.takeDamage(currentDamage, true);
             player.StartCoroutine(StrengthOver());
         }
     }
     private IEnumerator StrengthOver()
     {
-        float damage = monster.GetComponent<Monsters>().damage;
         yield return new WaitForSeconds(10);
         ProtagMovement.potionName.text = "   ";
         ProtagMovement.strengthMagic.Stop();
         ProtagMovement.strengthSound.Stop();
-        player.takeDamage(damage, false);
+        player.takeDamage(currentDamage, false);  // Use stored damage
         potionEffect = false;
         Shopping.drinkStrength = false;
     }

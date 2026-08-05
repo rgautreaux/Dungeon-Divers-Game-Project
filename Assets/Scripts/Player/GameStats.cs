@@ -15,6 +15,7 @@ public class GameStats : MonoBehaviour
 
     //Current Scores
     public static int level = 1;
+    private static int levelPoints = 100;
     public static int bossesFinished = 0;
     public static int monstersKilled = 0;
     public static int shopTrips = 0;
@@ -64,10 +65,6 @@ public class GameStats : MonoBehaviour
 
         totalTimesPlayed = MainMenu.timesPlayed;
 
-        float health = ProtagMovement.health;
-        float maxHealth = ProtagMovement.maxHealth;
-        int monsterSpawn = MonsterSpawner.maxEnemyCount;
-
         playCount.text = "You've played Dungeon Diver " + totalTimesPlayed.ToString() + " times";
         levelText.text = "Level " + level.ToString();
         bossCount.text = bossesFinished.ToString() + "/8 Dragons Defeated";
@@ -80,6 +77,7 @@ public class GameStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckLevelUp(levelPoints);
         UpdateLevel(15, 25, 5, 5, 5, 0.5F);
         UpdateHighScore();
 
@@ -96,6 +94,7 @@ public class GameStats : MonoBehaviour
                 gameScore += 20;
                 UpdateHealth(50, health, maxHealth);
                 UpdateLevel(25, 50, 10, 10, 10, 1);
+                levelPoints *= 2;
                 SceneManager.LoadScene("Boss1");
 
 
@@ -106,6 +105,7 @@ public class GameStats : MonoBehaviour
                 gameScore += 30;
                 UpdateHealth(50, health, maxHealth);
                 UpdateLevel(50, 50, 20, 20, 20, 1);
+                levelPoints *= 2;
                 SceneManager.LoadScene("Boss2");
 
             }
@@ -115,6 +115,7 @@ public class GameStats : MonoBehaviour
                 gameScore += 40;
                 UpdateHealth(50, health, maxHealth);
                 UpdateLevel(75, 50, 30, 30, 30, 1);
+                levelPoints *= 2;
                 SceneManager.LoadScene("Boss3");
 
             }
@@ -124,6 +125,7 @@ public class GameStats : MonoBehaviour
                 gameScore += 50;
                 UpdateHealth(50, health, maxHealth);
                 UpdateLevel(100, 50, 40, 40, 40, 1);
+                levelPoints *= 2;
                 SceneManager.LoadScene("Boss4");
 
 
@@ -137,6 +139,7 @@ public class GameStats : MonoBehaviour
                     gameScore += 100;
                     UpdateHealth(100, health, maxHealth);
                     UpdateLevel(25, 50, 50, 50, 50, 1);
+                    levelPoints *= 2;
                     SceneManager.LoadScene("FinalBoss");
                 }
                 else
@@ -204,6 +207,16 @@ public class GameStats : MonoBehaviour
         if (currenthealth > maxHealth) currenthealth = maxHealth;
         gameScore += 5;
     }
+
+    public static void CheckLevelUp(float levelThreshold)
+    {
+        if (gameScore >= level * levelThreshold)
+        {
+            UpdateLevel(level * 100f, 20, 5f, 5f, 10, 2f);
+            Debug.Log("Level Up! Current Level: " + level);
+        }
+    }
+
     public static void UpdateLevel(float levelThreshold, int healthMaxIncrease, float attackUpgrade, float magicUpgrade, int staminaIncrease, float armorUpgrade)
     {
         if (gameScore / levelThreshold == 0)

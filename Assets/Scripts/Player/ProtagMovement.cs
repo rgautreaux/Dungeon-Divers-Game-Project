@@ -234,7 +234,7 @@ public class ProtagMovement : MonoBehaviour
                 animator.SetBool("isIdle", false);
                 animator.SetBool("isReady", false);
                 animator.SetBool("isWeak", false);
-
+                
 
             }
             else
@@ -245,23 +245,23 @@ public class ProtagMovement : MonoBehaviour
 
             }
 
-            //If a character is growing weak, they will move slower and will not be able to sprint until they heal. This is to simulate the character being too weak to run or sprint.
+            //If a character is growing weak, they will move slower and will not be able to sprint until they heal. This is to simulate the character being too weak to sprint.
             if (health <= 50)
             {
                 isWeak = true;
-                while (isWeak)
+                // Reduce movement speed when weak
+                minimumSpeed = 0.5f;  // 50% speed reduction
+
+                // Prevent sprinting when weak
+                if (inputSprint)
                 {
                     isSprinting = false;
                 }
-                minimumSpeed = 0.5f;
-
             }
-
-            //If they are healed enough, they will be able to run and sprint again as normal.
             else
             {
-                minimumSpeed = 0.10f;
-
+                isWeak = false;
+                minimumSpeed = 0.10f; // Normal movement speed when healthy
             }
 
         }
