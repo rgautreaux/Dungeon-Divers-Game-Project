@@ -249,25 +249,17 @@ public class ProtagMovement : MonoBehaviour
             if (health <= 50)
             {
                 isWeak = true;
-                // Reduce movement speed when weak
-                minimumSpeed = 0.5f;  // 50% speed reduction
-
-                // Prevent sprinting when weak
-                if (inputSprint)
-                {
-                    isSprinting = false;
-                }
+               
             }
             else
             {
                 isWeak = false;
-                minimumSpeed = 0.10f; // Normal movement speed when healthy
             }
 
         }
 
         // Same logic as the run, but adding the sprint input condition
-        if (cc.velocity.magnitude > 0.10f && inputSprint)
+        if (cc.velocity.magnitude > 0.10f && inputSprint && !isWeak)
         {
             Debug.Log("Player is sprinting");
             isSprinting = true;
@@ -382,11 +374,20 @@ public class ProtagMovement : MonoBehaviour
     private void FixedUpdate()
     {
         // Basic character movement and jumping
-        // Checks if the player is sprinting, because if he is, it will add a speed boost to his movement
+        // Checks if the player is sprinting and if the player is sprinting, it will add a speed boost to his movement
         float velocityAdittion = 0;
         if (isSprinting)
         {
             velocityAdittion = sprintAdittion;
+        }
+        // If the player is weak, it will reduce their movement speed by half
+        else if (isWeak)
+        {
+            velocityAdittion = velocity * -0.5f;
+        }
+        else
+        {
+            velocityAdittion = 0;
         }
 
         // Let's use the player's inputs to tell us if he moved to either side
@@ -462,6 +463,7 @@ public class ProtagMovement : MonoBehaviour
         // Finally, we apply this movement to the character controller, which will move our player
         Vector3 moviment = verticalDirection + horizontalDirection;
         cc.Move(moviment);
+
     }
 
 
@@ -541,6 +543,6 @@ public class ProtagMovement : MonoBehaviour
     public void UpdateSpeed(float speedPotion)
     {
         //Increase Base Character Movement Speed
-        velocity = speedPotion;
+        velocity += speedPotion;
     }
 }
